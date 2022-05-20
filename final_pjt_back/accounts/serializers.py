@@ -1,4 +1,4 @@
-from msilib.schema import MoveFile
+from movies.models import Movie
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from community.models import Article
@@ -10,15 +10,15 @@ class ProfileSerializer(serializers.ModelSerializer):
             model = Article
             fields = ('pk', 'title', 'content')
 
-    # class MovieSerializer(serializers.ModelSerializer):
-    #     class Meta:
-    #         model = Movie
-    #         fields = ('pk', 'poster_path', 'title')
+    class MovieSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Movie
+            fields = ('pk', 'poster_url', 'title')
 
     like_articles = ArticleSerializer(many=True)
     articles = ArticleSerializer(many=True)
-    # like_movies = MovieSerializer(many=True)
+    like_movies = MovieSerializer(many=True)
 
     class Meta:
         model = get_user_model()
-        fields = ('pk', 'username', 'articles', 'comments', 'like_articles',) #  'like_movies',
+        fields = ('pk', 'username', 'articles', 'comments', 'like_articles', 'like_movies') #  'like_movies',
