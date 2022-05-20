@@ -36,7 +36,7 @@ INSTALLED_APPS = [
   'accounts',
   'community',
   # 3rd party apps
-  'rest_framwork',
+  'rest_framework',
   'rest_framework.authtoken', # token 기반 auth
   # DRF auth
   'dj_rest_auth',             # signup 제외 auth 관련 담당
