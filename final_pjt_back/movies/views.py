@@ -23,7 +23,7 @@ def movie_detail(request, movie_pk):
 
 
 @api_view(['POST'])
-def movie_create(request, movie_pk):
+def review_create(request, movie_pk):
     user = request.user
     movie = get_object_or_404(Movie, pk=movie_pk)
 
@@ -48,6 +48,7 @@ def review_delete(request, movie_pk, review_pk):
         return Response(serializer.data)
 
 
+@api_view(['POST'])
 def movie_like(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     user = request.user
@@ -61,6 +62,7 @@ def movie_like(request, movie_pk):
         return Response(serializer.data)
 
 
+@api_view(['POST'])
 def review_like(request, review_pk):
     review = get_object_or_404(Movie, pk=review_pk)
     user = request.user

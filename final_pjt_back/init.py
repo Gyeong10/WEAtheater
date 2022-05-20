@@ -17,14 +17,14 @@ def get_movie_datas():
                     'title': movie['title'],
                     'released_date': movie['release_date'],
                     'popularity': movie['popularity'],
-                    'vote_avg': movie['vote_average'],
+                    'vote_average': movie['vote_average'],
                     'overview': movie['overview'],
-                    'poster_path': movie['poster_path'],
+                    'poster_url': movie['poster_path'],
                     'genres': movie['genre_ids']
                 }
 
                 data = {
-                    "pk": movie['id'],
+                    "movie_id": movie['id'],
                     "model": "movies.movie",
                     "fields": fields
                 }
