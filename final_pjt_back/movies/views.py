@@ -95,7 +95,7 @@ def weather_recommend():
                 movies.append(model_to_dict(genre_movie))
                 cnt += 1
             if cnt >= 10:
-              break
+                break
     #     serializer = MovieSerializer(movies, many=True)
     # return Response(serializer.data)
     return movies    
@@ -148,7 +148,7 @@ def actor_recommend(request):
         actor_movie_list.append(movie_set)
         cnt += 1
         if cnt == 10:
-          break
+            break
     # results = MovieSerializer(actor_movie_list, many=True)
     # return Response()
     return actor_movie_list
@@ -181,18 +181,18 @@ def movie_list(request):
 
     # TypeError: Object of type User is not JSON serializable
     serializer = [
-      {
-      'top10': top10
-      },
-      {
-      'actor': actor
-      },
-      {
-      'weather': weather
-      },
-      {
-      'genre': genre
-      }
+        {
+        'top10': top10
+        },
+        {
+        'actor': actor
+        },
+        {
+        'weather': weather
+        },
+        {
+        'genre': genre
+        }
     ]
     return Response(serializer)
 
