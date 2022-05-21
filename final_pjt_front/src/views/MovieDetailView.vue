@@ -22,7 +22,8 @@ export default {
     ...mapActions(['movieDetail'])
   },
   created () {
-    const payload = { movie_pk : this.$route.params.movie_pk }
+    console.log(this.$route.params.moviePk)
+    const payload = { moviePk : this.$route.params.moviePk }
     this.movieDetail(payload)
   }
 }

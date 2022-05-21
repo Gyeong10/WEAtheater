@@ -6,7 +6,7 @@
     <ul>
       <li v-for="movie in profile.movies" :key="movie.pk">
         <router-link :to="{ name: 'movieDetail', params: { moviePk: movie.pk} }">
-          <img :src="movie.poster_url" alt="post">
+          <img :src="movie.poster_url" alt="poster">
           {{ movie.title }}
         </router-link>
       </li>
