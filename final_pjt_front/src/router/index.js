@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import store from '../store'
 
 import ArticleDetailView from '@/views/ArticleDetailView'
+import ArticleEditView from '@/views/ArticleEditView'
+import ArticleNewView from '@/views/ArticleNewView'
 import CommunityView from '@/views/CommunityView'
 import HomeView from '@/views/HomeView'
 import MovieDetailView from '@/views/MovieDetailView'
