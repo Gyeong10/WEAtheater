@@ -63,6 +63,7 @@ export default {
           router.push({ name: 'home'})
         })
         .catch(err => {
+          console.log(err.response.data)
           commit('SET_AUTH_ERROR', err.response.data)
         })
     },
@@ -107,8 +108,10 @@ export default {
         header: getters.authHeader
       })
         .then(res => {
+          console.log(res.data)
           commit('SET_PROFILE', res.data)
         })
+        .catch(err => console.log(err.response.data))
     }
   },
 }

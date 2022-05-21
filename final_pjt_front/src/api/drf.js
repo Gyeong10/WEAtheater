@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:8000/api/vi/'
+const HOST = 'http://localhost:8000/api/v1/'
 
 const ACCOUNTS = 'accounts/'
 const MOIVES = 'movies/'
@@ -13,7 +13,7 @@ export default {
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
   },
-  moives: {
+  movies: {
     movie_list: () => HOST + MOIVES,
     movie_detail: movie_pk => HOST + movie_pk,
     review_create: movie_pk => HOST + movie_pk + 'review/',

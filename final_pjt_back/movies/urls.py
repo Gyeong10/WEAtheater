@@ -20,6 +20,7 @@ schema_view = get_schema_view(
     patterns=schema_url_patterns,
 )
 
+
 urlpatterns = [
     path('', views.movie_list),
     path('<int:movie_pk>/', views.movie_detail),
