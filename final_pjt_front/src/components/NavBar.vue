@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'AccountErrorListView',
+  name: 'NavBar',
 }
 </script>
 

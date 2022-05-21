@@ -37,6 +37,7 @@ INSTALLED_APPS = [
   'community',
   # 3rd party apps
   'rest_framework',
+  'drf_yasg', # swagger
   'rest_framework.authtoken', # token 기반 auth
   # DRF auth
   'dj_rest_auth',             # signup 제외 auth 관련 담당
