@@ -24,6 +24,7 @@
 <script>
 import CommentList from '@/components/ArticleDetailView/CommentList.vue'
 
+
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
