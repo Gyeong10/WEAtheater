@@ -1,7 +1,7 @@
 const HOST = 'http://localhost:8000/api/v1/'
 
 const ACCOUNTS = 'accounts/'
-const MOIVES = 'movies/'
+const MOVIES = 'movies/'
 const COMMUNITY = 'community/'
 const COMMENTS = 'comments/'
 
@@ -14,18 +14,18 @@ export default {
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
   },
   movies: {
-    movie_list: () => HOST + MOIVES,
-    movie_detail: movie_pk => HOST + movie_pk,
-    review_create: movie_pk => HOST + movie_pk + 'review/',
-    review_delete: (movie_pk, review_pk) => HOST + movie_pk + 'review/' + review_pk,
-    movie_like: movie_pk => HOST + movie_pk + 'movie_like/',
-    review_like: review_pk => HOST + review_pk + 'review_like/',
+    movie_list: () => HOST + MOVIES,
+    movie_detail: moviePk => HOST + MOVIES + `${moviePk}/`,
+    review_create: moviePk => HOST + MOVIES + `${moviePk}/` + 'review/',
+    review_delete: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + 'review/' + `${reviewPk}/`,
+    movie_like: moviePk => HOST + MOVIES + `${moviePk}/` + 'movie_like/',
+    review_like: reviewPk => HOST + MOVIES + `${reviewPk}/` + 'review_like/',
   },
   community: {
     community: () => HOST + COMMUNITY,
-    article: articlePk => HOST + COMMUNITY + `${articlePk}`,
-    like_article: articlePk => HOST + COMMUNITY + `${articlePk}` + 'like/',
-    comments : articlePk => HOST + COMMUNITY + `${articlePk}` + COMMENTS,
-    comment: (articlePk, commentPk) => HOST + COMMUNITY + `${articlePk}` + COMMENTS + `${commentPk}`
+    article: articlePk => HOST + COMMUNITY + `${articlePk}/`,
+    like_article: articlePk => HOST + COMMUNITY + `${articlePk}/` + 'like/',
+    comments : articlePk => HOST + COMMUNITY + `${articlePk}/` + COMMENTS,
+    comment: (articlePk, commentPk) => HOST + COMMUNITY + `${articlePk}/` + COMMENTS + `${commentPk}/`
   }
 }

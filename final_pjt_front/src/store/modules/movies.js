@@ -1,13 +1,13 @@
-import router from '@/router'
+// import router from '@/router'
 import axios from 'axios'
 import drf from '@/api/drf'
-import community from './community'
+
 
 export default {
   state: {
     token: localStorage.getItem('token') || '',
     currentUser: {},
-    movies : {},
+    movies : [],
     movie: {},
 
   },
@@ -15,7 +15,7 @@ export default {
     isLoggedIn: state => !!state.token,
     currentUser: state => state.currentUser,
     movies: state => state.movies,
-    movie: state=> state.movie,
+    movie: state => state.movie,
     authHeader: state => ({ Authorization: `Token ${state.token}`})
   },
   mutations: {
@@ -25,13 +25,14 @@ export default {
     SET_MOVIE: (state, movie) => state.movie = movie
   },
   actions: {
-    movieDetail({ getters, commit }, { movie_pk }) {
+    movieDetail({ getters, commit }, { moviePk }) {
       axios({
-        url: drf.movies.movie_detail(movie_pk),
+        url: drf.movies.movie_detail(moviePk),
         method: 'get',
         header: getters.authHeader
       })
         .then(res => {
+          console.log(res.data)
           commit('SET_MOVIE', res.data)
         })
         .catch(err => console.log(err.response.data))
