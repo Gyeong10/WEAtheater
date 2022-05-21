@@ -1,9 +1,14 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 # swagger
+from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+
+schema_url_patterns = [
+    path('api/v1/movies/', include('movies.urls')),
+]
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -11,7 +16,10 @@ schema_view = get_schema_view(
         default_version='v1',
     ),
     public=True,
+    permission_classes=(permissions.AllowAny,),
+    patterns=schema_url_patterns,
 )
+
 
 urlpatterns = [
     path('', views.movie_list),

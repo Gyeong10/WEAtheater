@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store'
+// import store from '../store'
 
 import ArticleDetailView from '@/views/ArticleDetailView'
 import CommunityView from '@/views/CommunityView'
@@ -11,7 +11,9 @@ import SearchView from '@/views/SearchView'
 import LoginView from '@/views/LoginView'
 import LogoutView from '@/views/LogoutView'
 import SignupView from '@/views/SignupView'
+import ProfileView from '@/views/ProfileView'
 import NotFound404 from '@/views/NotFound404'
+
 
 
 Vue.use(VueRouter)
