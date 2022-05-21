@@ -9,7 +9,7 @@
       </div>
       <div>
         <label for="password">Password: </label>
-        <input v-model="credentials.password1" type="text" id="password" required />
+        <input v-model="credentials.password" type="text" id="password" required />
       </div>
       <div>
         <button>Login</button>

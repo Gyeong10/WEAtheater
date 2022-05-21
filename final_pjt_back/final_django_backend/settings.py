@@ -61,6 +61,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,6 +150,12 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # 모두에게 교차출처 허용 (*)
 CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     # Vue LocalHost
+#     'http://localhost:8080',
+#     'http://localhost:8000',
+# ]
 
 # DRF 인증 관련 설정
 REST_FRAMEWORK = {

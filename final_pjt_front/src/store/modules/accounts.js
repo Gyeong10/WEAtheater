@@ -105,7 +105,7 @@ export default {
       axios({
         url: drf.accounts.profile(username),
         method: 'get',
-        header: getters.authHeader
+        headers: getters.authHeader
       })
         .then(res => {
           console.log(res.data)

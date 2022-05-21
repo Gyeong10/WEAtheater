@@ -2,11 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import store from '../store'
 
-// import ArticleDetailView from '@/views/ArticleDetailView'
-// import ArticleEditView from '@/views/ArticleEditView'
-// import ArticleNewView from '@/views/ArticleNewView'
-// import CommunityView from '@/views/CommunityView'
-// import HomeView from '@/views/HomeView'
+import ArticleDetailView from '@/views/ArticleDetailView'
+import ArticleEditView from '@/views/ArticleEditView'
+import ArticleNewView from '@/views/ArticleNewView'
+import CommunityView from '@/views/CommunityView'
+import HomeView from '@/views/HomeView'
 // import SearchView from '@/views/SearchView'
 import MovieDetailView from '@/views/MovieDetailView'
 
@@ -21,11 +21,11 @@ import NotFound404 from '@/views/NotFound404'
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: HomeView
-  // },
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
   {
     path: '/movies/:moviePk',
     name: 'movieDetail',
@@ -41,26 +41,26 @@ const routes = [
   //   name: 'recommendation',
   //   component: RecommendationView
   // },
-  // {
-  //   path: '/community',
-  //   name: 'community',
-  //   component: CommunityView
-  // },
-  // {
-  //   path: '/community/:articlePk',
-  //   name: 'article',
-  //   component: ArticleDetailView
-  // },
-  // {
-  //   path: '/community/new',
-  //   name: 'articleNew',
-  //   component: ArticleNewView
-  // },
-  // {
-  //   path: '/community/:articlePk/edit',
-  //   name: 'articleEdit',
-  //   component: ArticleEditView
-  // },
+  {
+    path: '/community',
+    name: 'community',
+    component: CommunityView
+  },
+  {
+    path: '/community/:articlePk',
+    name: 'article',
+    component: ArticleDetailView
+  },
+  {
+    path: '/community/new',
+    name: 'articleNew',
+    component: ArticleNewView
+  },
+  {
+    path: '/community/:articlePk/edit',
+    name: 'articleEdit',
+    component: ArticleEditView
+  },
   {
     path: '/signup',
     name: 'signup',

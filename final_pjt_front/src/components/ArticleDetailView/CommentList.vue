@@ -7,7 +7,7 @@
         :key="comment.pk">
       </comment-list-item>
     </ul>
-    <comment-list-form></comment-list-form>
+    <comment-form></comment-form>
   </div>
 </template>
 
