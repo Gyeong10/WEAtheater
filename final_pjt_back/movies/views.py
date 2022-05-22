@@ -92,7 +92,16 @@ def weather_recommend():
             genre_movies = genre.movies.all()
             for genre_movie in genre_movies:
                 # file = open(f"{genre_movie}.json", "r", encoding='utf-8')
-                movies.append(model_to_dict(genre_movie))
+                # movies.append(model_to_dict(genre_movie))
+                # print(model_to_dict(genre_movie)['genres'])
+                dict_movie = model_to_dict(genre_movie) 
+
+                temp = []
+                for genr in dict_movie['genres']:
+                    temp.append(model_to_dict(genr)['id'])
+                dict_movie['genres'] = temp
+                movies.append(dict_movie)
+
                 cnt += 1
             if cnt >= 10:
                 break
@@ -156,9 +165,7 @@ def actor_recommend(request):
 
 @api_view(['GET'])
 def movie_list(request):
-    print(f'genre: {genre_recommend(request.user)}')
-    # print(f'weather: {weather_recommend()}')
-    # print(f'actor: {actor_recommend(request)}')
+    # print(f'genre: {genre_recommend(request.user)}')
     movies = Movie.objects.order_by('pk')[:10]
     serializer = MovieSerializer(movies, many=True)
     top10_list = Movie.objects.order_by('pk')[:10]
@@ -172,8 +179,11 @@ def movie_list(request):
             genres.append(model_to_dict(genre)['id'])
         file['genres'] = genres
         top10.append(file)
-    print(f'top10: {top10}')
-    
+
+    # print(f'top10: {top10}')
+    # print(f'weather: {weather_recommend()}')
+    # print(f'actor: {actor_recommend(request)}')
+
     genre = genre_recommend(request.user)
     weather = weather_recommend()
     actor = actor_recommend(request)
