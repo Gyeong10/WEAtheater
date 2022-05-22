@@ -220,8 +220,8 @@ def movie_detail(request, movie_pk):
 def review_create(request, movie_pk):
     user = request.user
     movie = get_object_or_404(Movie, pk=movie_pk)
-
     serializer = ReviewSerializer(data=request.data)
+
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=user)
 
@@ -230,16 +230,32 @@ def review_create(request, movie_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['DELETE'])
-def review_delete(request, movie_pk, review_pk):
+@api_view(['PUT', 'DELETE'])
+def review_update_or_delete(request, movie_pk, review_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     review = get_object_or_404(Review, pk=review_pk)
 
-    if request.user == review.user:
-        review.delete()
-        reviews = movie.reviews.all()
-        serializer = ReviewSerializer(reviews, many=True)
-        return Response(serializer.data)
+    def review_update():
+      if request.uer == review.user:
+          serializer = ReviewSerializer(instance=review, data=request.data)
+          if serializer.is_valid(raise_exception=True):
+              serializer.save()
+
+              reviews = movie.reviews.all()
+              serializer = ReviewSerializer(reviews, many=True)
+              return Response(serializer.data)
+
+    def review_delete():
+        if request.user == review.user:
+            review.delete()
+            reviews = movie.reviews.all()
+            serializer = ReviewSerializer(reviews, many=True)
+            return Response(serializer.data)
+    
+    if request.method == 'PUT':
+        return review_update()
+    elif request.method == 'DELETE':
+        return review_delete()
 
 
 @api_view(['POST'])
@@ -248,12 +264,11 @@ def movie_like(request, movie_pk):
     user = request.user
     if movie.like_users.filter(pk=user.pk).exists():
         movie.like_users.remove(user)
-        serializer = MovieSerializer(movie)
-        return Response(serializer.data)
+        
     else:
         movie.like_users.add(user)
-        serializer = MovieSerializer(movie)
-        return Response(serializer.data)
+    serializer = MovieSerializer(movie)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -262,9 +277,7 @@ def review_like(request, review_pk):
     user = request.user
     if review.like_users.filter(pk=user.pk).exists():
         review.like_users.remove(user)
-        serializer = ReviewSerializer(review)
-        return Response(serializer.data)
     else:
         review.like_users.add(user)
-        serializer = ReviewSerializer(review)
-        return Response(serializer.data)
+    serializer = ReviewSerializer(review)
+    return Response(serializer.data)

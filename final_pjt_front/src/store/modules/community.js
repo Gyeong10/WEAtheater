@@ -32,7 +32,7 @@ export default {
     fetchArticles({ commit, getters }) {
     
       axios({
-        url: drf.articles.articles(),
+        url: drf.articles.community(),
         method: 'get',
         hearders: getters.authHeader,
       })
@@ -61,7 +61,7 @@ export default {
     createArticle({ commit, getters }, article) {
 
       axios({
-        url: drf.articles.articles(),
+        url: drf.articles.community(),
         method: 'post',
         data: article,
         headers: getters.authHeader,
@@ -115,7 +115,7 @@ export default {
     likeArticle({ commit, getters }, articlePk) {
 
       axios({
-        url: drf.articles.likeArticle(articlePk),
+        url: drf.articles.like_article(articlePk),
         method: 'post',
         headers: getters.authHeaderm
       })

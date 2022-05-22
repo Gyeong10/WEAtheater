@@ -1,8 +1,12 @@
 <template>
   <div>
     <h1>{{ movie.title }}</h1>
-    <img :src="movie.poster_url" alt="poster">
-    <review-list></review-list>
+    <img :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
+    <p>{{ movie.genres }}</p>
+    <p>{{ movie.overview }}</p>
+    <button @click="likeMovie(payload)">좋아요</button>
+    <p>좋아요 누른 사람: {{ movie.like_users }}</p>
+    <review-list :reviews="movie.reviews"></review-list>
   </div>
 </template>
 
@@ -15,16 +19,21 @@ export default {
   components: {
     ReviewList
   },
+  data () {
+    return {
+      payload: ({ moviePk : this.$route.params.moviePk }),
+    }
+  },
   computed: {
     ...mapGetters(['movie'])
   },
   methods: {
-    ...mapActions(['movieDetail'])
+    ...mapActions(['movieDetail', 'likeMovie'])
   },
   created () {
-    console.log(this.$route.params.moviePk)
-    const payload = { moviePk : this.$route.params.moviePk }
-    this.movieDetail(payload)
+    // console.log(this.$route.params.moviePk)
+    // const payload = { moviePk : this.$route.params.moviePk }
+    this.movieDetail(this.payload)
   }
 }
 </script>
