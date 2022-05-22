@@ -12,6 +12,7 @@ export default {
     // movieLike: null,
 
     recommendMovies: [],
+    searchData: [],
 
   },
   getters: {
@@ -22,6 +23,7 @@ export default {
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
 
     recommendMovies: state => state.recommendMovies,
+    searchData: state => state.searchData,
   },
   mutations: {
     // SET_TOKEN: (state, token) => state.token = token,
@@ -30,6 +32,7 @@ export default {
     SET_MOVIE: (state, movie) => state.movie = movie,
     SET_MOVIE_REVIEWS: (state, reviews) => state.movie.reviews = reviews,
     SET_RECOMMEND_MOVIES: (state, recommendMovies) => state.recommendMovies = recommendMovies,
+    SET_SEARCH_DATA: (state, searchData) => state.searchData = searchData,
   },
   actions: {
     movieDetail({ getters, commit }, { moviePk }) {
@@ -109,6 +112,17 @@ export default {
         })
     },
 
-    // getSeachMovies({}) {}
+    getSeachMovies({ commit, getters }, { input } ) {
+      
+      axios({
+        url: drf.movies.search(input),
+        method: 'get',
+        headers: getters.authHeaderm
+      })
+        .then(res => commit('SET_SEARCH_DATA', res.data))
+        .catch(err => {
+          console.error(err.response)
+        })
+    }
   }
 }

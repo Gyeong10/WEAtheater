@@ -21,6 +21,7 @@ export default {
     review: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + REVIEWS + `${reviewPk}/`,  // update or delete
     movie_like: moviePk => HOST + MOVIES + `${moviePk}/` + 'movie_like/',
     review_like: reviewPk => HOST + MOVIES + `${reviewPk}/` + 'review_like/',
+    search: input => HOST + MOVIES + `${input}/`,
   },
   community: {
     community: () => HOST + COMMUNITY,

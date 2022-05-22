@@ -7,7 +7,7 @@ import ArticleEditView from '@/views/ArticleEditView'
 import ArticleNewView from '@/views/ArticleNewView'
 import CommunityView from '@/views/CommunityView'
 import HomeView from '@/views/HomeView'
-// import SearchView from '@/views/SearchView'
+import SearchView from '@/views/SearchView'
 import MovieDetailView from '@/views/MovieDetailView'
 
 import LoginView from '@/views/LoginView'
@@ -31,11 +31,11 @@ const routes = [
     name: 'movieDetail',
     component: MovieDetailView
   },
-  // {
-  //   path: '/search/:word',
-  //   name: 'search',
-  //   component: SearchView
-  // },
+  {
+    path: '/search/:input',
+    name: 'search',
+    component: SearchView
+  },
   // {
   //   path: '/recommendation/:category',
   //   name: 'recommendation',
