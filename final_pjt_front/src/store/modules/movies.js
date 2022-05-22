@@ -28,7 +28,7 @@ export default {
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie = movie,
-
+    SET_MOVIE_REVIEWS: (state, reviews) => state.movie.reviews = reviews,
     SET_RECOMMEND_MOVIES: (state, recommendMovies) => state.recommendMovies = recommendMovies,
   },
   actions: {
@@ -95,6 +95,20 @@ export default {
           commit('SET_MOVIE_REVIEWS', res.data)
         })
         .catch(err => console.error(err.response))
-    }
+    },
+    getRecommendMovies({ commit, getters }) {
+
+      axios({
+        url : drf.movies.movie_list(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('SET_RECOMMEND_MOVIES', res.data))
+        .catch(err => {
+          console.error(err.response)
+        })
+    },
+
+    // getSeachMovies({}) {}
   }
 }
