@@ -1,6 +1,7 @@
 <template>
   <div class="article-detail-view">
     <h1>{{ article.title }}</h1>
+    <p>{{ article.category }}</p>
     <p>{{ article.content }}</p>
 
     <div v-if="isAuthor">
@@ -10,7 +11,6 @@
 
       <button @click="deleteArticle(articlePk)">Delete</button>
     </div>
-
     <div>
       Like:
       <button @click="likeArticle(articlePk)">{{ likeCount }}</button>
@@ -38,7 +38,7 @@ export default {
   computed: {
     ...mapGetters(['isAuthor', 'article']),
     likeCount() {
-      return this.article.like_users?.length
+      return this.article.like_users.length
     }
   },
   methods: {

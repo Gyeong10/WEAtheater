@@ -9,11 +9,17 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import FootBar from '@/components/FootBar.vue'
-
+import { mapActions } from 'vuex'
 
 export default ({
   name: 'App',
   components: { NavBar, FootBar },
+  methods : {
+    ...mapActions(['fetchCurrentUser'])
+  },
+  created() {
+    this.fetchCurrentUser()
+  }
 
 
 })

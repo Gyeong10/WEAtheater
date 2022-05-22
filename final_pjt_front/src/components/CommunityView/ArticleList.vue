@@ -4,7 +4,7 @@
       <li v-for="article in articles" :key="article.pk">
         작성자 : {{ article.user.username }} / 
 
-        <router-link :to="{ name: 'article', params: {articlePk: article.pk} }">
+        <router-link :to="{ name: 'article', params: { articlePk: article.pk } }">
           {{ article.title }}
         </router-link>
 

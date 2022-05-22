@@ -24,8 +24,8 @@ export default {
     search: input => HOST + MOVIES + `${input}/`,
   },
   community: {
-    community: () => HOST + COMMUNITY, // 목록 불러오기, 
-    article: articlePk => HOST + COMMUNITY + `${articlePk}/`,
+    community: () => HOST + COMMUNITY, // 목록 불러오기, create
+    article: articlePk => HOST + COMMUNITY + `${articlePk}/`, // 상세 게시글 보기
     like_article: articlePk => HOST + COMMUNITY + `${articlePk}/` + 'like/',
     comments : articlePk => HOST + COMMUNITY + `${articlePk}/` + COMMENTS,
     comment: (articlePk, commentPk) => HOST + COMMUNITY + `${articlePk}/` + COMMENTS + `${commentPk}/`
