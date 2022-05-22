@@ -1,4 +1,5 @@
 # from django.http import JsonResponse
+from unittest import result
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -207,6 +208,17 @@ def movie_list(request):
     return Response(serializer)
 
     # return Response(serializer.data)
+
+
+def search(request):
+
+    API_KEY = '734f0f8517f219408b7b36148ae92b32'
+    
+    search_result = requests.get(f'https://api.themoviedb.org/3/search/multi?api_key={API_KEY}&language=ko-KR&page=1&include_adult=false&query={request.data}')
+
+    return Response(search_result)
+
+
 
 
 @api_view(['GET'])
