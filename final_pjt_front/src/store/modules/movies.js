@@ -11,6 +11,8 @@ export default {
     movie: {},
     // movieLike: null,
 
+    recommendMovies: [],
+
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -18,16 +20,16 @@ export default {
     movies: state => state.movies,
     movie: state => state.movie,
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
-    // reviews: state => state.reviews,
-    // movieLike: state => state.movieLike,
+
+    recommendMovies: state => state.recommendMovies,
   },
   mutations: {
     // SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie = movie,
-    SET_MOVIE_REVIEWS: (state, reviews) => state.movie.reviews = reviews,
-    // SET_MOVIE_LIKE: (state, movieLike) => state.movieLike = movieLike,
+
+    SET_RECOMMEND_MOVIES: (state, recommendMovies) => state.recommendMovies = recommendMovies,
   },
   actions: {
     movieDetail({ getters, commit }, { moviePk }) {
