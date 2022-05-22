@@ -16,7 +16,7 @@ export default {
     articles: state => state.articles,
     article: state => state.article,
     isAuthor: (state, getters) => {
-      return state.article.user?.username === getters.currentUser.username
+      return state.article.user.username === getters.currentUser.username
     },
     isArticle: state => !_.isEmpty(state.article),
   },
@@ -44,7 +44,7 @@ export default {
     fetchArticle({ commit, getters }, articlePk) {
     
       axios({
-        url: drf.articles.article(articlePk),
+        url: drf.community.article(articlePk),
         method: 'get',
         headers: getters.authHeader,
       })
@@ -61,10 +61,10 @@ export default {
     createArticle({ commit, getters }, article) {
 
       axios({
-        url: drf.articles.community(),
+        url: drf.community.community(),
         method: 'post',
         data: article,
-        headers: getters.authHeader,
+        headers: getters.authHeader
       })
         .then(res => {
           commit('SET_ARTICLE', res.data)
@@ -79,7 +79,7 @@ export default {
     updateArticle({ commit, getters }, {pk, title, content}) {
 
       axios({
-        url: drf.articles.article(pk),
+        url: drf.community.article(pk),
         method: 'put',
         data: { title, content },
         headers: getters.authHeader,
@@ -99,13 +99,13 @@ export default {
       if (confirm('삭제하시겠습니까?')) {
         
         axios({
-          url: drf.articles.article(articlePk),
+          url: drf.community.article(articlePk),
           method: 'delete',
           headers: getters.authHeader,
         })
           .then(() => {
             commit('SET_ARTICLE', {})
-            router.push({ name: 'articles' })
+            router.push({ name: 'community' })
           })
           .catch(err => console.error(err.response))
       }
@@ -115,9 +115,9 @@ export default {
     likeArticle({ commit, getters }, articlePk) {
 
       axios({
-        url: drf.articles.like_article(articlePk),
+        url: drf.community.like_article(articlePk),
         method: 'post',
-        headers: getters.authHeaderm
+        headers: getters.authHeader
       })
         .then(res => commit('SET_ARTICLE', res.data))
         .catch(err => console.error(err.response))
@@ -128,7 +128,7 @@ export default {
       const comment = { content }
 
       axios({
-        url: drf.articles.comments(articlePk),
+        url: drf.community.comments(articlePk),
         method: 'post',
         data: comment,
         headers: getters.authHeader,
@@ -144,7 +144,7 @@ export default {
 
         if (confirm('정말 삭제하시겠습니까?')) {
           axios({
-            url: drf.articles.comment(articlePk, commentPk),
+            url: drf.community.comment(articlePk, commentPk),
             method: 'delete',
             data: {},
             headers: getters.authHeader,

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>게시글 생성</h1>
-    <article-form :article="article" action="create"></article-form>
+    <article-form :article="article" :action="action"></article-form>
   </div>
 </template>
 
@@ -17,7 +17,9 @@ export default {
         pk: null,
         title: '',
         content: '',
-      }
+        category: {},
+      },
+      action: "create",
     }
   },
 }

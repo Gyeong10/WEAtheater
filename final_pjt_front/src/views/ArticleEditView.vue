@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>게시글 수정</h1>
-    <article-form v-if="isArticle" :article="article" action="update">
+    <article-form v-if="isArticle" :article="article" :action="action">
       
     </article-form>
   </div>
@@ -14,6 +14,11 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'ArticleEditView',
   components: { ArticleForm },
+  data () {
+    return {
+      action: "update"
+    }
+  },
   computed: {
     ...mapGetters(['article', 'isArticle']),
   },
