@@ -4,9 +4,9 @@
 
     <h2>좋아요 누른 영화</h2>
     <ul>
-      <li v-for="movie in profile.movies" :key="movie.pk">
+      <li v-for="movie in profile.like_movies" :key="movie.pk">
         <router-link :to="{ name: 'movieDetail', params: { moviePk: movie.pk} }">
-          <img :src="movie.poster_url" alt="poster">
+          <img :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
           {{ movie.title }}
         </router-link>
       </li>

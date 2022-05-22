@@ -4,6 +4,7 @@ const ACCOUNTS = 'accounts/'
 const MOVIES = 'movies/'
 const COMMUNITY = 'community/'
 const COMMENTS = 'comments/'
+const REVIEWS = 'reviews/'
 
 export default {
   accounts: {
@@ -16,8 +17,8 @@ export default {
   movies: {
     movie_list: () => HOST + MOVIES,
     movie_detail: moviePk => HOST + MOVIES + `${moviePk}/`,
-    review_create: moviePk => HOST + MOVIES + `${moviePk}/` + 'review/',
-    review_delete: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + 'review/' + `${reviewPk}/`,
+    reviews: moviePk => HOST + MOVIES + `${moviePk}/` + REVIEWS,  // create
+    review: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + REVIEWS + `${reviewPk}/`,  // update or delete
     movie_like: moviePk => HOST + MOVIES + `${moviePk}/` + 'movie_like/',
     review_like: reviewPk => HOST + MOVIES + `${reviewPk}/` + 'review_like/',
   },
