@@ -32,9 +32,9 @@ export default {
     fetchArticles({ commit, getters }) {
     
       axios({
-        url: drf.articles.community(),
+        url: drf.community.community(),
         method: 'get',
-        hearders: getters.authHeader,
+        headers: getters.authHeader,
       })
         .then(res => commit('SET_ARTICLES', res.data))
         .catch(err => console.error(err.response))

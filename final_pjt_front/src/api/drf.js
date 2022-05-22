@@ -23,7 +23,7 @@ export default {
     review_like: reviewPk => HOST + MOVIES + `${reviewPk}/` + 'review_like/',
   },
   community: {
-    community: () => HOST + COMMUNITY,
+    community: () => HOST + COMMUNITY, // 목록 불러오기, 
     article: articlePk => HOST + COMMUNITY + `${articlePk}/`,
     like_article: articlePk => HOST + COMMUNITY + `${articlePk}/` + 'like/',
     comments : articlePk => HOST + COMMUNITY + `${articlePk}/` + COMMENTS,
