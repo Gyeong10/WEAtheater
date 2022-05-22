@@ -1,6 +1,7 @@
-// import router from '@/router'
+import router from '@/router'
 import axios from 'axios'
 import drf from '@/api/drf'
+
 
 
 export default {
@@ -112,17 +113,24 @@ export default {
         })
     },
 
-    getSeachMovies({ commit, getters }, { input } ) {
+    getSearchMovies({ commit, getters }, { input } ) {
       
       axios({
         url: drf.movies.search(input),
         method: 'get',
-        headers: getters.authHeaderm
+        headers: getters.authHeader
       })
-        .then(res => commit('SET_SEARCH_DATA', res.data))
+        .then(res => {
+          commit('SET_SEARCH_DATA', res.data)
+          // console.log(getters.searchData)
+          router.push({
+            name: 'search',
+            params: { input: getters.searchData }
+          })
+        })
         .catch(err => {
           console.error(err.response)
         })
-    }
+    },
   }
 }
