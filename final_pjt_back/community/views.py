@@ -6,9 +6,10 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import Article, Comment
+from .models import Article, Comment, Category
 from .serializers.article import ArticleListSerializer, ArticleSerializer
 from .serializers.comment import CommentSerializer
+from django.forms.models import model_to_dict
 
 # article 목록 조회, 생성
 @api_view(['GET', 'POST'])
@@ -24,9 +25,20 @@ def article_list_or_create(request):
         return Response(serializer.data)
 
     def article_create():
+        category = get_object_or_404(Category, pk=request.data['category'])
+        # print(f'request.data : {request.data}')
+        # print(f'category: {category}')
+        # cate_serializer = CategorySerializer(category)
+        # print(cate_serializer.data)
+        # data = request.data
+        # data['category'] = cate_serializer.data
+        # serializer = ArticleSerializer(data=request.data)
         serializer = ArticleSerializer(data=request.data)
+        # print(serializer)
+        # print(serializer.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user)
+            serializer.save(user=request.user, category=category)
+            # print(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     if request.method == 'GET':

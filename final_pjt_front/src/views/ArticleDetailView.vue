@@ -1,7 +1,7 @@
 <template>
   <div class="article-detail-view">
     <h1>{{ article.title }}</h1>
-    <p>{{ article.category }}</p>
+    <p>{{ article.category.name }}</p>
     <p>{{ article.content }}</p>
 
     <div v-if="isAuthor">
