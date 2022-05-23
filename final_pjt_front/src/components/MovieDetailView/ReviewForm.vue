@@ -2,7 +2,7 @@
   <div>
     <form @submit.prevent="onSubmit">
       <label for="review">review: </label>
-      <input v-model="content" id="review" type="text" required>
+      <input v-model="context" id="review" type="text" required>
       <button>작성</button>
     </form>
   </div>
@@ -14,7 +14,7 @@ export default {
   name: 'ReviewForm',
   data () {
     return {
-      content: ''
+      context: ''
     }
   },
   computed: {
@@ -23,9 +23,9 @@ export default {
   methods: {
     ...mapActions(['createReview']),
     onSubmit() {
-      this.createReview({ moviePk: this.movie.pk, content: this.content })
+      this.createReview({ moviePk: this.movie.id, context: this.context })
       // 리뷰 만들고 폼 초기화
-      this.content = ''
+      this.context = ''
     }
   }
 }

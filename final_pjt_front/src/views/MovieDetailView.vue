@@ -6,7 +6,7 @@
     <p>{{ movie.overview }}</p>
     <button @click="likeMovie(payload)">좋아요</button>
     <p>좋아요 누른 사람: {{ movie.like_users }}</p>
-    <review-list :reviews="movie.reviews"></review-list>
+    <review-list :reviews="reviews"></review-list>
   </div>
 </template>
 
@@ -14,15 +14,11 @@
 import ReviewList from '@/components/MovieDetailView/ReviewList.vue'
 
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'MovieDetailView',
   components: {
     ReviewList
-  },
-  props: {
-    movie: {
-      type: Object,
-    }
   },
   data () {
     return {
@@ -30,15 +26,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['movie'])
+    ...mapGetters(['movie', 'reviews'])
   },
   methods: {
-    ...mapActions(['movieDetail', 'likeMovie'])
+    ...mapActions(['movieDetail', 'likeMovie', 'getAllReviews'])
   },
   created () {
     // console.log(this.$route.params.moviePk)
     // const payload = { moviePk : this.$route.params.moviePk }
     this.movieDetail(this.payload)
+    this.getAllReviews(this.payload)
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
+    <!-- <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
       {{ review.user.username }}
     </router-link> : 
     <span v-if="!isEditing">{{ payload.content }}</span>
@@ -14,8 +14,8 @@
     <span v-if="currentUser.username === review.user.username && !isEditing">
       <button @click="switchIsEditing">Edit</button> |
       <button @click="deleteReview(payload)">Delete</button>
-    </span>
-
+    </span> -->
+    {{ review }}
   </div>
 </template>
 
@@ -31,9 +31,8 @@ export default {
     return {
       isEditing: false,
       payload: {
-        articlePk: this.review.article,
         reviewPk: this.review.pk,
-        content: this.review.content
+        context: this.review.context
       },
     }
   },

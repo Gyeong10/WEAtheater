@@ -19,6 +19,7 @@ export default {
     all_movie_list: () => HOST + MOVIES + 'movielist/',
     movie_detail: moviePk => HOST + MOVIES + `${moviePk}/`,
     reviews: moviePk => HOST + MOVIES + `${moviePk}/` + REVIEWS,  // create
+    review_list: moviePk => HOST + MOVIES + `${moviePk}/` + 'reviewlist/',  // review list
     review: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + REVIEWS + `${reviewPk}/`,  // update or delete
     movie_like: moviePk => HOST + MOVIES + `${moviePk}/` + 'movie_like/',
     review_like: reviewPk => HOST + MOVIES + `${reviewPk}/` + 'review_like/',

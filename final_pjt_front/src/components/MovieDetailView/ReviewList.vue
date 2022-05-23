@@ -12,13 +12,15 @@ import ReviewForm from '@/components/MovieDetailView/ReviewForm.vue'
 import ReviewListItem from '@/components/MovieDetailView/ReviewListItem.vue'
 
 
+
 export default {
   name: 'ReviewList',
   components: { ReviewForm, ReviewListItem },
   props: {
-    reviews: Object,
-  },
-
+    reviews: {
+      type: Array,
+    }
+  }
 }
 </script>
 

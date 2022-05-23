@@ -178,6 +178,13 @@ def movie_list(request):
         for genre in file['genres']:
             genres.append(model_to_dict(genre)['id'])
         file['genres'] = genres
+
+        if file['like_users']:
+            like_users = []
+            for likes in file['like_users']:
+                like_users.append(model_to_dict(likes))
+            file['like_users'] = like_users
+
         top10.append(file)
 
     # print(f'top10: {top10}')
@@ -222,7 +229,6 @@ def all_movie_list(request):
     movies = Movie.objects.order_by('pk')
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
-
 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
@@ -295,4 +301,11 @@ def review_like(request, review_pk):
     else:
         review.like_users.add(user)
     serializer = ReviewSerializer(review)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def review_list(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    reviews = movie.reviews.all()
+    serializer = ReviewSerializer(reviews, many=True)
     return Response(serializer.data)
