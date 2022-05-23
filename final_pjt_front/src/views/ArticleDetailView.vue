@@ -15,7 +15,9 @@
       Like:
       <button @click="likeArticle(articlePk)">{{ likeCount }}</button>
     </div>
-
+    <div>
+      <router-link :to="{ name: 'community' , params: { category: 'all' } }">목록</router-link>
+    </div>
     <hr />
     <comment-list :comments="article.comments"></comment-list>
   </div>
@@ -38,7 +40,7 @@ export default {
   computed: {
     ...mapGetters(['isAuthor', 'article']),
     likeCount() {
-      return this.article.like_users.length
+      return this.article.like_users?.length
     }
   },
   methods: {

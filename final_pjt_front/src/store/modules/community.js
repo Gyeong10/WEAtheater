@@ -9,23 +9,25 @@ export default {
     articles: [],
     article: {},
     category: {'free': 2, 'movie': 3},
-    // Top3ArticleList: [],
+    // top3ArticleList: [],
   },
 
   getters: {
     articles: state => state.articles,
     article: state => state.article,
     isAuthor: (state, getters) => {
-      return state.article.user.username === getters.currentUser.username
+      return state.article.user?.username === getters.currentUser.username
     },
     isArticle: state => !_.isEmpty(state.article),
     category: state => state.category,
+    // top3ArticleList: state => state.top3ArticleList,
   },
 
   mutations: {
     SET_ARTICLES: (state, articles) => state.articles = articles,
     SET_ARTICLE: (state, article) => state.article = article,
     SET_ARTICLE_COMMENTS: (state, comments) => state.article.comments = comments,
+    // SET_TOP3_ARTICLE_LIST: (state, articles) =>
   },
 
   actions: {
@@ -44,7 +46,6 @@ export default {
 
     // category별 게시글 받아오기
     fetchCategoryArticles({ commit, getters }, category) {
-      console.log(category)
       const cat = getters.category[category]
       axios({
         url: drf.community.category_community(cat),
@@ -92,6 +93,7 @@ export default {
             params: { articlePk: getters.article.pk }
           })
         })
+        .catch(err => console.error(err.response))
     },
 
     // 게시글 수정
@@ -160,19 +162,33 @@ export default {
 
     // 댓글 삭제
     deleteComment({ commit, getters }, { articlePk, commentPk }) {
-
-        if (confirm('정말 삭제하시겠습니까?')) {
-          axios({
-            url: drf.community.comment(articlePk, commentPk),
-            method: 'delete',
-            data: {},
-            headers: getters.authHeader,
+      if (confirm('정말 삭제하시겠습니까?')) {
+        axios({
+          url: drf.community.comment(articlePk, commentPk),
+          method: 'delete',
+          data: {},
+          headers: getters.authHeader,
+        })
+          .then(res => {
+            commit('SET_ARTICLE_COMMENTS', res.data)
           })
-            .then(res => {
-              commit('SET_ARTICLE_COMMENTS', res.data)
-            })
-            .catch(err => console.error(err.response))
-        }
-      },
+          .catch(err => console.error(err.response))
+      }
+    },
+    
+    updateComment({ commit, getters }, {articlePk, commentPk, content}) {
+      const comment = { content }
+
+      axios({
+        url: drf.community.comments(articlePk, commentPk),
+        method: 'put',
+        data: comment,
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_ARTICLE_COMMENTS', res.data)
+        })
+        .catch(err => console.error(err.response))
+    },
   },
 }
