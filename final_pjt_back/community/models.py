@@ -3,7 +3,8 @@ from django.conf import settings
 
 # Create your models here.
 class Category(models.Model):
-    name = models.CharField(max_length=10)
+    # name = models.CharField(max_length=10)
+    pass
 
 class Article(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='articles')
