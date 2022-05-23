@@ -3,11 +3,18 @@
       "pk": 1,
       "model": "community.category",
       "fields": {
-          "name": "자유게시판"
+          "name": "전체게시판"
       }
   },
   {
       "pk": 2,
+      "model": "community.category",
+      "fields": {
+          "name": "자유게시판"
+      }
+  },
+  {
+      "pk": 3,
       "model": "community.category",
       "fields": {
           "name": "영화게시판"

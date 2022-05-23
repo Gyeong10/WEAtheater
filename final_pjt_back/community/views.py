@@ -46,6 +46,16 @@ def article_list_or_create(request):
     elif request.method == 'POST':
         return article_create()
 
+# category별 article 목록 조회
+@api_view(['GET'])
+def category_article_list(request, category):
+    category = get_object_or_404(Category, pk=category)
+    articles = category.articles.annotate(
+              comment_count=Count('comments', distinct=True),
+              like_count=Count('like_users', distinct=True)
+          ).order_by('-pk')
+    serializer = ArticleListSerializer(articles, many=True)
+    return Response(serializer.data)
 
 # article 상세조회, 수정, 삭제
 @api_view(['GET', 'PUT', 'DELETE'])

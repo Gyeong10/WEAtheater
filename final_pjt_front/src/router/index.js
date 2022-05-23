@@ -48,7 +48,7 @@ const routes = [
   //   component: RecommendationView
   // },
   {
-    path: '/community',
+    path: '/community/:category',
     name: 'community',
     component: CommunityView
   },

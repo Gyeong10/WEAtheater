@@ -27,6 +27,7 @@ export default {
   },
   community: {
     community: () => HOST + COMMUNITY, // 목록 불러오기, create
+    category_community: category => HOST + COMMUNITY + 'category/' + `${category}/`, // category 목록 불러오기
     article: articlePk => HOST + COMMUNITY + `${articlePk}/`, // 상세 게시글 보기
     like_article: articlePk => HOST + COMMUNITY + `${articlePk}/` + 'like/',
     comments : articlePk => HOST + COMMUNITY + `${articlePk}/` + COMMENTS,

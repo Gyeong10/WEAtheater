@@ -8,7 +8,7 @@ export default {
   state: {
     articles: [],
     article: {},
-
+    category: {'free': 2, 'movie': 3},
     // Top3ArticleList: [],
   },
 
@@ -19,6 +19,7 @@ export default {
       return state.article.user.username === getters.currentUser.username
     },
     isArticle: state => !_.isEmpty(state.article),
+    category: state => state.category,
   },
 
   mutations: {
@@ -28,7 +29,7 @@ export default {
   },
 
   actions: {
-    // 게시글 목록 받아오기
+    // 전체 게시글 목록 받아오기
     fetchArticles({ commit, getters }) {
     
       axios({
@@ -36,7 +37,23 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_ARTICLES', res.data))
+        .then(res => {commit('SET_ARTICLES', res.data)
+      })
+        .catch(err => console.error(err.response))
+    },
+
+    // category별 게시글 받아오기
+    fetchCategoryArticles({ commit, getters }, category) {
+      console.log(category)
+      const cat = getters.category[category]
+      axios({
+        url: drf.community.category_community(cat),
+        method: 'get',
+        headers: getters.authHeader
+      })
+        .then(res => {
+          commit('SET_ARTICLES', res.data)
+        })
         .catch(err => console.error(err.response))
     },
 

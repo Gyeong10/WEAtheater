@@ -45,8 +45,8 @@ export default {
         category: this.article.category
       },
       options: [
-        { name: "자유게시판", id: 1 },
-        { name: "영화게시판", id: 2 },
+        { name: "자유게시판", id: 2 },
+        { name: "영화게시판", id: 3 },
       ],
       // selected: { name: null, id: null },
 
