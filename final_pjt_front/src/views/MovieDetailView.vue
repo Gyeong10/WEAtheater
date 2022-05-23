@@ -19,6 +19,11 @@ export default {
   components: {
     ReviewList
   },
+  props: {
+    movie: {
+      type: Object,
+    }
+  },
   data () {
     return {
       payload: ({ moviePk : this.$route.params.moviePk }),

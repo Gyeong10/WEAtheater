@@ -23,6 +23,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', views.movie_list),
+    path('movielist/', views.all_movie_list),
     path('<int:movie_pk>/', views.movie_detail),
     path('<int:movie_pk>/reviews/', views.review_create),
     path('<int:movie_pk>/reviews/<int:review_pk>/', views.review_update_or_delete),

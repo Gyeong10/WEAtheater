@@ -2,10 +2,12 @@
   <div>
     <hr>
     <h3>Top10</h3>
-    <p>
-      {{ recommendMovies[0].top10[0].title }}
-      <img :src="`https://image.tmdb.org/t/p/w500${recommendMovies[0].top10[0].poster_url}`" alt="">
-    </p>
+    <router-link :to="{ name: 'movieDetail', params: { moviePk : recommendMovies[0].top10[0].id } }" :movie="recommendMovies[0].top10[0]">
+      <p>
+        {{ recommendMovies[0].top10[0].title }}
+        <img :src="`https://image.tmdb.org/t/p/w500${recommendMovies[0].top10[0].poster_url}`" alt="">
+      </p>
+    </router-link>
     <hr>
     {{ recommendMovies[1] }}
     <hr>

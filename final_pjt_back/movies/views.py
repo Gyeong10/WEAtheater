@@ -166,8 +166,8 @@ def actor_recommend(request):
 @api_view(['GET'])
 def movie_list(request):
     # print(f'genre: {genre_recommend(request.user)}')
-    movies = Movie.objects.order_by('pk')[:10]
-    serializer = MovieSerializer(movies, many=True)
+    # movies = Movie.objects.order_by('pk')[:10]
+    # serializer = MovieSerializer(movies, many=True)
     top10_list = Movie.objects.order_by('pk')[:10]
     # top10_list = MovieSerializer(top10movies, many=True)
     top10 = []
@@ -217,6 +217,11 @@ def search(request, input):
 
     return Response(search_result)
 
+@api_view(['GET'])
+def all_movie_list(request):
+    movies = Movie.objects.order_by('pk')
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])

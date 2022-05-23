@@ -9,6 +9,7 @@ import CommunityView from '@/views/CommunityView'
 import HomeView from '@/views/HomeView'
 import SearchView from '@/views/SearchView'
 import MovieDetailView from '@/views/MovieDetailView'
+import MovieListView from '@/views/MovieListView'
 
 import LoginView from '@/views/LoginView'
 import LogoutView from '@/views/LogoutView'
@@ -30,6 +31,11 @@ const routes = [
     path: '/movies/:moviePk',
     name: 'movieDetail',
     component: MovieDetailView
+  },
+  {
+    path: '/movies/movielist',
+    name: 'movieList',
+    component: MovieListView
   },
   {
     path: '/search/:input',

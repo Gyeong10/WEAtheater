@@ -9,6 +9,10 @@
         <router-link :to="{ name: 'community' }">Community</router-link>
       </li>
 
+      <li>
+        <router-link :to="{ name: 'movieList' }">전체 영화 목록</router-link>
+      </li>
+
       <li v-if="!isLoggedIn">
         <router-link :to="{ name: 'login' }">Login</router-link>
       </li>
