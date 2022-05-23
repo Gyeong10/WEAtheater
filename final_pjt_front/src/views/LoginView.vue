@@ -24,7 +24,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'LoginView',
-  component: {
+  components: {
     AccountErrorList,
   },
   data () {
@@ -39,7 +39,10 @@ export default {
     ...mapGetters(['authError'])
   },
   methods: {
-    ...mapActions(['login'])
+    ...mapActions(['login', 'fetchAuthError'])
+  },
+  created() {
+    this.fetchAuthError()
   }
 }
 </script>

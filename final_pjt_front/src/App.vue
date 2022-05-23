@@ -20,8 +20,6 @@ export default ({
   created() {
     this.fetchCurrentUser()
   }
-
-
 })
 </script>
 

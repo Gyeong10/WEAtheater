@@ -15,6 +15,7 @@ import LoginView from '@/views/LoginView'
 import LogoutView from '@/views/LogoutView'
 import SignupView from '@/views/SignupView'
 import ProfileView from '@/views/ProfileView'
+import WelcomeView from '@/views/WelcomeView'
 import NotFound404 from '@/views/NotFound404'
 
 
@@ -86,6 +87,11 @@ const routes = [
     path: '/profile/:username',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    component: WelcomeView
   },
   {
     path: '/404',
