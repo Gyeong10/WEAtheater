@@ -2,6 +2,8 @@ from movies.models import Movie
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from community.models import Article
+from community.models import Comment
+
 # from movies.models import Movie
 class ProfileSerializer(serializers.ModelSerializer):
   
@@ -18,6 +20,13 @@ class ProfileSerializer(serializers.ModelSerializer):
     like_articles = ArticleSerializer(many=True, read_only=True)
     articles = ArticleSerializer(many=True, read_only=True)
     like_movies = MovieSerializer(many=True, read_only=True)
+
+    class CommentSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Comment
+            fields =('pk', 'content', 'article',)
+
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = get_user_model()

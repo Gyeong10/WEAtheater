@@ -5,11 +5,11 @@
     </router-link> : 
     <span v-if="!isEditing">{{ payload.content }}</span>
 
-    <!-- <span v-if="isEditing">
+    <span v-if="isEditing">
       <input type="text" v-model="payload.content">
       <button @click="onUpdate">업데이트</button>
       <button @click="switchIsEditing">취소</button>
-    </span> -->
+    </span>
 
     <span v-if="currentUser.username === comment.user.username && !isEditing">
       <button @click="switchIsEditing">작성</button>
