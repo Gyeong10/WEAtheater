@@ -8,11 +8,12 @@
       게시판 선택
         <Dropdown
           :options="options"
-          v-on:selected="validateSelection"
+          @selected="validateSelection"
           :disabled="false"
           name="category"
           :maxItem="10"
-          placeholder="Please select an option">
+          placeholder="Please select an option"
+          >
       </Dropdown>
     </div>
     <div>
@@ -44,10 +45,10 @@ export default {
         category: this.article.category
       },
       options: [
-        { name: "자유게시판", id: "free" },
-        { name: "영화게시판", id: "movie" },
+        { name: "자유게시판", id: 1 },
+        { name: "영화게시판", id: 2 },
       ],
-      selected: { name: null, id: null },
+      // selected: { name: null, id: null },
 
     }
   },
@@ -55,6 +56,7 @@ export default {
   methods: {
     ...mapActions(['createArticle', 'updateArticle']),
     onSubmit() {
+      // console.log(this.newArticle)
       if (this.action === 'create') {
         this.createArticle(this.newArticle)
       } else if (this.action === 'update') {
@@ -66,7 +68,8 @@ export default {
       }
     },
     validateSelection(selection) {
-      this.category = selection
+      // console.log(selection)
+      this.newArticle.category = selection.id
     },
   },
 }

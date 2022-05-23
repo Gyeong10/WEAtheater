@@ -17,7 +17,7 @@ export default {
         pk: null,
         title: '',
         content: '',
-        category: {},
+        category: null,
       },
       action: "create",
     }
