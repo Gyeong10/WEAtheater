@@ -24,7 +24,7 @@
     <h2>작성한 댓글</h2>
     <ul>
       <li v-for="comment in profile.comments" :key="comment.pk">
-        <router-link :to="{ name: 'article', params: { articlePk: article } }">
+        <router-link :to="{ name: 'article', params: { articlePk: comment.article } }">
           {{ comment.content }}  |  {{ comment.article }}
         </router-link>
       </li>

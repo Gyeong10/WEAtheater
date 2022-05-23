@@ -40,8 +40,7 @@ export default {
   methods: {
     ...mapActions(['updateComment', 'deleteComment']),
     switchIsEditing() {
-      this.updateComment(this.payload)
-      this.isEditing = false
+      this.isEditing = !this.isEditing
     },
     onUpdate() {
       this.updateComment(this.payload)

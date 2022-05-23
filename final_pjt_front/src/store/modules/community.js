@@ -93,7 +93,11 @@ export default {
             params: { articlePk: getters.article.pk }
           })
         })
-        .catch(err => console.error(err.response))
+        .catch(err => {
+          console.error(err.response)
+          alert('게시판을 선택해주세요!')
+        }
+      )
     },
 
     // 게시글 수정
@@ -180,7 +184,7 @@ export default {
       const comment = { content }
 
       axios({
-        url: drf.community.comments(articlePk, commentPk),
+        url: drf.community.comment(articlePk, commentPk),
         method: 'put',
         data: comment,
         headers: getters.authHeader,
