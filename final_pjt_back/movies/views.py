@@ -24,7 +24,7 @@ def genre_recommend(user):
         ids.append(movie.id)
     # print(ids)
     cnt = 0
-    flag = 0
+    # flag = 0
     for movie in like_movies:
         for movie_genre in movie.genres.all():                
             genre = get_object_or_404(Genre, pk=movie_genre.id)

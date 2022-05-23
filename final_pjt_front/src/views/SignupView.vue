@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>Signup</h1>
+
     <account-error-list v-if="authError"></account-error-list>
+
     <form @submit.prevent="signup(credentials)">
       <div>
         <label for="username">Username: </label>
@@ -12,7 +14,7 @@
         <input v-model="credentials.password1" type="password" id="password1" required />
       </div>
       <div>
-        <label for="password2">Password: </label>
+        <label for="password2">Password Comfirmation: </label>
         <input v-model="credentials.password2" type="password" id="password2" required />
       </div>
       <div>
@@ -28,7 +30,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'SignupView',
-  component: {
+  components: {
     AccountErrorList,
   },
   data () {
@@ -44,7 +46,10 @@ export default {
     ...mapGetters(['authError'])
   },
   methods: {
-    ...mapActions(['signup'])
+    ...mapActions(['signup', 'fetchAuthError'])
+  },
+  created() {
+    this.fetchAuthError()
   }
 }
 </script>

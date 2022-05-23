@@ -1,0 +1,38 @@
+<template>
+  <div>
+    <h2> 영화 취향을 알려주세요!</h2>
+    <ul>
+      <li v-for="(movie, idx) in allMovieList.slice(0, 19)" :key="idx">
+        <div>
+          <img :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
+          {{ movie.title }}
+          <button @click="likeMovie({moviePk : movie.id})">
+            선택
+          </button>
+        </div>
+      </li>
+    </ul>
+    <router-link :to="{ name: 'home' }">Home</router-link>
+  </div>
+</template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex'
+
+export default {
+  name: 'WelcomeView',
+  computed: {
+    ...mapGetters(['allMovieList']),
+  },
+  methods: {
+    ...mapActions(['getAllMovies', 'likeMovie']),
+  },
+  created() {
+    this.getAllMovies()
+  }
+}
+</script>
+
+<style>
+
+</style>
