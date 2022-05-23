@@ -114,28 +114,45 @@ def weather_recommend():
 def actor_recommend(request):
 
     API_KEY = '734f0f8517f219408b7b36148ae92b32'
-
+    flag = False
     user = request.user
     actor_list = []
     movies = user.like_movies.all()
     # print(movies)
     for movie in movies:
         
+        if flag:
+            break
         # if user.pk == movie['user_id']:
         movie_id = movie.movie_id
         # movie_id = movie['movie_id']
         movie_details = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={API_KEY}&language=ko-KR').json()
         for movie_detail in movie_details['cast']:
             # print(movie_detail)
-            if movie_detail['known_for_department'] == 'Acting' and movie_detail['popularity'] >= 10:
-                actor_list.append(movie_detail['id'])
-
+            cnt = 0
+            if cnt <= 5:
+                if movie_detail['known_for_department'] == 'Acting' and movie_detail['popularity'] >= 10:
+                    actor_list.append(movie_detail['id'])
+                    cnt += 1
+            else:
+                flag = True
+                break
+    
+    flag = False
     actor_movie_id = []
     for actor_pk in actor_list:
+        if flag:
+            break
         actor_movies = requests.get(f'https://api.themoviedb.org/3/person/{actor_pk}/movie_credits?api_key={API_KEY}&language=ko-KR').json()
         for movie in actor_movies['cast']:
-            if movie['popularity'] >= 10:
-                actor_movie_id.append(movie['id'])
+            cnt = 0
+            if cnt <= 5:
+                if movie['popularity'] >= 10:
+                    actor_movie_id.append(movie['id'])
+            else:
+                flag = True
+                break
+    
     cnt = 0
     actor_movie_list = []
     for movie_id in actor_movie_id:
@@ -257,7 +274,7 @@ def review_update_or_delete(request, movie_pk, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
 
     def review_update():
-      if request.uer == review.user:
+      if request.user == review.user:
           serializer = ReviewSerializer(instance=review, data=request.data)
           if serializer.is_valid(raise_exception=True):
               serializer.save()

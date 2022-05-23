@@ -68,8 +68,8 @@ export default {
         })
         .catch(err => console.log(err.response.data))
     },
-    updateReview({ getters, commit }, { moviePk, reviewPk, content }) {
-      const review = { content }
+    updateReview({ getters, commit }, { moviePk, reviewPk, context }) {
+      const review = { context }
       axios({
         url: drf.movies.review(moviePk, reviewPk),
         method: 'put',
@@ -95,8 +95,8 @@ export default {
           .catch(err => console.error(err.response))
       }
     },
-    createReview({ getters, commit }, { moviePk, user, like_users, context }) {
-      const review = { user, like_users, context }
+    createReview({ getters, commit }, { moviePk, username, context }) {
+      const review = { username, context }
       axios({
         url: drf.movies.reviews(moviePk),
         method: 'post',
@@ -115,7 +115,7 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_MOVIE_REVIEWS', res.data))
+        .then(res => commit('SET_RECOMMEND_MOVIES', res.data))
         .catch(err => {
           console.error(err.response)
         })

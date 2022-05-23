@@ -2,7 +2,7 @@
   <div>
     <hr>
     <h3>Top10</h3>
-    <router-link :to="{ name: 'movieDetail', params: { moviePk : recommendMovies[0].top10[0].id } }" :movie="recommendMovies[0].top10[0]">
+    <router-link :to="{ name: 'movieDetail', params: { moviePk : recommendMovies[0].top10[0].id } }">
       <p>
         {{ recommendMovies[0].top10[0].title }}
         <img :src="`https://image.tmdb.org/t/p/w500${recommendMovies[0].top10[0].poster_url}`" alt="">
