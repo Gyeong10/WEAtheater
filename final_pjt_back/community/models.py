@@ -3,13 +3,13 @@ from django.conf import settings
 
 # Create your models here.
 class Category(models.Model):
-    # name = models.CharField(max_length=10)
-    pass
+    name = models.CharField(max_length=50)
+
 
 class Article(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='articles')
     title = models.CharField(max_length=100)
-    category = models.ManyToManyField(Category, related_name='articles')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='articles')
     content = models.TextField()
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
