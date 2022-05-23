@@ -12,7 +12,7 @@
     </span>
 
     <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing">작성</button>
+      <button @click="switchIsEditing">수정</button>
       <button @click="deleteComment(payload)">삭제</button>
     </span>
   </li>
@@ -40,7 +40,8 @@ export default {
   methods: {
     ...mapActions(['updateComment', 'deleteComment']),
     switchIsEditing() {
-      this.isEditing = !this.isEditing
+      this.updateComment(this.payload)
+      this.isEditing = false
     },
     onUpdate() {
       this.updateComment(this.payload)

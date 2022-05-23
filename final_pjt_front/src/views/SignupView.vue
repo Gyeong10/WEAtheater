@@ -9,11 +9,11 @@
       </div>
       <div>
         <label for="password1">Password: </label>
-        <input v-model="credentials.password1" type="text" id="password1" required />
+        <input v-model="credentials.password1" type="password" id="password1" required />
       </div>
       <div>
         <label for="password2">Password: </label>
-        <input v-model="credentials.password2" type="text" id="password2" required />
+        <input v-model="credentials.password2" type="password" id="password2" required />
       </div>
       <div>
         <button>가입하기</button>

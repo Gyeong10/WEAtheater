@@ -6,7 +6,7 @@
       </li>
 
       <li>
-        <router-link :to="{ name: 'community' }">Community</router-link>
+        <router-link :to="{ name: 'community', params: { category: 'all' } }">Community</router-link>
       </li>
 
       <li>
