@@ -22,6 +22,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', views.article_list_or_create),
+    path('category/<category>/', views.category_article_list),
     path('<int:article_pk>/', views.article_detail_or_update_or_delete),
     path('<int:article_pk>/like/', views.article_like),
     path('<int:article_pk>/comments/', views.comment_create),

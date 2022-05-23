@@ -20,14 +20,32 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'ArticleList',
+  props: {
+    category: String,
+  },
   computed: {
     ...mapGetters(['articles'])
   },
   methods: {
-    ...mapActions(['fetchArticles'])
+    ...mapActions(['fetchArticles', 'fetchCategoryArticles'])
   },
+  // category 바뀔 때마다 list 갱신시켜주기
+  watch: {
+    'category'() {
+      if (this.category === 'free' || this.category === 'movie') {
+      this.fetchCategoryArticles(this.category)
+      } else {
+          this.fetchArticles()
+      }
+    }
+  },
+  // 처음 들어왔을 때, 새로고침 했을 때 category별로 list 출력
   created() {
-    this.fetchArticles()
+    if (this.category === 'free' || this.category === 'movie') {
+      this.fetchCategoryArticles(this.category)
+    } else {
+        this.fetchArticles()
+    }
   }
 }
 </script>

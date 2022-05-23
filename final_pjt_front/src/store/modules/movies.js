@@ -115,7 +115,7 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_MOVIE_REVIEWS', res.data))
+        .then(res => commit('SET_RECOMMEND_MOVIES', res.data))
         .catch(err => {
           console.error(err.response)
         })
