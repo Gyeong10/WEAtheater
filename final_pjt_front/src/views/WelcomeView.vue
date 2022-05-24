@@ -6,22 +6,16 @@
         <div>
           <img :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
           {{ movie.title }}
-          <div v-if="userData in movie.like_users">
-            <button @click="likeMovie({moviePk : movie.pk})">
-              선택 해제
-            </button>
-          </div>
-          <div v-else>
-            <button @click="likeMovie({moviePk : movie.pk})">
-              선택{{ movie.like_users }}, {{ currentUser.pk }}, {{ currentUser.username }}
-            </button>
-          </div>
+          <v-btn
+              color="primary"
+              @click="hidden = !hidden, likeMovie({moviePk: movie.pk})"
+            >
+              {{ hidden ? '취소' : '선택' }}
+            </v-btn>
         </div>
       </li>
     </ul>
-    
     <router-link :to="{ name: 'home' }">Home</router-link>
-
   </div>
 </template>
 
@@ -32,14 +26,11 @@ export default {
   name: 'WelcomeView',
   data() {
     return {
-      userData: {
-        pk: this.currentUser.pk,
-        username: this.currentUser.username
-      }
+      hidden: false
     }
   },
   computed: {
-    ...mapGetters(['allMovieList', 'currentUser']),
+    ...mapGetters(['allMovieList']),
   },
   methods: {
     ...mapActions(['getAllMovies', 'likeMovie']),

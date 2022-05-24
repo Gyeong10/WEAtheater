@@ -4,7 +4,7 @@
       class="mx-auto"
       max-width="300"
     >
-      <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.pk } }" >
+      <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.id } }" >
         <v-img
           height="500px"
           :src="`https://image.tmdb.org/t/p/w500${allMovie.poster_url}`"
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'MovieCard',
+  name: 'RecommendMovieCard',
   props: {
     allMovie: {
       type: Object,
