@@ -50,8 +50,6 @@ def genre_recommend(request):
     for movie in like_movies:
         ids.append(movie.id)
 
-    # cnt = 0
-    # flag = 0
     for movie in like_movies:
         for movie_genre in movie.genres.all():                
             genre = get_object_or_404(Genre, pk=movie_genre.id)
@@ -59,15 +57,6 @@ def genre_recommend(request):
             for genre_movie in genre_movies:
                 if genre_movie.id not in ids:
                     movie_list.append(convert(genre_movie))
-                    # movie_dict = model_to_dict(genre_movie)
-                #     genres = []
-                #     for g in movie_dict['genres']:
-                #         genres.append(model_to_dict(g))
-                #     movie_dict['genres'] = genres
-                #     movie_list.append(movie_dict)
-                #     cnt += 1
-                # if cnt == 10:
-                #     return movie_list
     return movie_list
 
 
@@ -106,34 +95,7 @@ def weather_recommend():
             genre = get_object_or_404(Genre, pk=genre_pk)
             genre_movies = genre.movies.all()[:5]   # 장르별 영화 받아오기
             for genre_movie in genre_movies:
-                # user object -> dict
-                # now_movie = model_to_dict(genre_movie)
-                # tmp = []
-                # for like_user in now_movie['like_users']:
-                #     now_user = model_to_dict(like_user)
-                #     tmp.append(now_user)
-                # now_movie['like_users'] = tmp
-
-                # # 배우 object -> dict
-                # tmp = []
-                # for actor in now_movie['actors']:
-                #     now_actor = model_to_dict(actor)
-                #     tmp.append(now_actor)
-                # now_movie['actors'] = tmp
-
-                # # 장르 object -> model
-                # temp = []
-                # for genr in now_movie['genres']:
-                #     now_genre = model_to_dict(genr)
-                #     temp.append(now_genre)
-                # now_movie['genres'] = temp
                 movies.append(convert(genre_movie))
-
-            #     cnt += 1
-            # if cnt >= 10:
-            #     break
-    #     serializer = MovieSerializer(movies, many=True)
-    # return Response(serializer.data)
     return movies    
 
 # 배우별 영화 추천 알고리즘
@@ -155,37 +117,15 @@ def actor_recommend(request):
 
 @api_view(['GET'])
 def movie_list(request):
-
     top10_list = Movie.objects.order_by('pk')[:10]
-
     top10 = []
-    # print(top10_list)
     for top10_movie in top10_list:
-        # now_movie = model_to_dict(top10_movie)
-        # genres = []
-        # for genre in now_movie['genres']:
-        #     genres.append(model_to_dict(genre)['id'])
-        # now_movie['genres'] = genres
-
-        # if now_movie['like_users']:
-        #     like_users = []
-        #     for likes in now_movie['like_users']:
-        #         like_users.append(model_to_dict(likes))
-        #     now_movie['like_users'] = like_users
-
-        # top10.append(now_movie)
         top10.append(convert(top10_movie))
-
-    # print(f'top10: {top10}')
-    # print(f'weather: {weather_recommend()}')
-    # print(f'actor: {actor_recommend(request)}')
 
     genre = genre_recommend(request)
     weather = weather_recommend()
     actor = actor_recommend(request)
-    # print(genre)
 
-    # TypeError: Object of type User is not JSON serializable
     serializer = [
         {
         'top10': top10
@@ -202,7 +142,6 @@ def movie_list(request):
     ]
     return Response(serializer)
 
-    # return Response(serializer.data)
 
 @api_view(['GET'])
 def search(request, input):
