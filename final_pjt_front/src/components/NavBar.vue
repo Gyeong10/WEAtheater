@@ -2,7 +2,7 @@
   <div>
     <v-card class="overflow-hidden">
       <v-toolbar
-        class="deep-purple darken-3 white--text"
+        class="#1A237E white--text"
         shrink-on-scroll
         scroll-target="#scrolling-techniques-2"
         src="@/assets/logo2.webp"

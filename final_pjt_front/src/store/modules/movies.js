@@ -14,6 +14,7 @@ export default {
 
     recommendMovies: [],
     searchData: [],
+    searchInput: '',
     allMovieList: [],
     reviews: [],
     // allReviewList: [],
@@ -28,6 +29,7 @@ export default {
 
     recommendMovies: state => state.recommendMovies,
     searchData: state => state.searchData,
+    searchInput: state => state.searchInput,
     allMovieList: state => state.allMovieList,
     reviews: state => state.reviews,
     // allReviewList: state => state.allReviewList,
@@ -41,6 +43,7 @@ export default {
     SET_RECOMMEND_MOVIES: (state, recommendMovies) => state.recommendMovies = recommendMovies,
     SET_SEARCH_DATA: (state, searchData) => state.searchData = searchData,
     SET_ALL_MOVIE_LIST: (state, allMovieList) => state.allMovieList = allMovieList,
+    SET_SEARCH_INPUT: (state, input) => state.searchInput = input,
     // SET_ALL_REVIEW_LIST: (state, allReviewList) => state.allReviewList = allReviewList,
   },
   actions: {
@@ -129,6 +132,7 @@ export default {
         headers: getters.authHeader
       })
         .then(res => {
+          commit('SET_SEARCH_INPUT', input)
           commit('SET_SEARCH_DATA', res.data)
           // console.log(getters.searchData)
           router.push({
