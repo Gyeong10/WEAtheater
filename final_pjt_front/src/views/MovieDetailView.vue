@@ -2,10 +2,16 @@
   <div>
     <h1>{{ movie.title }}</h1>
     <img :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
-    <p>{{ movie.genres }}</p>
+    <div>
+      |
+      <span v-for="(genre, idx) in movie.genres" :key="idx">
+      {{ genre.name }} |
+      </span>
+
+    </div>
     <p>{{ movie.overview }}</p>
-    <button @click="likeMovie(payload)">좋아요</button>
-    <p>좋아요 누른 사람: {{ movie.like_users }}</p>
+    <button @click="likeMovie(payload)"><i class="fa fa-heart fa-3x"></i></button>
+    <p>{{ likeCount }}</p>
     <review-list :reviews="reviews"></review-list>
   </div>
 </template>
@@ -26,7 +32,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['movie', 'reviews'])
+    ...mapGetters(['movie', 'reviews']),
+    likeCount() {
+      return this.movie.like_users?.length
+    }
   },
   methods: {
     ...mapActions(['movieDetail', 'likeMovie', 'getAllReviews'])
@@ -41,5 +50,7 @@ export default {
 </script>
 
 <style>
-
+.fa {
+  color: #dbcfb0;
+}
 </style>

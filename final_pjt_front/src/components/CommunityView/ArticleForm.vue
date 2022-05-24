@@ -1,29 +1,33 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <div>
-      <label for="title">제목: </label>
-      <input v-model="newArticle.title" type="text" id="title" required>
-    </div>
-    <div>
-      게시판 선택
-        <Dropdown
-          :options="options"
-          @selected="validateSelection"
-          :disabled="false"
-          name="category"
-          :maxItem="10"
-          placeholder="Please select an option"
-          >
-      </Dropdown>
-    </div>
-    <div>
-      <label for="content">내용: </label>
-      <textarea v-model="newArticle.content" type="text" id="content" required></textarea>
-    </div>
-    <div>
-      <button>{{ action }}</button>
-    </div>
-  </form>
+  <div class="articleform">
+    <form @submit.prevent="onSubmit">
+      <div>
+        <label for="title">제목: </label>
+        <input class="inputbox" v-model="newArticle.title" type="text" id="title" required>
+      </div>
+      <div class="d-flex">
+        <h5 class="d-inline">게시판 선택</h5>
+        
+          <Dropdown
+            :options="options"
+            @selected="validateSelection"
+            :disabled="false"
+            name="category"
+            :maxItem="10"
+            placeholder="Please select an option"
+            class="d-inline"
+            >
+        </Dropdown>
+      </div>
+      <div>
+        <label for="content">내용: </label>
+        <textarea class="inputbox" v-model="newArticle.content" type="text" id="content" required></textarea>
+      </div>
+      <div>
+        <button class="button">{{ action }}</button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -75,6 +79,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.articleform {
+  background-color: #fff9e9;
+  color: #545775;
+}
+
 
 </style>

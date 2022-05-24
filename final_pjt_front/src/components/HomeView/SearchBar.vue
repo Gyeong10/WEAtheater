@@ -1,8 +1,8 @@
 <template>
   <div>
     <form @submit.prevent="onSubmit">
-      <input @keyup.enter="onSubmit" type="text" v-model="input" value="input">
-      <button>검색</button>
+      <input class="inputbox" @keyup.enter="onSubmit" type="text" v-model="input" value="input">
+      <button class="button">검색</button>
     </form>
   </div>
 </template>
@@ -46,6 +46,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .button {
+    padding: 5px 10px;
+  }
+  .inputbox {
+    width: 500px;
+    margin-bottom: 15px;
+  }
 </style>

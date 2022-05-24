@@ -4,7 +4,7 @@
       <li v-for="article in articles" :key="article.pk">
         작성자 : {{ article.user.username }} / 
 
-        <router-link :to="{ name: 'article', params: { articlePk: article.pk } }">
+        <router-link class="link" :to="{ name: 'article', params: { articlePk: article.pk } }">
           {{ article.title }}
         </router-link>
 
@@ -51,5 +51,8 @@ export default {
 </script>
 
 <style>
-
+/* .link {
+  text-decoration: none;
+  color: #dbcfb0;
+} */
 </style>
