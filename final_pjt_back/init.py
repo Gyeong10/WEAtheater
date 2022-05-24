@@ -21,10 +21,11 @@ def get_movie_datas():
                 for person in movie_details['cast']:
                     cnt = 0
                     if cnt <= 5:
-                        if person['known_for_department'] == 'Acting' and person['popularity'] >= 10:
-                            actor_list.append(person['id'])
-                            all_actors.add((person['id'], person['name']))
-                            cnt += 1
+                        if 'known_for_department' in person.keys() and 'popularity' in person.keys():
+                            if person['known_for_department'] == 'Acting' and person['popularity'] >= 10:
+                                actor_list.append(person['id'])
+                                all_actors.add((person['id'], person['name']))
+                                cnt += 1
                     else:
                         break
             if movie.get('release_date', ''):
