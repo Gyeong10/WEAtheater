@@ -1,7 +1,8 @@
 <template>
   <div>
     <span v-if="isEditing">
-      <input type="text" v-model="payload.context">
+      내용 : <input type="text" v-model="payload.context"> |
+      평점 : <input type="text" v-model="payload.score">
       <button @click="onUpdate">Update</button> |
       <button @click="switchIsEditing">Cancel</button>
     </span>

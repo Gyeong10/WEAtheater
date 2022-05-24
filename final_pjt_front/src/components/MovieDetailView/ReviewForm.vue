@@ -28,6 +28,7 @@ export default {
       this.createReview({ moviePk: this.movie.pk, context: this.context, score: this.score })
       // 리뷰 만들고 폼 초기화
       this.context = ''
+      this.score = ''
     }
   }
 }

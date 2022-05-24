@@ -71,8 +71,8 @@ export default {
         })
         .catch(err => console.log(err.response.data))
     },
-    updateReview({ getters, commit }, { moviePk, reviewPk, context }) {
-      const review = { context }
+    updateReview({ getters, commit }, { moviePk, reviewPk, context, score }) {
+      const review = { context, score }
       axios({
         url: drf.movies.review(moviePk, reviewPk),
         method: 'put',
@@ -82,7 +82,10 @@ export default {
         .then(res => {
           commit('SET_MOVIE_REVIEWS', res.data)
         })
-        .catch(err => console.error(err.response))
+        .catch(err => {
+          console.error(err.response)
+          alert('평점은 숫자만 입력해주세요!')
+        })
     },
     deleteReview({ getters, commit }, { moviePk, reviewPk }) {
       if (confirm('리뷰를 삭제하시겠습니까?')) {
@@ -98,8 +101,8 @@ export default {
           .catch(err => console.error(err.response))
       }
     },
-    createReview({ getters, commit }, { moviePk, username, context }) {
-      const review = { username, context }
+    createReview({ getters, commit }, { moviePk, username, context, score }) {
+      const review = { username, context, score }
       axios({
         url: drf.movies.reviews(moviePk),
         method: 'post',
@@ -109,7 +112,10 @@ export default {
         .then(res => {
           commit('SET_MOVIE_REVIEWS', res.data)
         })
-        .catch(err => console.error(err.response))
+        .catch(err => {
+          console.error(err.response)
+          alert('평점은 숫자만 입력해주세요!')
+        })
     },
     getRecommendMovies({ commit, getters }) {
 
