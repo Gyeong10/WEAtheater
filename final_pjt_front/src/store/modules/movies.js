@@ -130,7 +130,7 @@ export default {
         })
     },
 
-    getSearchMovies({ commit, getters }, { input } ) {
+    getSearchMovies({ commit, getters }, input ) {
       
       axios({
         url: drf.movies.search(input),

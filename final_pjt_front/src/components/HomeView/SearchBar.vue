@@ -1,7 +1,9 @@
 <template>
   <div>
-    <input @keyup.enter="onInputKeyword" type="text" :value="searchInput">
-    <button @keyup.enter="onInputKeyword">검색</button>
+    <form @submit.prevent="onSubmit">
+      <input @keyup.enter="onSubmit" type="text" v-model="input" value="input">
+      <button>검색</button>
+    </form>
   </div>
 </template>
 
@@ -12,7 +14,7 @@ export default {
   name: 'SearchBar',
   data() {
     return {
-      payload: { input: '' }
+      input: this.searchInput,
     }
   },
   computed : {
@@ -25,14 +27,19 @@ export default {
   // },
   methods: {
     ...mapActions(['getSearchMovies']),
-    onInputKeyword(event) {
-      this.payload.input = event.target.value
-      this.$emit('input-change', this.payload)
-      this.getSearchMovies(this.payload)
-    },
+    onSubmit() {
+      this.getSearchMovies(this.input)
+    }
+    // onInputKeyword(event) {
+    //   // this.inputValue = event.target.value
+    //   // this.$emit('input-change', this.inputValue)
+    //   // const payload = { input: this.inputValue}
+    //   this.payload.input = event.target.value
+      // this.getSearchMovies(this.payload)
+    // },
     // watch: {
     //   'searchInput' () {
-
+    //     this.getSearchMovies(this.payload)
     //   }
     // },
   },
