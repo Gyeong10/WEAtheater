@@ -9,7 +9,7 @@ def get_movie_datas():
     total_data = []
     num = 1
     movie_id = 0
-    for i in range(1, 2000):
+    for i in range(1, 10):
         movies_url = f"https://api.themoviedb.org/3/movie/popular?api_key={TMDB_API_KEY}&language=ko-KR&page={i}"
         movies = requests.get(movies_url).json()
         for movie in movies['results']:
