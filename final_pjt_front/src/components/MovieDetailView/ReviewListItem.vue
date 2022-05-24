@@ -31,7 +31,8 @@ export default {
       payload: {
         moviePk: this.review.movie_id,
         reviewPk: this.review.pk,
-        context: this.review.context
+        context: this.review.context,
+        score: this.review.score
       },
     }
   },
