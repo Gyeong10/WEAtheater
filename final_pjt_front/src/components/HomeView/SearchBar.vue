@@ -1,30 +1,40 @@
 <template>
   <div>
-    <input @keyup.enter="onInputKeyword" type="text">
+    <input @keyup.enter="onInputKeyword" type="text" :value="searchInput">
     <button @keyup.enter="onInputKeyword">검색</button>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'SearchBar',
   data() {
     return {
-      inputText: null,
+      payload: { input: '' }
     }
   },
+  computed : {
+    ...mapGetters(['searchInput'])
+  },
+  // data() {
+  //   return {
+  //     inputText: null,
+  //   }
+  // },
   methods: {
     ...mapActions(['getSearchMovies']),
     onInputKeyword(event) {
-      this.$emit('input-change', event.target.value)
-      this.inputText = event.target.value
-      const payload = {
-        input: this.inputText
-      }
-      this.getSearchMovies(payload)
+      this.payload.input = event.target.value
+      this.$emit('input-change', this.payload)
+      this.getSearchMovies(this.payload)
     },
+    // watch: {
+    //   'searchInput' () {
+
+    //   }
+    // },
   },
 }
 </script>
