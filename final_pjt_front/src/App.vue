@@ -1,8 +1,8 @@
 <template>
   <v-app id="app">
-    <div>
+    <div id="body-wrapper">
       <nav-bar></nav-bar>
-      <router-view></router-view>
+      <router-view id="body-content"></router-view>
       <foot-bar></foot-bar>
     </div>
   </v-app>
@@ -31,7 +31,11 @@ export default ({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #dbcfb0;
+  background-color: #545775;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 nav {
@@ -46,4 +50,37 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+#body-wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+#body-content {
+  margin-top: 100px;
+  padding-bottom: 100px;
+}
+
+.link {
+  text-decoration: none;
+  color: #dbcfb0;
+}
+
+.inputbox {
+  border: 1px solid #dbcfb0;
+  margin: 4px;
+  padding: 5px 8px;
+  border-radius: 10px;
+  color: #dbcfb0;
+}
+
+.button {
+  border: 1px solid #dbcfb0;
+  background-color: #dbcfb0;
+  color: #545775;
+  margin: 4px;
+  padding: 2px 100px;
+  border-radius: 10px;
+}
+
 </style>

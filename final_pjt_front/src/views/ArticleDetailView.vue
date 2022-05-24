@@ -5,18 +5,19 @@
     <p>{{ article.content }}</p>
 
     <div v-if="isAuthor">
-      <router-link :to="{ name: 'articleEdit', params: {articlePk} }">
-        <button>Edit</button>
+      <router-link class="link" :to="{ name: 'articleEdit', params: {articlePk} }">
+        Edit
+        <!-- <button>Edit</button> -->
       </router-link>
 
       <button @click="deleteArticle(articlePk)">Delete</button>
     </div>
     <div>
-      Like:
-      <button @click="likeArticle(articlePk)">{{ likeCount }}</button>
+      <button @click="likeArticle(articlePk)"><i class="fa fa-heart fa-2x"></i></button>
+      {{ likeCount }}
     </div>
     <div>
-      <router-link :to="{ name: 'community' , params: { category: 'all' } }">목록</router-link>
+      <router-link class="link" :to="{ name: 'community' , params: { category: 'all' } }">목록</router-link>
     </div>
     <hr />
     <comment-list :comments="article.comments"></comment-list>

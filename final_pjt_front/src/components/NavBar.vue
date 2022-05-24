@@ -20,30 +20,30 @@
 
         <div class="page">
           <li>
-            <router-link id="router" :to="{ name: 'home' }">Home</router-link>
+            <router-link class="link" id="router" :to="{ name: 'home' }">Home</router-link>
           </li>
           <li>
-            <router-link id="router" :to="{ name: 'community', params: { category: 'all' } }">Community</router-link>
+            <router-link class="link" id="router" :to="{ name: 'community', params: { category: 'all' } }">Community</router-link>
           </li>
           <li>
-            <router-link id="router"  outer-link :to="{ name: 'movieList' }">전체 영화 목록</router-link>
+            <router-link class="link" id="router"  outer-link :to="{ name: 'movieList' }">전체 영화 목록</router-link>
           </li>
           <li v-if="!isLoggedIn">
-            <router-link id="router" :to="{ name: 'login' }">Login</router-link>
+            <router-link class="link" id="router" :to="{ name: 'login' }">Login</router-link>
           </li>
 
           <li v-if="!isLoggedIn">
-            <router-link id="router" :to="{ name: 'signup'}">Signup</router-link>
+            <router-link class="link" id="router" :to="{ name: 'signup'}">Signup</router-link>
           </li>
 
           <li v-if="isLoggedIn">
-            <router-link id="router" :to="{ name: 'profile', params: {username} }">
+            <router-link class="link" id="router" :to="{ name: 'profile', params: {username} }">
               {{ currentUser.username }}'s profile
             </router-link>
           </li>
 
           <li v-if="isLoggedIn">
-            <router-link id="router" :to="{ name: 'logout' }">Logout</router-link>
+            <router-link class="link" id="router" :to="{ name: 'logout' }">Logout</router-link>
           </li>
         </div>
 
@@ -66,10 +66,11 @@ export default {
 }
 </script>
 
-<style>
-
-#router {
-  text-decoration: none;
+<style scoped>
+.link {
   color: white;
 }
+/* #router {
+  color: white;
+} */
 </style>
