@@ -34,7 +34,7 @@ const routes = [
     component: MovieDetailView
   },
   {
-    path: '/movies/movielist',
+    path: '/movielist',
     name: 'movieList',
     component: MovieListView
   },

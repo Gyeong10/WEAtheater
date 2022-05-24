@@ -23,7 +23,7 @@ export default {
   methods: {
     ...mapActions(['createReview']),
     onSubmit() {
-      this.createReview({ moviePk: this.movie.id, context: this.context })
+      this.createReview({ moviePk: this.movie.pk, context: this.context })
       // 리뷰 만들고 폼 초기화
       this.context = ''
     }

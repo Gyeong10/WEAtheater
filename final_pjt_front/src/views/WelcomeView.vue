@@ -6,7 +6,7 @@
         <div>
           <img :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
           {{ movie.title }}
-          <button @click="likeMovie({moviePk : movie.id})">
+          <button @click="likeMovie({moviePk : movie.pk})">
             선택
           </button>
         </div>
