@@ -1,37 +1,54 @@
 <template>
   <div>
-    <v-toolbar
-      dark
-      prominent
-    > 
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>MOVIEmovie</v-toolbar-title>
+    <v-card class="overflow-hidden">
+      <v-toolbar
+        class="deep-purple darken-3 white--text"
+        shrink-on-scroll
+        scroll-target="#scrolling-techniques-2"
+        src="@/assets/logo2.webp"
+        prominent
+      > 
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-toolbar-title>MOVIEmovie</v-toolbar-title>
 
-          <router-link :to="{ name: 'home' }">Home</router-link>
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        ></v-img>
+      </template>
 
-          <router-link :to="{ name: 'community', params: { category: 'all' } }">Community</router-link>
+        <div class="page">
+          <li>
+            <router-link id="router" :to="{ name: 'home' }">Home</router-link>
+          </li>
+          <li>
+            <router-link id="router" :to="{ name: 'community', params: { category: 'all' } }">Community</router-link>
+          </li>
+          <li>
+            <router-link id="router"  outer-link :to="{ name: 'movieList' }">전체 영화 목록</router-link>
+          </li>
+          <li v-if="!isLoggedIn">
+            <router-link id="router" :to="{ name: 'login' }">Login</router-link>
+          </li>
 
-          <router-link :to="{ name: 'movieList' }">전체 영화 목록</router-link>
+          <li v-if="!isLoggedIn">
+            <router-link id="router" :to="{ name: 'signup'}">Signup</router-link>
+          </li>
 
-        <li v-if="!isLoggedIn">
-          <router-link :to="{ name: 'login' }">Login</router-link>
-        </li>
+          <li v-if="isLoggedIn">
+            <router-link id="router" :to="{ name: 'profile', params: {username} }">
+              {{ currentUser.username }}'s profile
+            </router-link>
+          </li>
 
-        <li v-if="!isLoggedIn">
-          <router-link :to="{ name: 'signup'}">Signup</router-link>
-        </li>
+          <li v-if="isLoggedIn">
+            <router-link id="router" :to="{ name: 'logout' }">Logout</router-link>
+          </li>
+        </div>
 
-        <li v-if="isLoggedIn">
-          <router-link :to="{ name: 'profile', params: {username} }">
-            {{ currentUser.username }}'s profile
-          </router-link>
-        </li>
-
-        <li v-if="isLoggedIn">
-          <router-link :to="{ name: 'logout' }">Logout</router-link>
-        </li>
-
-    </v-toolbar>
+      </v-toolbar>
+    </v-card>
   </div>
 </template>
 
@@ -51,4 +68,8 @@ export default {
 
 <style>
 
+#router {
+  text-decoration: none;
+  color: white;
+}
 </style>

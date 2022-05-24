@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <div>
+    <div class="deep-purple darken-4 white--text">
       <nav-bar></nav-bar>
       <router-view></router-view>
       <foot-bar></foot-bar>

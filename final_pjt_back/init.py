@@ -9,7 +9,7 @@ def get_movie_datas():
     total_data = []
     num = 1
     movie_id = 0
-    for i in range(1, 2000):
+    for i in range(1, 10):
         movies_url = f"https://api.themoviedb.org/3/movie/popular?api_key={TMDB_API_KEY}&language=ko-KR&page={i}"
         movies = requests.get(movies_url).json()
         for movie in movies['results']:
@@ -21,10 +21,11 @@ def get_movie_datas():
                 for person in movie_details['cast']:
                     cnt = 0
                     if cnt <= 5:
-                        if person['known_for_department'] == 'Acting' and person['popularity'] >= 10:
-                            actor_list.append(person['id'])
-                            all_actors.add((person['id'], person['name']))
-                            cnt += 1
+                        if 'known_for_department' in person.keys() and 'popularity' in person.keys():
+                            if person['known_for_department'] == 'Acting' and person['popularity'] >= 10:
+                                actor_list.append(person['id'])
+                                all_actors.add((person['id'], person['name']))
+                                cnt += 1
                     else:
                         break
             if movie.get('release_date', ''):
