@@ -12,9 +12,9 @@ def get_movie_datas():
     for i in range(1, 10):
         movies_url = f"https://api.themoviedb.org/3/movie/popular?api_key={TMDB_API_KEY}&language=ko-KR&page={i}"
         movies = requests.get(movies_url).json()
-        details_url = f'https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={TMDB_API_KEY}&language=ko-KR'
         for movie in movies['results']:
             movie_id = movie['id']
+            details_url = f'https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={TMDB_API_KEY}&language=ko-KR'
             movie_details = requests.get(details_url).json()
             actor_list = []
             if 'cast' in movie_details.keys():

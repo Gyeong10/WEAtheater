@@ -13,8 +13,35 @@ import json
 import random
 from django.forms.models import model_to_dict
 
+# obj -> dict
+def convert(ob):
+    # user object -> dict
+    now_movie = model_to_dict(ob)
+    tmp = []
+    for like_user in now_movie['like_users']:
+        now_user = model_to_dict(like_user)
+        tmp.append(now_user)
+    now_movie['like_users'] = tmp
+
+    # 배우 object -> dict
+    tmp = []
+    for actor in now_movie['actors']:
+        now_actor = model_to_dict(actor)
+        tmp.append(now_actor)
+    now_movie['actors'] = tmp
+
+    # 장르 object -> model
+    temp = []
+    for genr in now_movie['genres']:
+        now_genre = model_to_dict(genr)
+        temp.append(now_genre)
+    now_movie['genres'] = temp
+    return now_movie
+
+
 # 장르별 영화 추천 알고리즘
-def genre_recommend(user):
+def genre_recommend(request):
+    user = request.user
     like_movies = user.like_movies.all()
     movie_list = []
     # 같은 장르 출력할 때 좋아요 누른 영화는 제외하고 추천하기 위해
@@ -22,38 +49,26 @@ def genre_recommend(user):
     ids = []
     for movie in like_movies:
         ids.append(movie.id)
-    # print(ids)
-    cnt = 0
+
+    # cnt = 0
     # flag = 0
     for movie in like_movies:
         for movie_genre in movie.genres.all():                
             genre = get_object_or_404(Genre, pk=movie_genre.id)
-            genre_movies = genre.movies.all()
+            genre_movies = genre.movies.all()[:6]
             for genre_movie in genre_movies:
-                # print(json.load(genre_movie))
                 if genre_movie.id not in ids:
-                    # file = open(f"{genre_movie}.json", "r", encoding='utf-8')
-                    movie_dict = model_to_dict(genre_movie)
-                    genres = []
-                    for g in movie_dict['genres']:
-                        # print(model_to_dict(g))
-                        genres.append(model_to_dict(g)['id'])
-                    # print(genres)
-                    movie_dict['genres'] = genres
-                    movie_list.append(movie_dict)
-                    cnt += 1
-                if cnt == 10:
-                    return movie_list
-    #                 flag = 1
-    #                 break
-    #         if flag:
-    #           break
-    #     if flag:
-    #       break
-
-    # serializer = MovieSerializer(movie_list, many=True)
-    # return Response(serializer.data)
-            
+                    movie_list.append(convert(genre_movie))
+                    # movie_dict = model_to_dict(genre_movie)
+                #     genres = []
+                #     for g in movie_dict['genres']:
+                #         genres.append(model_to_dict(g))
+                #     movie_dict['genres'] = genres
+                #     movie_list.append(movie_dict)
+                #     cnt += 1
+                # if cnt == 10:
+                #     return movie_list
+    return movie_list
 
 
 # 날씨별 영화 추천 알고리즘
@@ -64,7 +79,7 @@ def weather_recommend():
     if (here_req.status_code != 200):
         # print("현재좌표를 불러올 수 없음")
         movies = Movie.objects.all()[:10]
-        serializer = MovieSerializer(movies, many=True)
+        # serializer = MovieSerializer(movies, many=True)
     else:
         location = json.loads(here_req.text)
         crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
@@ -86,25 +101,37 @@ def weather_recommend():
         # print(weather_genre_list)
         # 장르 id로 genre object를 찾은 뒤 그 genre를 역참조하는 movies를 genre_movies에 할당
         # 그 영화들을 movies list에 추가한 뒤 리턴
-        cnt = 0
+        # cnt = 0
         for genre_pk in weather_genre_list:
             genre = get_object_or_404(Genre, pk=genre_pk)
-            genre_movies = genre.movies.all()
+            genre_movies = genre.movies.all()[:5]   # 장르별 영화 받아오기
             for genre_movie in genre_movies:
-                # file = open(f"{genre_movie}.json", "r", encoding='utf-8')
-                # movies.append(model_to_dict(genre_movie))
-                # print(model_to_dict(genre_movie)['genres'])
-                dict_movie = model_to_dict(genre_movie) 
+                # user object -> dict
+                # now_movie = model_to_dict(genre_movie)
+                # tmp = []
+                # for like_user in now_movie['like_users']:
+                #     now_user = model_to_dict(like_user)
+                #     tmp.append(now_user)
+                # now_movie['like_users'] = tmp
 
-                temp = []
-                for genr in dict_movie['genres']:
-                    temp.append(model_to_dict(genr)['id'])
-                dict_movie['genres'] = temp
-                movies.append(dict_movie)
+                # # 배우 object -> dict
+                # tmp = []
+                # for actor in now_movie['actors']:
+                #     now_actor = model_to_dict(actor)
+                #     tmp.append(now_actor)
+                # now_movie['actors'] = tmp
 
-                cnt += 1
-            if cnt >= 10:
-                break
+                # # 장르 object -> model
+                # temp = []
+                # for genr in now_movie['genres']:
+                #     now_genre = model_to_dict(genr)
+                #     temp.append(now_genre)
+                # now_movie['genres'] = temp
+                movies.append(convert(genre_movie))
+
+            #     cnt += 1
+            # if cnt >= 10:
+            #     break
     #     serializer = MovieSerializer(movies, many=True)
     # return Response(serializer.data)
     return movies    
@@ -112,116 +139,48 @@ def weather_recommend():
 # 배우별 영화 추천 알고리즘
 # 데이터가 없어서 확인 불가..
 def actor_recommend(request):
-
-    # API_KEY = '734f0f8517f219408b7b36148ae92b32'
-    # flag = False
     user = request.user
-    # actor_list = []
-    # movies = user.like_movies.all()
-    # # print(movies)
-    # for movie in movies:
-        
-    #     if flag:
-    #         break
-    #     # if user.pk == movie['user_id']:
-    #     movie_id = movie.movie_id
-    #     # movie_id = movie['movie_id']
-    #     movie_details = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={API_KEY}&language=ko-KR').json()
-    #     for movie_detail in movie_details['cast']:
-    #         # print(movie_detail)
-    #         cnt = 0
-    #         if cnt <= 5:
-    #             if movie_detail['known_for_department'] == 'Acting' and movie_detail['popularity'] >= 10:
-    #                 actor_list.append(movie_detail['id'])
-    #                 cnt += 1
-    #         else:
-    #             flag = True
-    #             break
-    rec_movies = set()
+    rec_movies = []
     movie_list = user.like_movies.all()
     for movie in movie_list:
-        actors = movie.actors.all()
-        for actor in actors:
+        now_movie = get_object_or_404(Movie, pk=movie.pk)
+        actor_list = now_movie.actors.all()
+        for actor in actor_list:
             ms = actor.movies.all()
             for m in ms:
-                rec_movies.add(m)
-    return list(rec_movies)
-
-    # flag = False
-    # actor_movie_id = []
-    # for movie in movie_list:
-    #     for actor_pk in movie.actors:
-    #         if flag:
-    #             break
-    #         actor_movies = requests.get(f'https://api.themoviedb.org/3/person/{actor_pk}/movie_credits?api_key={API_KEY}&language=ko-KR').json()
-    #         for movie in actor_movies['cast']:
-    #             cnt = 0
-    #             if cnt <= 5:
-    #                 if movie['popularity'] >= 10:
-    #                     actor_movie_id.append(movie['id'])
-    #                     cnt += 1
-    #             else:
-    #                 flag = True
-    #                 break
-    #     if flag:
-    #       break
-    
-    # cnt = 0
-    # actor_movie_list = []
-    # for movie_id in actor_movie_id:
-    #     actor_movie = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=ko-KR').json()
-    #     genres = []
-    #     for genre in actor_movie['genres']:
-    #         genres.append(genre['id'])
-    #     movie_set = {
-    #         'title': actor_movie['title'],
-    #         'release_date': actor_movie['release_date'],
-    #         # 'genres': actor_movie['genres'], # 여기서 장르가 숫자로 안들어오고 Genre object로 들어와서 오류
-    #         'genres': genres,
-    #         'overview': actor_movie['overview'],
-    #         'movie_id': actor_movie['id'],
-    #         'popularity': actor_movie['popularity'],
-    #         'vote_average': actor_movie['vote_average'],
-    #         'poster_url': actor_movie['poster_path']
-    #     }
-    #     actor_movie_list.append(movie_set)
-    #     cnt += 1
-    #     if cnt == 10:
-    #         break
-    # results = MovieSerializer(actor_movie_list, many=True)
-    # return Response()
-    # return actor_movie_list
+                if m not in rec_movies:
+                    rec_movies.append(convert(m))
+    return rec_movies
 
 
 @api_view(['GET'])
 def movie_list(request):
-    # print(f'genre: {genre_recommend(request.user)}')
-    # movies = Movie.objects.order_by('pk')[:10]
-    # serializer = MovieSerializer(movies, many=True)
+
     top10_list = Movie.objects.order_by('pk')[:10]
-    # top10_list = MovieSerializer(top10movies, many=True)
+
     top10 = []
     # print(top10_list)
     for top10_movie in top10_list:
-        file = model_to_dict(top10_movie)
-        genres = []
-        for genre in file['genres']:
-            genres.append(model_to_dict(genre)['id'])
-        file['genres'] = genres
+        # now_movie = model_to_dict(top10_movie)
+        # genres = []
+        # for genre in now_movie['genres']:
+        #     genres.append(model_to_dict(genre)['id'])
+        # now_movie['genres'] = genres
 
-        if file['like_users']:
-            like_users = []
-            for likes in file['like_users']:
-                like_users.append(model_to_dict(likes))
-            file['like_users'] = like_users
+        # if now_movie['like_users']:
+        #     like_users = []
+        #     for likes in now_movie['like_users']:
+        #         like_users.append(model_to_dict(likes))
+        #     now_movie['like_users'] = like_users
 
-        top10.append(file)
+        # top10.append(now_movie)
+        top10.append(convert(top10_movie))
 
     # print(f'top10: {top10}')
     # print(f'weather: {weather_recommend()}')
     # print(f'actor: {actor_recommend(request)}')
 
-    genre = genre_recommend(request.user)
+    genre = genre_recommend(request)
     weather = weather_recommend()
     actor = actor_recommend(request)
     # print(genre)
