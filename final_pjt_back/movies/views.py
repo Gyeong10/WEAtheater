@@ -113,71 +113,84 @@ def weather_recommend():
 # 데이터가 없어서 확인 불가..
 def actor_recommend(request):
 
-    API_KEY = '734f0f8517f219408b7b36148ae92b32'
-    flag = False
+    # API_KEY = '734f0f8517f219408b7b36148ae92b32'
+    # flag = False
     user = request.user
-    actor_list = []
-    movies = user.like_movies.all()
-    # print(movies)
-    for movie in movies:
+    # actor_list = []
+    # movies = user.like_movies.all()
+    # # print(movies)
+    # for movie in movies:
         
-        if flag:
-            break
-        # if user.pk == movie['user_id']:
-        movie_id = movie.movie_id
-        # movie_id = movie['movie_id']
-        movie_details = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={API_KEY}&language=ko-KR').json()
-        for movie_detail in movie_details['cast']:
-            # print(movie_detail)
-            cnt = 0
-            if cnt <= 5:
-                if movie_detail['known_for_department'] == 'Acting' and movie_detail['popularity'] >= 10:
-                    actor_list.append(movie_detail['id'])
-                    cnt += 1
-            else:
-                flag = True
-                break
+    #     if flag:
+    #         break
+    #     # if user.pk == movie['user_id']:
+    #     movie_id = movie.movie_id
+    #     # movie_id = movie['movie_id']
+    #     movie_details = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={API_KEY}&language=ko-KR').json()
+    #     for movie_detail in movie_details['cast']:
+    #         # print(movie_detail)
+    #         cnt = 0
+    #         if cnt <= 5:
+    #             if movie_detail['known_for_department'] == 'Acting' and movie_detail['popularity'] >= 10:
+    #                 actor_list.append(movie_detail['id'])
+    #                 cnt += 1
+    #         else:
+    #             flag = True
+    #             break
+    rec_movies = set()
+    movie_list = user.like_movies.all()
+    for movie in movie_list:
+        actors = movie.actors.all()
+        for actor in actors:
+            ms = actor.movies.all()
+            for m in ms:
+                rec_movies.add(m)
+    return list(rec_movies)
+
+    # flag = False
+    # actor_movie_id = []
+    # for movie in movie_list:
+    #     for actor_pk in movie.actors:
+    #         if flag:
+    #             break
+    #         actor_movies = requests.get(f'https://api.themoviedb.org/3/person/{actor_pk}/movie_credits?api_key={API_KEY}&language=ko-KR').json()
+    #         for movie in actor_movies['cast']:
+    #             cnt = 0
+    #             if cnt <= 5:
+    #                 if movie['popularity'] >= 10:
+    #                     actor_movie_id.append(movie['id'])
+    #                     cnt += 1
+    #             else:
+    #                 flag = True
+    #                 break
+    #     if flag:
+    #       break
     
-    flag = False
-    actor_movie_id = []
-    for actor_pk in actor_list:
-        if flag:
-            break
-        actor_movies = requests.get(f'https://api.themoviedb.org/3/person/{actor_pk}/movie_credits?api_key={API_KEY}&language=ko-KR').json()
-        for movie in actor_movies['cast']:
-            cnt = 0
-            if cnt <= 5:
-                if movie['popularity'] >= 10:
-                    actor_movie_id.append(movie['id'])
-            else:
-                flag = True
-                break
-    
-    cnt = 0
-    actor_movie_list = []
-    for movie_id in actor_movie_id:
-        actor_movie = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=ko-KR').json()
-        genres = []
-        for genre in actor_movie['genres']:
-            genres.append(genre['id'])
-        movie_set = {
-            'title': actor_movie['title'],
-            'release_date': actor_movie['release_date'],
-            # 'genres': actor_movie['genres'], # 여기서 장르가 숫자로 안들어오고 Genre object로 들어와서 오류
-            'genres': genres,
-            'overview': actor_movie['overview'],
-            'movie_id': actor_movie['id'],
-            'popularity': actor_movie['popularity'],
-            'vote_average': actor_movie['vote_average'],
-            'poster_url': actor_movie['poster_path']
-        }
-        actor_movie_list.append(movie_set)
-        cnt += 1
-        if cnt == 10:
-            break
+    # cnt = 0
+    # actor_movie_list = []
+    # for movie_id in actor_movie_id:
+    #     actor_movie = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=ko-KR').json()
+    #     genres = []
+    #     for genre in actor_movie['genres']:
+    #         genres.append(genre['id'])
+    #     movie_set = {
+    #         'title': actor_movie['title'],
+    #         'release_date': actor_movie['release_date'],
+    #         # 'genres': actor_movie['genres'], # 여기서 장르가 숫자로 안들어오고 Genre object로 들어와서 오류
+    #         'genres': genres,
+    #         'overview': actor_movie['overview'],
+    #         'movie_id': actor_movie['id'],
+    #         'popularity': actor_movie['popularity'],
+    #         'vote_average': actor_movie['vote_average'],
+    #         'poster_url': actor_movie['poster_path']
+    #     }
+    #     actor_movie_list.append(movie_set)
+    #     cnt += 1
+    #     if cnt == 10:
+    #         break
     # results = MovieSerializer(actor_movie_list, many=True)
     # return Response()
-    return actor_movie_list
+    # return actor_movie_list
 
 
 @api_view(['GET'])
