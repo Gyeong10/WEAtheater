@@ -4,7 +4,7 @@
       class="mx-auto rounded-xl"
       max-width="300"
     >
-      <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.pk } }" >
+      <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.pk } }" class="text-decoration-none">
         <v-img
           class="rounded-t-xl"
           height="500px"

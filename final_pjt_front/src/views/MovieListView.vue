@@ -9,11 +9,20 @@
     </v-container>
     <!-- <router-link class="link" :to="{ name: 'movieList', query: { page: putPage } }" >{{ putPage }}</router-link> -->
     <div class="text-center">
-    <v-pagination
-      v-model="page"
-      :length="6"
-      @input="handlePage"
-    ></v-pagination>
+    <v-container>
+      <v-row justify="center">
+        <v-col cols="8">
+          <v-container class="max-width">
+            <v-pagination
+              v-model="page"
+              class="my-4"
+              @input="handlePage"
+              :length="498"
+            ></v-pagination>
+          </v-container>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
   </div>
 </template>

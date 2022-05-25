@@ -117,6 +117,16 @@ def actor_recommend(request):
     return rec_movies
 
 
+def set_data(lists):
+    temp = []
+    for obj in lists:
+        if obj not in temp:
+            temp.append(obj)
+    
+    if len(temp) > 10:
+        temp = random.sample(temp, 10)
+    return temp
+
 @api_view(['GET'])
 def movie_list(request):
     top10_list = Movie.objects.order_by('pk')[:10]
@@ -124,9 +134,9 @@ def movie_list(request):
     for top10_movie in top10_list:
         top10.append(convert(top10_movie))
 
-    genre = genre_recommend(request)
-    weather = weather_recommend()
-    actor = actor_recommend(request)
+    genre = set_data(genre_recommend(request))  
+    weather = set_data(weather_recommend())
+    actor = set_data(actor_recommend(request))
 
     serializer = [
         {
@@ -151,7 +161,7 @@ def search(request, input):
     API_KEY = '734f0f8517f219408b7b36148ae92b32'
     
     search_result = requests.get(f'https://api.themoviedb.org/3/search/multi?api_key={API_KEY}&language=ko-KR&page=1&include_adult=false&query={input}').json()
-
+    
     return Response(search_result)
 
 @api_view(['GET'])

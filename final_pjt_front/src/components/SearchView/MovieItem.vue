@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ movie['name'] }}
+    {{ movie.known_for }}
   </div>
 </template>
 
