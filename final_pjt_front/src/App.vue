@@ -84,11 +84,22 @@ nav a.router-link-exact-active {
 }
 
 .inputlargebox {
+  color: #dbcfb0;
   border: 1px solid #dbcfb0;
   border-radius: 10px;
   margin: 20px;
+  padding: 5px 8px;
   width: 700px;
   height: 50px;
+}
+
+.smallButton {
+  border: 1px solid #dbcfb0;
+  background-color: #dbcfb0;
+  color: #545775;
+  padding: 5px 10px;
+  margin: 4px;
+  border-radius: 10px;
 }
 
 </style>
