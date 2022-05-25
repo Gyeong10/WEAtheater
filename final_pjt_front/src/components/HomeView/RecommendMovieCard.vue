@@ -2,11 +2,11 @@
   <div id="card">
     <v-card
       class="mx-auto"
-      max-width="300"
+      max-width="200"
     >
       <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.id } }" class="text-decoration-none">
         <v-img
-          height="500px"
+          height="300px"
           :src="`https://image.tmdb.org/t/p/w500${allMovie.poster_url}`"
         >
         </v-img>
@@ -32,6 +32,6 @@ export default {
 <style scoped>
 #card {
   margin: 1rem;
-  display:inline-block; padding: 10px 20px; background: #ccc; margin-right:10px;
+  display:inline-block; padding: 10px 20px; margin-right:10px;
 }
 </style>

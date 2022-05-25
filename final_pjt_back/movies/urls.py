@@ -31,7 +31,6 @@ urlpatterns = [
     path('<int:movie_pk>/movie_like/', views.movie_like),
     path('<int:review_pk>/review_like/', views.review_like),
     path('search/<str:input>/', views.search),
-    path('search/<int:movie_pk>/', views.search_data),
 
     path('swagger/', schema_view.with_ui('swagger')),
 ]

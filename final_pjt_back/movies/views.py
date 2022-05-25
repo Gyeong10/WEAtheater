@@ -257,12 +257,3 @@ def review_list(request, movie_pk):
     reviews = movie.reviews.all()
     serializer = ReviewSerializer(reviews, many=True)
     return Response(serializer.data)
-
-@api_view(['GET'])
-def search_data(request, movie_pk):
-
-    API_KEY = '734f0f8517f219408b7b36148ae92b32'
-
-    search_datas = requests.get(f'https://api.themoviedb.org/3/movie/{movie_pk}?api_key={API_KEY}&language=ko-KR').json()
-
-    return(search_datas)

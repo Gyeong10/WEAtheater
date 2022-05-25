@@ -17,8 +17,6 @@ export default {
     allMovieList: [],
     reviews: [],
     // allReviewList: [],
-    searchDatas: [],
-
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -32,7 +30,6 @@ export default {
     searchInput: state => state.searchInput,
     allMovieList: state => state.allMovieList,
     reviews: state => state.reviews,
-    searchDatas: state => state.searchDatas,
     // allReviewList: state => state.allReviewList,
   },
   mutations: {
@@ -142,7 +139,7 @@ export default {
         .then(res => {
           commit('SET_SEARCH_INPUT', input)
           commit('SET_SEARCH_DATA', res.data)
-          // console.log(getters.searchData)
+          console.log(getters.searchData)
           router.push({
             name: 'search',
             params: { input: getters.searchData }
@@ -182,20 +179,5 @@ export default {
           console.error(err.response)
         })
     },
-
-    getSearchData({commit, getters}, moviePk) {
-
-      axios({
-        url: drf.movies.search_datas(moviePk),
-        method: 'get',
-        headers: getters.authHeader,
-      })
-        .then(res => {
-          commit('SET_SEARCH_DATAS', res.data)
-        })
-        .catch(err => {
-          console.error(err.response)
-        })
-    }
   }
 }
