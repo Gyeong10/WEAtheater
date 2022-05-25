@@ -9,7 +9,6 @@ export default {
     articles: [],
     article: {},
     category: {'free': 2, 'movie': 3},
-    // top3ArticleList: [],
   },
 
   getters: {
@@ -20,14 +19,12 @@ export default {
     },
     isArticle: state => !_.isEmpty(state.article),
     category: state => state.category,
-    // top3ArticleList: state => state.top3ArticleList,
   },
 
   mutations: {
     SET_ARTICLES: (state, articles) => state.articles = articles,
     SET_ARTICLE: (state, article) => state.article = article,
     SET_ARTICLE_COMMENTS: (state, comments) => state.article.comments = comments,
-    // SET_TOP3_ARTICLE_LIST: (state, articles) =>
   },
 
   actions: {

@@ -1,15 +1,5 @@
 <template>
   <div>
-    <span v-if="isEditing">
-      <div class="review">
-        평점 : <input class="inputbox" type="text" v-model="payload.score">
-        <br>
-        내용 : <input class="editbox" type="text" v-model="payload.context">
-        <br>
-        <button @click="onUpdate">Update</button> |
-        <button @click="switchIsEditing">Cancel</button>
-      </div>
-    </span>
     <div class="review">
       <v-container class="d-flex m-5">
         <v-col class="col-1">
@@ -17,13 +7,29 @@
             {{ review.user.username }}
           </router-link>
         </v-col>
-        <v-col class="col-1">
+      <v-col class="col-1">
+        <span v-if="!isEditing">
           <i class="fa fa-star"></i> {{ review.score }}
-        </v-col>
+        </span>
+        <span v-if="isEditing">
+          <i class="fa fa-star"></i><input class="scorebox" type="text" v-model="payload.score">
+        </span>
+      </v-col>
+        
         <v-col class="col-8">
-          {{ review.context }}
+          <span v-if="!isEditing">
+            {{ review.context }}
+          </span>
+          <span v-if="isEditing">
+            내용 <input class="editbox" type="text" v-model="payload.context">
+          </span>
         </v-col>
+        
         <v-col class="col-2">
+          <span v-if="isEditing">
+            <button @click="onUpdate">Update</button> |
+            <button @click="switchIsEditing">Cancel</button>
+          </span>
           <span v-if="currentUser.username === review.user.username && !isEditing">
             <button @click="switchIsEditing">Edit</button> |
             <button @click="deleteReview(payload)">Delete</button>
@@ -86,11 +92,19 @@ export default {
   border-radius: 10px;
   color: #dbcfb0;
 }
+.scorebox {
+  border: 1px solid #dbcfb0;
+  width: 50px;
+  margin: 1rem 3rem;
+  padding: 10px;
+  border-radius: 10px;
+  color: #dbcfb0;
+}
 
 .editbox {
   border: 1px solid #dbcfb0;
-  width: 800px;
-  margin: 5px 50px;
+  width: 50vw;
+  margin: 1rem 3rem;
   padding: 10px;
   border-radius: 10px;
   color: #dbcfb0;

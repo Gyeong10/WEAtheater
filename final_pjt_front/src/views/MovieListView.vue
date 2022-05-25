@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>모든 영화 보기</h1>
+    <h1>All MOVIE</h1>
     <v-container class="d-flex">
       <movie-card
         v-for="(movie, idx) in allMovieList" :key="idx" :allMovie="movie"

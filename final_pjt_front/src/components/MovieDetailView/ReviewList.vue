@@ -2,7 +2,10 @@
   <div>
     <review-form></review-form>
     <ul>
-        <review-list-item v-for="review in reviews" :key="review.pk" :review="review"></review-list-item>
+        <review-list-item
+        v-for="review in reviews"
+        :key="review.pk"
+        :review="review"></review-list-item>
     </ul>
   </div>
 </template>

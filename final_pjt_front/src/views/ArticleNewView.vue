@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>게시글 생성</h1>
     <article-form :article="article" :action="action"></article-form>
   </div>
 </template>
