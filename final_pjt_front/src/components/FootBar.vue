@@ -22,7 +22,7 @@
         class="#545775 py-4 text-center dark--text"
         cols="12"
       >
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        {{ new Date().getFullYear() }} — <strong>Lee JuYeong | Park GeongYeol</strong>
       </v-col>
     </v-row>
   </v-footer>
@@ -35,9 +35,8 @@
       links: [
         'Home',
         'About Us',
-        'Team',
         'Services',
-        'Blog',
+        'NOTION',
         'Contact Us',
       ],
     }),

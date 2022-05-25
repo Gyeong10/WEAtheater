@@ -1,16 +1,17 @@
 <template>
   <div id="card">
     <v-card
-      class="mx-auto"
-      max-width="200"
+      class="mx-auto rounded-xl sub"
+      max-width="220"
     >
-      <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.id } }" class="text-decoration-none">
+      <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.id } }" class="link">
         <v-img
+          class="rounded-t-xl"
           height="300px"
           :src="`https://image.tmdb.org/t/p/w500${allMovie.poster_url}`"
         >
         </v-img>
-        <v-card-subtitle>
+        <v-card-subtitle class="link">
           {{ allMovie.title }}
         </v-card-subtitle>
       </router-link>
@@ -32,6 +33,12 @@ export default {
 <style scoped>
 #card {
   margin: 1rem;
-  display:inline-block; padding: 10px 20px; margin-right:10px;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+.link {
+  color : #545775;
+  font-size: 17px;
 }
 </style>
