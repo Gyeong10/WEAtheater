@@ -83,4 +83,12 @@ nav a.router-link-exact-active {
   border-radius: 10px;
 }
 
+.inputlargebox {
+  border: 1px solid #dbcfb0;
+  border-radius: 10px;
+  margin: 20px;
+  width: 700px;
+  height: 50px;
+}
+
 </style>
