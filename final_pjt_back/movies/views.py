@@ -8,6 +8,8 @@ from .models import Movie, Genre, Review
 from .serializers.movies import MovieSerializer
 from .serializers.reviews import ReviewSerializer
 
+from django.core.paginator import Paginator
+
 import requests
 import json
 import random
@@ -155,7 +157,10 @@ def search(request, input):
 @api_view(['GET'])
 def all_movie_list(request):
     movies = Movie.objects.order_by('pk')
-    serializer = MovieSerializer(movies, many=True)
+    paginator = Paginator(movies, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    serializer = MovieSerializer(page_obj, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])

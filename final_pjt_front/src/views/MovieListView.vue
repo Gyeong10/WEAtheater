@@ -7,6 +7,13 @@
       >
       </movie-card>
     </v-container>
+    <div class="text-center">
+    <v-pagination
+      v-model="page"
+      :length="6"
+      @input="handlePage"
+    ></v-pagination>
+  </div>
   </div>
 </template>
 
@@ -19,6 +26,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MovieListView',
   components: { MovieCard },
+  data() {
+    return {
+      page: 1,
+    }
+  },
   computed: {
     ...mapGetters(['allMovieList']),
   },
