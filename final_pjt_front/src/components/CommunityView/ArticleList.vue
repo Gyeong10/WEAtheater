@@ -1,15 +1,19 @@
 <template>
   <div>
     <ul>
-      <li v-for="article in articles" :key="article.pk">
-        작성자 : {{ article.user.username }} / 
-
-        <router-link class="link" :to="{ name: 'article', params: { articlePk: article.pk } }">
-          {{ article.title }}
-        </router-link>
-
-        댓글 : {{ article.comment_count }}
-        좋아요 : {{ article.like_count }}
+      <li class="article" v-for="article in articles" :key="article.pk">
+        <div class="col-2">
+        {{article.pk}} |  {{ article.user.username }}
+        </div>
+        <div class="col-7">
+          <router-link class="link" :to="{ name: 'article', params: { articlePk: article.pk } }">
+            {{ article.title }}
+          </router-link>
+        </div>
+        <div class="col-3">
+        댓글  {{ article.comment_count }}
+        좋아요  {{ article.like_count }}
+        </div>
       </li>
     </ul>
   </div>
@@ -50,9 +54,21 @@ export default {
 }
 </script>
 
-<style>
-/* .link {
-  text-decoration: none;
+<style scoped>
+li {
+  list-style: none;
+}
+.link {
   color: #dbcfb0;
-} */
+}
+.article {
+  display: flex;
+  width: 80vw;
+  height: 7vh;
+  margin: 3vh auto;
+  border: 1px solid #dbcfb0;
+  border-radius: 10px;
+  color: #dbcfb0;
+  align-items: center;
+}
 </style>

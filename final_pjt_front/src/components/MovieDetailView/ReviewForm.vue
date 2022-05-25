@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-star-rate 
+    <!-- <vue-star-rate 
       v-on:ratingSet="myRatingMethod"
       :rateRange="3"
       :maxIcon="5"
@@ -11,10 +11,19 @@
       iconColor="#FFFF99"
       iconColorHover="#FFFF99"
       iconShape="star"
-    ></vue-star-rate>
+    ></vue-star-rate> -->
+    <v-rating
+        v-model="rating"
+        background-color="white"
+        color="yellow accent-4"
+        dense
+        half-increments
+        hover
+        size="18">
+    </v-rating>
     <form @submit.prevent="onSubmit">
       <!-- <p>평점 <input  v-model="score" type="text" required></p> -->
-      <label for="review">리뷰 </label>
+      <label for="review">  </label>
       <input class="inputlargebox" v-model="context" id="review" type="text" required>
       <button class="smallButton">작성</button>
     </form>
@@ -23,15 +32,15 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import vueStarRate from "vue-js-star-rating"
+// import vueStarRate from "vue-js-star-rating"
 
 export default {
   name: 'ReviewForm',
-  components: { vueStarRate },
+  // components: { vueStarRate },
   data () {
     return {
       context: '',
-      score: '',
+      rating: 5,
     }
   },
   computed: {
@@ -39,11 +48,11 @@ export default {
   },
   methods: {
     ...mapActions(['createReview']),
-    myRatingMethod(rating) {
-      this.score = rating
-    },
+    // myRatingMethod(rating) {
+    //   this.score = rating
+    // },
     onSubmit() {
-      this.createReview({ moviePk: this.movie.pk, context: this.context, score: this.score })
+      this.createReview({ moviePk: this.movie.pk, context: this.context, score: this.rating })
       // 리뷰 만들고 폼 초기화
       this.context = ''
       this.score = ''

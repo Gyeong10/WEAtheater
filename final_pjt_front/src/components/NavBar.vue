@@ -1,7 +1,8 @@
 <template>
   <div>
-    <v-card class="overflow-hidden">
-      <v-toolbar
+    <!-- <v-card> -->
+    <!-- <v-card class="overflow-hidden"> -->
+      <!-- <v-toolbar
         class="#1A237E white--text"
         shrink-on-scroll
         scroll-target="#scrolling-techniques-2"
@@ -16,39 +17,44 @@
           v-bind="props"
           gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         ></v-img>
-      </template>
+      </template> -->
+        <div class="d-flex justify-space-between">
+            <div class="d-flex">
+              <li>
+                <router-link class="link" id="router" :to="{ name: 'home' }">HOME</router-link>
+              </li>
+              <li>
+                <router-link class="link" id="router" :to="{ name: 'community', params: { category: 'all' } }">COMMUNITY</router-link>
+              </li>
+              <li>
+                <router-link class="link" id="router" :to="{ name: 'movieList'}">All MOIVE</router-link>
+              </li>
+            </div>
 
-        <div class="page">
-          <li>
-            <router-link class="link" id="router" :to="{ name: 'home' }">Home</router-link>
-          </li>
-          <li>
-            <router-link class="link" id="router" :to="{ name: 'community', params: { category: 'all' } }">Community</router-link>
-          </li>
-          <li>
-            <router-link class="link" id="router"  outer-link :to="{ name: 'movieList'}">전체 영화 목록</router-link>
-          </li>
-          <li v-if="!isLoggedIn">
-            <router-link class="link" id="router" :to="{ name: 'login' }">Login</router-link>
-          </li>
+            <div class="d-flex">
+              <li v-if="!isLoggedIn">
+                <router-link class="link" id="router" :to="{ name: 'login' }">LOGIN</router-link>
+              </li>
 
-          <li v-if="!isLoggedIn">
-            <router-link class="link" id="router" :to="{ name: 'signup'}">Signup</router-link>
-          </li>
+              <li v-if="!isLoggedIn">
+                <router-link class="link" id="router" :to="{ name: 'signup'}">SIGNUP</router-link>
+              </li>
 
-          <li v-if="isLoggedIn">
-            <router-link class="link" id="router" :to="{ name: 'profile', params: {username} }">
-              {{ currentUser.username }}'s profile
-            </router-link>
-          </li>
+              <li v-if="isLoggedIn">
+                <router-link class="link" id="router" :to="{ name: 'profile', params: {username} }">
+                  {{ currentUser.username }}'s PROFILE
+                </router-link>
+              </li>
 
-          <li v-if="isLoggedIn">
-            <router-link class="link" id="router" :to="{ name: 'logout' }">Logout</router-link>
-          </li>
-        </div>
+              <li v-if="isLoggedIn">
+                <router-link class="link" id="router" :to="{ name: 'logout' }">LOGOUT</router-link>
+              </li>
+            </div>
 
-      </v-toolbar>
-    </v-card>
+        
+      </div>
+      <!-- </v-toolbar> -->
+    <!-- </v-card> -->
   </div>
 </template>
 
@@ -67,8 +73,13 @@ export default {
 </script>
 
 <style scoped>
+li {
+  list-style: none;
+  margin: 2vh 3vw 0;
+}
 .link {
   color: white;
+  list-style: none;
 }
 /* #router {
   color: white;

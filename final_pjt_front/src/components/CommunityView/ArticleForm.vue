@@ -1,11 +1,7 @@
 <template>
   <div class="articleform">
     <form @submit.prevent="onSubmit">
-      <div>
-        <label for="title">제목: </label>
-        <input class="inputbox" v-model="newArticle.title" type="text" id="title" required>
-      </div>
-      <div class="d-flex">
+      <div class="d-flex mx-auto">
         <h5 class="d-inline">게시판 선택</h5>
         
           <Dropdown
@@ -15,12 +11,16 @@
             name="category"
             :maxItem="10"
             placeholder="Please select an option"
-            class="d-inline"
+            class="d-inline mx-2"
             >
         </Dropdown>
       </div>
       <div>
-        <label for="content">내용: </label>
+        <label for="title">제목</label>
+        <input class="inputbox" v-model="newArticle.title" type="text" id="title" required>
+      </div>
+      <div class="d-flex ms-8">
+        <label for="content">내용</label>
         <textarea class="inputbox" v-model="newArticle.content" type="text" id="content" required></textarea>
       </div>
       <div>
@@ -83,7 +83,22 @@ export default {
 .articleform {
   background-color: #fff9e9;
   color: #545775;
+  height: 70vh;
+  padding: 5vh;
+  margin: 5vh;
+}
+.inputbox {
+  color: #545775;
+}
+#title {
+  width: 80vw;
+  margin: 2vh;
 }
 
+#content {
+  width: 80vw;
+  height: 35vh;
+  margin: 2vh;
+}
 
 </style>

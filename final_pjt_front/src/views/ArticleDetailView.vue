@@ -1,16 +1,15 @@
 <template>
   <div class="article-detail-view">
+    <p>| {{ article.category.name }} |</p>
     <h1>{{ article.title }}</h1>
-    <p>{{ article.category.name }}</p>
-    <p>{{ article.content }}</p>
+    <pre class="content">{{ article.content }}</pre>
 
     <div v-if="isAuthor">
       <router-link class="link" :to="{ name: 'articleEdit', params: {articlePk} }">
-        Edit
-        <!-- <button>Edit</button> -->
+        EDIT
       </router-link>
 
-      <button @click="deleteArticle(articlePk)">Delete</button>
+      <button @click="deleteArticle(articlePk)">DELETE</button>
     </div>
     <div>
       <button @click="likeArticle(articlePk)"><i class="fa fa-heart fa-2x"></i></button>
@@ -57,6 +56,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.content {
+  border: 1px solid #dbcfb0;
+  margin: 4vh 10vw;
+  padding: 5px 8px;
+  border-radius: 10px;
+  color: #dbcfb0;
+}
 </style>
