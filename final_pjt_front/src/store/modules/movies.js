@@ -11,7 +11,6 @@ export default {
     movies : [],
     movie: {},
     // movieLike: null,
-
     recommendMovies: [],
     searchData: [],
     searchInput: '',
@@ -39,7 +38,7 @@ export default {
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie = movie,
-    SET_MOVIE_REVIEWS: (state, reviews) => state.reviews = reviews,
+    SET_MOVIE_REVIEWS: (state, reviews) => state.reviews = reviews.reverse(),
     SET_RECOMMEND_MOVIES: (state, recommendMovies) => state.recommendMovies = recommendMovies,
     SET_SEARCH_DATA: (state, searchData) => state.searchData = searchData,
     SET_ALL_MOVIE_LIST: (state, allMovieList) => state.allMovieList = allMovieList,

@@ -14,7 +14,7 @@
     ></vue-star-rate>
     <form @submit.prevent="onSubmit">
       <!-- <p>평점 <input  v-model="score" type="text" required></p> -->
-      <label for="review">review: </label>
+      <label for="review">리뷰 </label>
       <input class="inputlargebox" v-model="context" id="review" type="text" required>
       <button class="smallButton">작성</button>
     </form>
