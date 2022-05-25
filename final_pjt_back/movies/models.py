@@ -15,7 +15,7 @@ class Movie(models.Model):
     movie_id = models.IntegerField()
     popularity = models.FloatField()
     vote_average = models.FloatField()
-    poster_url = models.TextField()
+    poster_url = models.TextField(null=True)
     actors = models.ManyToManyField(Actor, related_name='movies')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
 
