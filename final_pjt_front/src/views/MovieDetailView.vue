@@ -17,17 +17,20 @@
         </div>
         <br>
         <div>
-          출연 배우
-          <br>
+          <h3>ACTOR</h3>
           |
           <span v-for="(actor, idx) in movie.actors.slice(0, 3)" :key="idx"> {{ actor.name }} |</span >
         </div>
-        <div class="box">
-          <p>{{ movie.overview }}</p>
+        <div class="mt-5">
+          <h3 class="d-inline me-2">평점</h3>
+          <h3 class="d-inline me-5">{{ avgScore }}</h3>
+          <button @click="likeMovie(payload)" class="d-inline ms-5"><i class="fa fa-heart fa-2x"></i></button>
+          <h3 class="d-inline ms-2">{{ likeCount }}</h3>
         </div>
-        <div>
-          <button @click="likeMovie(payload)"><i class="fa fa-heart fa-3x"></i></button>
-          <p>{{ likeCount }}</p>
+        <br>
+        <h3>Overview</h3>
+        <div class="box">
+          <h4>{{ movie.overview }}</h4>
         </div>
       </div>
     </div>
@@ -59,6 +62,18 @@ export default {
     ...mapGetters(['movie', 'reviews']),
     likeCount() {
       return this.movie.like_users?.length
+    },
+    avgScore() {
+      const reviews = this.movie.reviews
+      if (reviews) {
+        var sumScore = 0
+        reviews.forEach(review => {
+          sumScore += review.score
+        });
+        return Math.round(sumScore / reviews.length *100) / 100
+      } else {
+        return 0
+      }
     }
   },
   methods: {
@@ -73,7 +88,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* .card {
   color: #dbcfb0;
   background-color: #545775;
@@ -83,11 +98,12 @@ export default {
 }
 .box {
   border: 1px solid #dbcfb0;
-  width: 500px;
-  margin: 50px;
-  padding: 10px;
+  width: 26rem;
+  margin: 1rem 5rem 3rem 5rem;
+  padding: 1rem;
   border-radius: 10px;
   color: #dbcfb0;
+  line-height: 170%;
 }
 .img {
   height: 33rem;
