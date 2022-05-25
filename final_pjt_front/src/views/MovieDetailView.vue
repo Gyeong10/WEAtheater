@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{ movie.title }}</h1>
+    <br>
     <img :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
     <div>
       |
@@ -9,7 +10,9 @@
       </span>
 
     </div>
-    <p>{{ movie.overview }}</p>
+    <div class="box">
+      <p>{{ movie.overview }}</p>
+    </div>
     <button @click="likeMovie(payload)"><i class="fa fa-heart fa-3x"></i></button>
     <p>{{ likeCount }}</p>
     <review-list :reviews="reviews"></review-list>
@@ -51,6 +54,13 @@ export default {
 
 <style>
 .fa {
+  color: #dbcfb0;
+}
+.box {
+  border: 1px solid #dbcfb0;
+  margin: 5px 50px;
+  padding: 8px;
+  border-radius: 10px;
   color: #dbcfb0;
 }
 </style>

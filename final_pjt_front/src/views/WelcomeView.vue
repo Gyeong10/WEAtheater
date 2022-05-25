@@ -26,7 +26,8 @@ export default {
   name: 'WelcomeView',
   data() {
     return {
-      hidden: false
+      hidden: false,
+      // hidden: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     }
   },
   computed: {
