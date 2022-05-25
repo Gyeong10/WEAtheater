@@ -10,7 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class ArticleSerializer(serializers.ModelSerializer):
         class Meta:
             model = Article
-            fields = ('pk', 'title', 'content')
+            fields = ('pk', 'title', 'content', 'created_at', 'updated_at')
 
     class MovieSerializer(serializers.ModelSerializer):
         class Meta:
@@ -24,7 +24,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class CommentSerializer(serializers.ModelSerializer):
         class Meta:
             model = Comment
-            fields =('pk', 'content', 'article')
+            fields =('pk', 'content', 'article', 'created_at', 'updated_at')
 
     comments = CommentSerializer(many=True, read_only=True)
 

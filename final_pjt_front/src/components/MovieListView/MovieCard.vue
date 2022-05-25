@@ -4,14 +4,14 @@
       class="mx-auto rounded-xl"
       max-width="300"
     >
-      <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.pk } }" class="text-decoration-none">
+      <router-link class="link" :to="{ name: 'movieDetail', params: {moviePk: allMovie.pk } }">
         <v-img
           class="rounded-t-xl"
-          height="500px"
-          :src="`https://image.tmdb.org/t/p/w500${allMovie.poster_url}`"
+          height="500"
+          :src="`https://image.tmdb.org/t/p/w400${allMovie.poster_url}`"
         >
         </v-img>
-        <v-card-subtitle class="text-decoration-none">
+        <v-card-subtitle class="link">
           {{ allMovie.title }}
         </v-card-subtitle>
       </router-link>
@@ -33,5 +33,9 @@ export default {
 <style scoped>
 #card {
   margin: 1rem;
+}
+.link {
+  color : #545775;
+  font-size: 17px;
 }
 </style>
