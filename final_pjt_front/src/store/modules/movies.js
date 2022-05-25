@@ -151,10 +151,10 @@ export default {
         })
     },
 
-    getAllMovies({ commit, getters }) {
+    getAllMovies({ commit, getters }, page) {
       
       axios({
-        url: drf.movies.all_movie_list(),
+        url: drf.movies.all_movie_list() + '?page=' + page ,
         method: 'get',
         headers: getters.authHeader,
       })
