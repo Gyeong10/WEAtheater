@@ -1,6 +1,8 @@
 <template>
   <div>
-    {{ movie.known_for }}
+    <router-link :to="{name: 'searchData', params: {moviePk: movie.id} }">
+      {{ movie.title }}
+    </router-link>
   </div>
 </template>
 

@@ -1,9 +1,15 @@
 <template>
   <div>
     <search-bar></search-bar>
-    서치결과
+    <hr>
+    영화 목록
     <movie-item
-      v-for="(movie, idx) in searchData['results']" :key="idx" :movie="movie"
+      v-for="(movie, idx) in searchData[0]" :key="idx" :movie="movie"
+    ></movie-item>
+    <hr>
+    출연한 영화
+    <movie-item
+      v-for="(movie, idx) in searchData[1]" :key="idx" :movie="movie"
     ></movie-item>
   </div>
 </template>

@@ -10,6 +10,7 @@ import HomeView from '@/views/HomeView'
 import SearchView from '@/views/SearchView'
 import MovieDetailView from '@/views/MovieDetailView'
 import MovieListView from '@/views/MovieListView'
+import SearchDataView from '@/views/SearchDataView'
 
 import LoginView from '@/views/LoginView'
 import LogoutView from '@/views/LogoutView'
@@ -42,6 +43,11 @@ const routes = [
     path: '/search/:input',
     name: 'search',
     component: SearchView
+  },
+  {
+    path: '/search/:input/:moviePk',
+    name: 'searchData',
+    component: SearchDataView
   },
   // {
   //   path: '/recommendation/:category',

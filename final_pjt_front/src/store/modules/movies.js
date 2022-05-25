@@ -18,6 +18,7 @@ export default {
     allMovieList: [],
     reviews: [],
     // allReviewList: [],
+    searchDatas: [],
 
   },
   getters: {
@@ -32,6 +33,7 @@ export default {
     searchInput: state => state.searchInput,
     allMovieList: state => state.allMovieList,
     reviews: state => state.reviews,
+    searchDatas: state => state.searchDatas,
     // allReviewList: state => state.allReviewList,
   },
   mutations: {
@@ -44,6 +46,7 @@ export default {
     SET_SEARCH_DATA: (state, searchData) => state.searchData = searchData,
     SET_ALL_MOVIE_LIST: (state, allMovieList) => state.allMovieList = allMovieList,
     SET_SEARCH_INPUT: (state, input) => state.searchInput = input,
+    SET_SEARCH_DATAS: (state, searchDatas) => state.searchDatas = searchDatas,
     // SET_ALL_REVIEW_LIST: (state, allReviewList) => state.allReviewList = allReviewList,
   },
   actions: {
@@ -180,5 +183,20 @@ export default {
           console.error(err.response)
         })
     },
+
+    getSearchData({commit, getters}, moviePk) {
+
+      axios({
+        url: drf.movies.search_datas(moviePk),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_SEARCH_DATAS', res.data)
+        })
+        .catch(err => {
+          console.error(err.response)
+        })
+    }
   }
 }

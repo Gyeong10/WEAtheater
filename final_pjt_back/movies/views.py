@@ -1,4 +1,5 @@
 # from django.http import JsonResponse
+from operator import rshift
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -160,9 +161,13 @@ def search(request, input):
 
     API_KEY = '734f0f8517f219408b7b36148ae92b32'
     
-    search_result = requests.get(f'https://api.themoviedb.org/3/search/multi?api_key={API_KEY}&language=ko-KR&page=1&include_adult=false&query={input}').json()
-    
+    movie_search_result = requests.get(f'https://api.themoviedb.org/3/search/movie?api_key={API_KEY}&language=ko-KR&page=1&include_adult=false&query={input}').json()
+    person_search_result = requests.get(f'https://api.themoviedb.org/3/search/person?api_key={API_KEY}&language=ko-KR&page=1&include_adult=false&query={input}').json()
+
+    search_result = [movie_search_result['results'], person_search_result['results']]
+
     return Response(search_result)
+
 
 @api_view(['GET'])
 def all_movie_list(request):
@@ -252,3 +257,12 @@ def review_list(request, movie_pk):
     reviews = movie.reviews.all()
     serializer = ReviewSerializer(reviews, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def search_data(request, movie_pk):
+
+    API_KEY = '734f0f8517f219408b7b36148ae92b32'
+
+    search_datas = requests.get(f'https://api.themoviedb.org/3/movie/{movie_pk}?api_key={API_KEY}&language=ko-KR').json()
+
+    return(search_datas)
