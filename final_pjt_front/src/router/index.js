@@ -18,6 +18,9 @@ import ProfileView from '@/views/ProfileView'
 import WelcomeView from '@/views/WelcomeView'
 import NotFound404 from '@/views/NotFound404'
 
+import SearchDataMovieView from '@/views/SearchDataMovieView'
+import SearchDataPersonView from '@/views/SearchDataPersonView'
+
 
 
 Vue.use(VueRouter)
@@ -42,6 +45,16 @@ const routes = [
     path: '/search/:input',
     name: 'search',
     component: SearchView
+  },
+  {
+    path: '/searchdata/movie/:moviePk',
+    name: 'searchDataMovie',
+    component: SearchDataMovieView
+  },
+  {
+    path: '/searchdata/person/:personPk',
+    name: 'searchDataPerson',
+    component: SearchDataPersonView
   },
   // {
   //   path: '/recommendation/:category',

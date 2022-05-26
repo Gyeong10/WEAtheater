@@ -24,6 +24,9 @@ export default {
     movie_like: moviePk => HOST + MOVIES + `${moviePk}/` + 'movie_like/',
     review_like: reviewPk => HOST + MOVIES + `${reviewPk}/` + 'review_like/',
     search: input => HOST + MOVIES + 'search/' + `${input}/`,
+
+    searchDataMovie: moviePk => HOST + MOVIES + 'searchdata/' + 'movie/' + `${moviePk}/`,
+    searchDataPerson: personPk => HOST + MOVIES + 'searchdata/' + 'person/' + `${personPk}/`,
   },
   community: {
     community: () => HOST + COMMUNITY, // 목록 불러오기, create

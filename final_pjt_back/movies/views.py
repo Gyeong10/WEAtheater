@@ -257,3 +257,24 @@ def review_list(request, movie_pk):
     reviews = movie.reviews.all()
     serializer = ReviewSerializer(reviews, many=True)
     return Response(serializer.data)
+
+
+# 영화 api 검색
+@api_view(['GET'])
+def searchDataMovie(request, movie_pk):
+    
+    API_KEY = '734f0f8517f219408b7b36148ae92b32'
+
+    movie = requests.get(f'https://api.themoviedb.org/3/movie/{movie_pk}?api_key={API_KEY}&language=ko-KR').json()
+    
+    return Response(movie)
+
+# 인물 api 검색
+@api_view(['GET'])
+def searchDataPerson(request, person_pk):
+    
+    API_KEY = '734f0f8517f219408b7b36148ae92b32'
+
+    person = requests.get(f'https://api.themoviedb.org/3/person/{person_pk}?api_key={API_KEY}&language=ko-KR').json()
+    
+    return Response(person)

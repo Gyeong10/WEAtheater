@@ -17,6 +17,8 @@ export default {
     allMovieList: [],
     reviews: [],
     // allReviewList: [],
+    searchMovieData: [],
+    searchPersonData: [],
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -31,6 +33,8 @@ export default {
     allMovieList: state => state.allMovieList,
     reviews: state => state.reviews,
     // allReviewList: state => state.allReviewList,
+    searchMovieData: state => state.searchMovieData,
+    searchPersonData: state => state.searchPersonData,
   },
   mutations: {
     // SET_TOKEN: (state, token) => state.token = token,
@@ -44,6 +48,8 @@ export default {
     SET_SEARCH_INPUT: (state, input) => state.searchInput = input,
     SET_SEARCH_DATAS: (state, searchDatas) => state.searchDatas = searchDatas,
     // SET_ALL_REVIEW_LIST: (state, allReviewList) => state.allReviewList = allReviewList,
+    SET_SEARCH_MOVIE_DATA: (state, searchMovieData) => state.searchMovieData = searchMovieData,
+    SET_SEARCH_PERSON_DATA: (state, searchPersonData) => state.searchPersonData = searchPersonData,
   },
   actions: {
     movieDetail({ getters, commit }, { moviePk }) {
@@ -179,5 +185,37 @@ export default {
           console.error(err.response)
         })
     },
+
+    getSearchDataMovie({commit, getters}, {moviePk}) {
+
+      axios({
+        url: drf.movies.searchDataMovie(moviePk),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_SEARCH_MOVIE_DATA', res.data)
+        })
+        .catch(err => {
+          console.error(err.response)
+        })
+    },
+
+    getSearchDataPerson({commit, getters}, {personPk}) {
+      console.log(personPk)
+      axios({
+        url: drf.movies.searchDataPerson(personPk),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_SEARCH_PERSON_DATA', res.data)
+        })
+        .catch(err => {
+          console.error(err.response)
+        })
+    },
+
+
   }
 }

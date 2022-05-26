@@ -9,7 +9,10 @@
     <hr>
     <div v-for="(searchmovie, i) in searchData[1]" :key="i">
       <h2>
-        {{ searchmovie.name }}이(가)
+        <router-link :to="{name:'searchDataPerson', params:{personPk: searchmovie.id} }">
+        {{ searchmovie.name }}
+        </router-link>
+        이(가)
         출연한 영화
       </h2>
       <movie-item
