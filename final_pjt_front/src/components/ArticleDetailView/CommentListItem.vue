@@ -12,7 +12,7 @@
         <span v-if="!isEditing">{{ payload.content }}</span>
 
         <span v-if="isEditing">
-          <input type="text" v-model="payload.content">
+          <input class="inputbox"  type="text" v-model="payload.content">
         </span>
       </div>
 
@@ -64,6 +64,10 @@ export default {
 
 <style scoped>
 .link {
+  color: white;
+}
+.inputbox {
+  width: 40vw;
   color: white;
 }
 </style>
