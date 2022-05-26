@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <hr>
     <v-container class="d-flex">
       <div class="col-2">
         <router-link class="link" :to="{ name: 'profile', params: { username: comment.user.username} }">
@@ -16,7 +18,7 @@
 
       <div class="col-3">
         <span v-if="isEditing">
-          <button @click="onUpdate">업데이트</button>
+          <button @click="onUpdate">완료</button> |
           <button @click="switchIsEditing">취소</button>
         </span>
         <span v-if="currentUser.username === comment.user.username && !isEditing">
@@ -25,6 +27,7 @@
         </span>
       </div>
   </v-container>
+  </div>
 </template>
 
 <script>

@@ -42,6 +42,6 @@ export default {
   color : #545775;
   font-size: 3vh;
   height: 6vh;
-  text-align: q;
+  text-align: center;
 }
 </style>

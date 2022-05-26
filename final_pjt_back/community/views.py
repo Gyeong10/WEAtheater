@@ -92,6 +92,8 @@ def checkPages(Num):
 
     if Num <= 10:
         return 1
+    elif not Num % 10:
+        return Num // 10
     else:
         return (Num // 10) + 1
 

@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit" class="comment-list-form">
     <label for="comment">댓글: </label>
     <input class="inputlargebox" type="text" id="comment" v-model="content" required>
-    <button class="button">작성</button>
+    <v-btn rounded><button>작성</button></v-btn>
   </form>
 </template>
 
