@@ -18,7 +18,7 @@ export default {
         content: '',
         category: null,
       },
-      action: "create",
+      action: "CREATE",
     }
   },
 }

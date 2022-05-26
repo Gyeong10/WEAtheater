@@ -1,21 +1,30 @@
 <template>
-  <li class="comment-list-item">
-    <router-link :to="{ name: 'profile', params: { username: comment.user.username} }">
-      {{ comment.user.username }}
-    </router-link> : 
-    <span v-if="!isEditing">{{ payload.content }}</span>
+    <v-container class="d-flex">
+      <div class="col-2">
+        <router-link class="link" :to="{ name: 'profile', params: { username: comment.user.username} }">
+          {{ comment.user.username }}
+        </router-link>
+      </div>
 
-    <span v-if="isEditing">
-      <input type="text" v-model="payload.content">
-      <button @click="onUpdate">업데이트</button>
-      <button @click="switchIsEditing">취소</button>
-    </span>
+      <div class="col-7">
+        <span v-if="!isEditing">{{ payload.content }}</span>
 
-    <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing">수정</button>
-      <button @click="deleteComment(payload)">삭제</button>
-    </span>
-  </li>
+        <span v-if="isEditing">
+          <input type="text" v-model="payload.content">
+        </span>
+      </div>
+
+      <div class="col-3">
+        <span v-if="isEditing">
+          <button @click="onUpdate">업데이트</button>
+          <button @click="switchIsEditing">취소</button>
+        </span>
+        <span v-if="currentUser.username === comment.user.username && !isEditing">
+          <button @click="switchIsEditing">수정</button> | 
+          <button @click="deleteComment(payload)">삭제</button>
+        </span>
+      </div>
+  </v-container>
 </template>
 
 <script>
@@ -50,6 +59,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.link {
+  color: white;
+}
 </style>

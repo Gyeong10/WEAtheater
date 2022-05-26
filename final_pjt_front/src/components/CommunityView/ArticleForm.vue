@@ -1,32 +1,35 @@
 <template>
-  <div class="articleform">
-    <form @submit.prevent="onSubmit">
-      <div class="d-flex mx-auto">
-        <h5 class="d-inline">게시판 선택</h5>
-        
-          <Dropdown
-            :options="options"
-            @selected="validateSelection"
-            :disabled="false"
-            name="category"
-            :maxItem="10"
-            placeholder="Please select an option"
-            class="d-inline mx-2"
-            >
-        </Dropdown>
-      </div>
-      <div>
-        <label for="title">제목</label>
-        <input class="inputbox" v-model="newArticle.title" type="text" id="title" required>
-      </div>
-      <div class="d-flex ms-8">
-        <label for="content">내용</label>
-        <textarea class="inputbox" v-model="newArticle.content" type="text" id="content" required></textarea>
-      </div>
-      <div>
-        <button class="button">{{ action }}</button>
-      </div>
-    </form>
+  <div>
+    <router-link class="link smallButton" id="router" :to="{ name: 'community', params: { category: 'all' } }">목록</router-link>
+    <div class="articleform">
+      <form @submit.prevent="onSubmit">
+        <div class="d-flex mx-auto">
+          <h5 class="d-inline">게시판 선택</h5>
+          
+            <Dropdown
+              :options="options"
+              @selected="validateSelection"
+              :disabled="false"
+              name="category"
+              :maxItem="10"
+              placeholder="Please select an option"
+              class="d-inline mx-2"
+              >
+          </Dropdown>
+        </div>
+        <div>
+          <label for="title">제목</label>
+          <input class="inputbox" v-model="newArticle.title" type="text" id="title" required>
+        </div>
+        <div class="d-flex ms-8">
+          <label for="content">내용</label>
+          <textarea class="inputbox" v-model="newArticle.content" type="text" id="content" required></textarea>
+        </div>
+        <div>
+          <button class="button">{{ action }}</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -99,6 +102,9 @@ export default {
   width: 80vw;
   height: 35vh;
   margin: 2vh;
+}
+.link {
+  color: #545775
 }
 
 </style>

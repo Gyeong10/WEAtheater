@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <h1>Home(웹이름)</h1>
+    <br>
     <!-- <search-bar @input-change="onInputChange"></search-bar> -->
     <search-bar></search-bar>
     <recommendation-movies></recommendation-movies>

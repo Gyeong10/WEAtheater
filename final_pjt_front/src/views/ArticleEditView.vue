@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>게시글 수정</h1>
+    <!-- <h1>게시글 수정</h1> -->
     <article-form v-if="isArticle" :article="article" :action="action">
       
     </article-form>
@@ -16,7 +16,7 @@ export default {
   components: { ArticleForm },
   data () {
     return {
-      action: "update"
+      action: "UPDATE"
     }
   },
   computed: {

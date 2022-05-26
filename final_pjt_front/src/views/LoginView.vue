@@ -1,7 +1,7 @@
 <template>
   <div class="loginbody">
-    <h1>Login</h1>
-    <account-error-list v-if="authError"></account-error-list>
+    <h1>LOGIN</h1>
+    
     <form @submit.prevent="login(credentials)">
       <div>
         <label for="username">Username: </label>
@@ -11,6 +11,8 @@
         <label for="password">Password: </label>
         <input class="inputbox" v-model="credentials.password" type="password" id="password" required />
       </div>
+      <br>
+      <account-error-list v-if="authError"></account-error-list>
       <div>
         <button class="button">Login</button>
       </div>

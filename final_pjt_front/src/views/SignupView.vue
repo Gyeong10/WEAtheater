@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Signup</h1>
+    <h1>SIGNUP</h1>
 
-    <account-error-list v-if="authError"></account-error-list>
+    
 
     <form @submit.prevent="signup(credentials)">
       <div>
@@ -17,6 +17,8 @@
         <label for="password2">Password Comfirmation: </label>
         <input class="inputbox" v-model="credentials.password2" type="password" id="password2" required />
       </div>
+      <br>
+      <account-error-list v-if="authError"></account-error-list>
       <div>
         <button class="button">가입하기</button>
       </div>

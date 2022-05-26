@@ -1,6 +1,12 @@
 <template>
   <div>
-    <h1>404 Not Found</h1>
+    <h2>404</h2>
+    <h1>PAGE NOT FOUND</h1>
+    <br>
+    <br>
+    <h2>
+      뒤로 돌아가거나 <router-link class="link" id="router" :to="{ name: 'home' }">HOME</router-link>으로 돌아가주세요
+    </h2>
   </div>
 </template>
 
@@ -10,6 +16,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.link {
+  color: white;
+}
 </style>
