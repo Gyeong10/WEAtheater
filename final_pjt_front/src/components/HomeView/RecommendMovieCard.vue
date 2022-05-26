@@ -12,8 +12,8 @@
           :src="`https://image.tmdb.org/t/p/w500${allMovie.poster_url}`"
         >
         </v-img>
-        <v-card-subtitle class="link">
-          {{ allMovie.title }}
+        <v-card-subtitle class="font-weight-bold title">
+            {{ allMovie.title }}
         </v-card-subtitle>
       </router-link>
     </v-card>
@@ -40,8 +40,13 @@ export default {
 }
 .link {
   color : #545775;
-  font-size: 3vh;
-  height: 6vh;
-  text-align: q;
+  font-size: 11;
+  /* height: 35px; */
+  /* text-align: center;
+  vertical-align: middle;
+  align-content: center; */
 }
+/* .title {
+
+} */
 </style>

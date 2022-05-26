@@ -27,12 +27,12 @@ export default ({
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Serif KR', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #dbcfb0;
-  background-color: #545775;
+  background-color: black;
   margin: 0;
   padding: 0;
   height: 100%;
