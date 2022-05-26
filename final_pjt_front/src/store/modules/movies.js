@@ -10,13 +10,13 @@ export default {
     currentUser: {},
     movies : [],
     movie: {},
-    // movieLike: null,
+
     recommendMovies: [],
     searchData: [],
     searchInput: '',
     allMovieList: [],
     reviews: [],
-    // allReviewList: [],
+
     searchMovieData: [],
     searchPersonData: [],
 
@@ -49,7 +49,6 @@ export default {
     weatherIcon: state => state.weatherIcon,
   },
   mutations: {
-    // SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie = movie,
@@ -59,7 +58,6 @@ export default {
     SET_ALL_MOVIE_LIST: (state, allMovieList) => state.allMovieList = allMovieList,
     SET_SEARCH_INPUT: (state, input) => state.searchInput = input,
     SET_SEARCH_DATAS: (state, searchDatas) => state.searchDatas = searchDatas,
-    // SET_ALL_REVIEW_LIST: (state, allReviewList) => state.allReviewList = allReviewList,
     SET_SEARCH_MOVIE_DATA: (state, searchMovieData) => state.searchMovieData = searchMovieData,
     SET_SEARCH_PERSON_DATA: (state, searchPersonData) => state.searchPersonData = searchPersonData,
 
@@ -77,7 +75,6 @@ export default {
         headers: getters.authHeader
       })
         .then(res => {
-          // console.log(res.data)
           commit('SET_MOVIE', res.data)
         })
         .catch(err => console.log(err.response.data))
@@ -89,7 +86,6 @@ export default {
         headers: getters.authHeader
       })
         .then(res => {
-          // console.log(res.data)
           commit('SET_MOVIE', res.data)
         })
         .catch(err => console.log(err.response.data))
@@ -163,7 +159,6 @@ export default {
         .then(res => {
           commit('SET_SEARCH_INPUT', input)
           commit('SET_SEARCH_DATA', res.data)
-          console.log(getters.searchData)
           router.push({
             name: 'search',
             params: { input: getters.searchData }

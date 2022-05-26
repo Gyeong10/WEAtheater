@@ -3,7 +3,6 @@
     <h1>WEAtheater</h1>
     <br>
     <br>
-    <!-- <search-bar @input-change="onInputChange"></search-bar> -->
     <search-bar></search-bar>
     <br>
     <recommend-weather></recommend-weather>
@@ -23,16 +22,6 @@ import SearchBar from '@/components/HomeView/SearchBar'
 export default {
   name: 'HomeView',
   components: { RecommendationMovies, SearchBar, RecommendGenre, RecommendWeather, RecommendActor },
-  // data() {
-  //   return {
-  //     inputValue: null,
-  //   }
-  // },
-  // methods: {
-  //   onInputChange(inputText) {
-  //     this.inputValue = inputText
-  //   },
-  // }
 }
 </script>
 

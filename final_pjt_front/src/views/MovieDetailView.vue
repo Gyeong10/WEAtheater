@@ -81,8 +81,6 @@ export default {
     ...mapActions(['movieDetail', 'likeMovie', 'getAllReviews'])
   },
   created () {
-    // console.log(this.$route.params.moviePk)
-    // const payload = { moviePk : this.$route.params.moviePk }
     this.movieDetail(this.payload)
     this.getAllReviews(this.payload)
   }
@@ -90,10 +88,6 @@ export default {
 </script>
 
 <style scoped>
-/* .card {
-  color: #dbcfb0;
-  background-color: #545775;
-} */
 .fa {
   color: #dbcfb0;
 }

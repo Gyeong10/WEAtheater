@@ -1,9 +1,6 @@
 <template>
   <div>
     <h1>SIGNUP</h1>
-
-    
-
     <form @submit.prevent="signup(credentials)">
       <div>
         <label for="username">Username: </label>

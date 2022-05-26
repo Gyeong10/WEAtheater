@@ -1,4 +1,3 @@
-from tkinter import getboolean
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models import Count
 
@@ -9,7 +8,6 @@ from rest_framework.response import Response
 from .models import Article, Comment, Category
 from .serializers.article import ArticleListSerializer, ArticleSerializer
 from .serializers.comment import CommentSerializer
-from django.forms.models import model_to_dict
 
 from django.core.paginator import Paginator
 
@@ -34,25 +32,17 @@ def article_list_or_create(request):
 
     def article_create():
         category = get_object_or_404(Category, pk=request.data['category'])
-        # print(f'request.data : {request.data}')
-        # print(f'category: {category}')
-        # cate_serializer = CategorySerializer(category)
-        # print(cate_serializer.data)
-        # data = request.data
-        # data['category'] = cate_serializer.data
-        # serializer = ArticleSerializer(data=request.data)
         serializer = ArticleSerializer(data=request.data)
-        # print(serializer)
-        # print(serializer.data)
+
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user, category=category)
-            # print(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     if request.method == 'GET':
         return article_list()
     elif request.method == 'POST':
         return article_create()
+
 
 # category별 article 목록 조회
 @api_view(['GET'])
@@ -70,6 +60,7 @@ def category_article_list(request, category):
     serializer = ArticleListSerializer(page_obj, many=True)
     return Response(serializer.data)
 
+
 # category length
 @api_view(['GET'])
 def category_length(request):
@@ -85,8 +76,8 @@ def category_length(request):
 
     articlesCount = articles.count()
     categoryLength = {'all': checkPages(articlesCount), 'free': checkPages(temp[0]), 'movie': checkPages(temp[1])}
-    
     return Response(categoryLength)
+
 
 def checkPages(Num):
 

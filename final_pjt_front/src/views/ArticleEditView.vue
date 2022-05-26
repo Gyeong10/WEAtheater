@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <h1>게시글 수정</h1> -->
     <article-form v-if="isArticle" :article="article" :action="action">
       
     </article-form>

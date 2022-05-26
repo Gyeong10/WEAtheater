@@ -1,5 +1,3 @@
-# from django.http import JsonResponse
-from operator import rshift
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -69,9 +67,8 @@ def weather_recommend():
 
     movies = []
     if (here_req.status_code != 200):
-        # print("현재좌표를 불러올 수 없음")
         movies = Movie.objects.all()[:10]
-        # serializer = MovieSerializer(movies, many=True)
+
     else:
         location = json.loads(here_req.text)
         crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
@@ -88,12 +85,10 @@ def weather_recommend():
             'Clouds': [36, 99, 10402]
         }
         weather_genre_list = weather_genre[weather_req['weather'][0]['main']]
-        # print(crd)
-        # print(weather_req['weather'])
-        # print(weather_genre_list)
+
         # 장르 id로 genre object를 찾은 뒤 그 genre를 역참조하는 movies를 genre_movies에 할당
         # 그 영화들을 movies list에 추가한 뒤 리턴
-        # cnt = 0
+
         for genre_pk in weather_genre_list:
             genre = get_object_or_404(Genre, pk=genre_pk)
             genre_movies = genre.movies.all()[:5]   # 장르별 영화 받아오기
@@ -101,8 +96,8 @@ def weather_recommend():
                 movies.append(convert(genre_movie))
     return movies    
 
+
 # 배우별 영화 추천 알고리즘
-# 데이터가 없어서 확인 불가..
 def actor_recommend(request):
     user = request.user
     rec_movies = []
@@ -128,6 +123,7 @@ def set_data(lists):
         temp = random.sample(temp, 10)
     return temp
 
+
 # 탑텐
 @api_view(['GET'])
 def movie_list(request):
@@ -137,17 +133,20 @@ def movie_list(request):
         top10.append(convert(top10_movie))
     return Response(top10)
 
+
 # 장르
 @api_view(['GET'])
 def genre_list(request):
     genre = set_data(genre_recommend(request))
     return Response(genre)
 
+
 # 날씨
 @api_view(['GET'])
 def weather_list(request):
     weather = set_data(weather_recommend())
     return Response(weather)
+
 
 # 배우
 @api_view(['GET'])
@@ -163,7 +162,6 @@ def weather_icon(request):
 
     weather_req = []
     if (here_req.status_code != 200):
-        # print("현재좌표를 불러올 수 없음")
         pass
     else:
         location = json.loads(here_req.text)

@@ -10,6 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     accounts,
-    community, movies
+    community,
+    movies
   },
 })

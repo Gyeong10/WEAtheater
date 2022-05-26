@@ -27,7 +27,6 @@ export default ({
 
 <style>
 #app {
-  /* font-family: 'Noto Serif KR', serif; */
   font-family: 'Hahmlet', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,60 +1,40 @@
 <template>
   <div class="my-5">
-    <!-- <v-card> -->
-    <!-- <v-card class="overflow-hidden"> -->
-      <!-- <v-toolbar
-        class="#1A237E white--text"
-        shrink-on-scroll
-        scroll-target="#scrolling-techniques-2"
-        src="@/assets/logo2.webp"
-        prominent
-      > 
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        <v-toolbar-title>MOVIEmovie</v-toolbar-title>
-
-      <template v-slot:img="{ props }">
-        <v-img
-          v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
-        ></v-img>
-      </template> -->
-        <div class="d-flex justify-space-between">
-            <div class="d-flex">
-              <li class="appTitle">
-                <router-link class="link" id="router" :to="{ name: 'home' }">WEAtheater</router-link>
-              </li>
-              <li>
-                <router-link class="link" id="router" :to="{ name: 'community', params: { category: 'all' } }">COMMUNITY</router-link>
-              </li>
-              <li>
-                <router-link class="link" id="router" :to="{ name: 'movieList'}">All MOIVE</router-link>
-              </li>
-            </div>
-
-            <div class="d-flex">
-              <li v-if="!isLoggedIn">
-                <router-link class="link" id="router" :to="{ name: 'login' }">LOGIN</router-link>
-              </li>
-
-              <li v-if="!isLoggedIn">
-                <router-link class="link" id="router" :to="{ name: 'signup'}">SIGNUP</router-link>
-              </li>
-
-              <li v-if="isLoggedIn">
-                <router-link class="link" id="router" :to="{ name: 'profile', params: {username} }">
-                  {{ currentUser.username }}'s PROFILE
-                </router-link>
-              </li>
-
-              <li v-if="isLoggedIn">
-                <router-link class="link" id="router" :to="{ name: 'logout' }">LOGOUT</router-link>
-              </li>
-            </div>
-
-        
+    <div class="d-flex justify-space-between">
+      <div class="d-flex">
+        <li class="appTitle">
+          <router-link class="link" id="router" :to="{ name: 'home' }">WEAtheater</router-link>
+        </li>
+        <li>
+          <router-link class="link" id="router" :to="{ name: 'community', params: { category: 'all' } }">COMMUNITY</router-link>
+        </li>
+        <li>
+          <router-link class="link" id="router" :to="{ name: 'movieList'}">All MOIVE</router-link>
+        </li>
       </div>
-      <!-- </v-toolbar> -->
-    <!-- </v-card> -->
+
+      <div class="d-flex">
+        <li v-if="!isLoggedIn">
+          <router-link class="link" id="router" :to="{ name: 'login' }">LOGIN</router-link>
+        </li>
+
+        <li v-if="!isLoggedIn">
+          <router-link class="link" id="router" :to="{ name: 'signup'}">SIGNUP</router-link>
+        </li>
+
+        <li v-if="isLoggedIn">
+          <router-link class="link" id="router" :to="{ name: 'profile', params: {username} }">
+            {{ currentUser.username }}'s PROFILE
+          </router-link>
+        </li>
+
+        <li v-if="isLoggedIn">
+          <router-link class="link" id="router" :to="{ name: 'logout' }">LOGOUT</router-link>
+        </li>
+      </div>
+
+    
+    </div>
   </div>
 </template>
 
@@ -84,6 +64,5 @@ li {
 .appTitle {
   font-family: 'Oswald', sans-serif;
   font-size: 27px;
-  /* align-items: center; */
 }
 </style>

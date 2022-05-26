@@ -70,8 +70,6 @@ export default {
         { name: "영화게시판", id: 3 },
       ],
       articlePk: this.article.pk
-      // selected: { name: null, id: null },
-
     }
   },
 

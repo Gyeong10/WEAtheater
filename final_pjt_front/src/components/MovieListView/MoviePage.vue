@@ -29,9 +29,6 @@ export default {
   },
   methods: {
     ...mapActions(['getAllMovies']),
-    // handlePage() {
-    //   this.$router.push({name : "movieList", query: { page: this.page } })
-    // }
   },
   created() {
     this.getAllMovies()

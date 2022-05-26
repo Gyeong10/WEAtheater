@@ -56,11 +56,6 @@ const routes = [
     name: 'searchDataPerson',
     component: SearchDataPersonView
   },
-  // {
-  //   path: '/recommendation/:category',
-  //   name: 'recommendation',
-  //   component: RecommendationView
-  // },
   {
     path: '/community/:category',
     name: 'community',

@@ -7,7 +7,6 @@
       >
       </movie-card>
     </v-container>
-    <!-- <router-link class="link" :to="{ name: 'movieList', query: { page: putPage } }" >{{ putPage }}</router-link> -->
     <div class="text-center">
     <v-container>
       <v-row justify="center">
@@ -53,11 +52,6 @@ export default {
   created() {
     this.getAllMovies(this.page)
   },
-  // watch: {
-  //   'page' () {
-  //     this.putPage = this.page
-  //   }
-  // }
 }
 </script>
 

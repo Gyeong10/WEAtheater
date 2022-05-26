@@ -4,11 +4,7 @@ from .comment import CommentSerializer
 from ..models import Article, Category
 
 
-
 User = get_user_model()
-
-
-    
 
 class ArticleSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):

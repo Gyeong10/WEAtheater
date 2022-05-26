@@ -85,9 +85,7 @@ export default {
         headers: getters.authHeader
       })
         .then(res => {
-          console.log(article)
           commit('SET_ARTICLE', res.data)
-          console.log(getters.article)
           router.push({
             name: 'article',
             params: { articlePk: getters.article.pk }

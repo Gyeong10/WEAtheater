@@ -21,12 +21,6 @@ export default {
       this.$router.push({ name: 'articleNew'})
     },
   },
-  // data () {
-  //   return {
-  //     all: "all",
-  //     free: "free",
-  //   }
-  // }
 }
 </script>
 

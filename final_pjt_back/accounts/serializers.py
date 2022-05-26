@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from community.models import Article
 from community.models import Comment
 
-# from movies.models import Movie
+
 class ProfileSerializer(serializers.ModelSerializer):
   
     class ArticleSerializer(serializers.ModelSerializer):

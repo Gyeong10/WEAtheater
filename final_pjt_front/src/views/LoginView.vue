@@ -43,9 +43,6 @@ export default {
   methods: {
     ...mapActions(['login', 'fetchAuthError'])
   },
-  // created() {
-  //   this.fetchAuthError()
-  // }
 }
 </script>
 

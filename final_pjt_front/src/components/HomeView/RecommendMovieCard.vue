@@ -40,13 +40,5 @@ export default {
 }
 .link {
   color : #545775;
-  font-size: 11;
-  /* height: 35px; */
-  /* text-align: center;
-  vertical-align: middle;
-  align-content: center; */
 }
-/* .title {
-
-} */
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <v-container>
     <v-row dense>
     <v-col cols="12" class="my-3">

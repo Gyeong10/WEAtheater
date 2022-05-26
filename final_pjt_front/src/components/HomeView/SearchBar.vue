@@ -30,18 +30,6 @@ export default {
     onSubmit() {
       this.getSearchMovies(this.input)
     }
-    // onInputKeyword(event) {
-    //   // this.inputValue = event.target.value
-    //   // this.$emit('input-change', this.inputValue)
-    //   // const payload = { input: this.inputValue}
-    //   this.payload.input = event.target.value
-      // this.getSearchMovies(this.payload)
-    // },
-    // watch: {
-    //   'searchInput' () {
-    //     this.getSearchMovies(this.payload)
-    //   }
-    // },
   },
 }
 </script>
