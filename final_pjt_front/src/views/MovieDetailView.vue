@@ -6,8 +6,8 @@
       </div>
       <div>
         <div class="title">
-          <h1 class="d-inline">{{ movie.title }}</h1>
-          <h2 class="d-inline"> ( {{ movie.release_date.slice(0, 4) }} )</h2>
+          <h1 class="d-inline font">{{ movie.title }}</h1>
+          <h2 class="d-inline font"> ( {{ movie.release_date.slice(0, 4) }} )</h2>
         </div>
         <div>
           |
@@ -113,5 +113,8 @@ export default {
   width: 50vw;
   margin: 1vh 3vw;
   line-height: 150%;
+}
+.font {
+  font-family: 'Hahmlet', serif;
 }
 </style>

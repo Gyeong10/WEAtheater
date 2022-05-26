@@ -21,7 +21,7 @@
         <div class="d-flex justify-space-between">
             <div class="d-flex">
               <li>
-                <router-link class="link" id="router" :to="{ name: 'home' }">HOME</router-link>
+                <router-link class="link appTitle" id="router" :to="{ name: 'home' }">WEAtheater</router-link>
               </li>
               <li>
                 <router-link class="link" id="router" :to="{ name: 'community', params: { category: 'all' } }">COMMUNITY</router-link>
@@ -81,7 +81,8 @@ li {
   color: white;
   list-style: none;
 }
-/* #router {
-  color: white;
-} */
+.appTitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px;
+}
 </style>

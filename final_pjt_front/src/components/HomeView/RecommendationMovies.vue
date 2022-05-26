@@ -5,12 +5,12 @@
     <v-row dense>
       <v-col cols="12" class="my-3">
       <v-card
-        color="#545775"
+        color="#dbcfb071"
         class="rounded-pill"
       >
       <div id="recommend">
-        <h2> WEATHER </h2>
-        <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+        <h2><i class=" fa fa-thin fa-cloud-sun"></i> 오늘 날씨와 어울리는 영화 </h2>
+        <swiper ref="filterSwiper" class="middle" :options="swiperOption" role="tablist">
           <swiper-slide role="tab">
             <recommend-movie-card
               v-for="(movie, idx) in recommendMovies[2]['weather']" :key="idx" :allMovie="movie"
@@ -23,7 +23,7 @@
     </v-col>
     <v-col cols="12" class="my-3">
     <v-card
-      color="#7b7fa8"
+      color="#54577575"
       class="rounded-pill"
     >
     <div id="recommend">
@@ -38,18 +38,17 @@
           </swiper-slide>
         </swiper>
         </div>
-      <!-- <div class="swiper-button-next"></div> -->
 
     </div>
     </v-card>
     </v-col>
     <v-col cols="12" class="my-3">
     <v-card
-      color="#52578f"
+      color="#dbcfb071"
       class="rounded-pill"
     >
     <div id="recommend">
-      <h2> ACTORS </h2>
+      <h2> {{ currentUser.username }}님이 좋아하는 배우 출연 영화 </h2>
         <div v-if="recommendMovies[1]" id="card">
           <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
           <swiper-slide role="tab">
@@ -66,11 +65,11 @@
     
     <v-col cols="12" class="my-3">
     <v-card
-      color="#284685"
+      color="rgba(69, 74, 126, 0.452)"
       class="rounded-pill"
     >
     <div id="recommend">
-      <h2> GENRE </h2>
+      <h2> {{ currentUser.username }}님이 좋아하는 장르의 영화 </h2>
         <div v-if="recommendMovies[3]" id="card">
           <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
           <swiper-slide role="tab">
@@ -105,16 +104,16 @@ export default {
     return {
       swiperOption: {
         slidesPerView: 'auto',
-        spaceBetween: 50, // swiper-slide 사이의 간격 지정
-        slidesOffsetBefore: 0, // slidesOffsetBefore는 첫번째 슬라이드의 시작점에 대한 변경할 때 사용
-        slidesOffsetAfter: 0, // slidesOffsetAfter는 마지막 슬라이드 시작점 + 마지막 슬라이드 너비에 해당하는 위치의 변경이 필요할 때 사용
+        spaceBetween: 10, // swiper-slide 사이의 간격 지정
+        slidesOffsetBefore: 50, // slidesOffsetBefore는 첫번째 슬라이드의 시작점에 대한 변경할 때 사용
+        slidesOffsetAfter: 100, // slidesOffsetAfter는 마지막 슬라이드 시작점 + 마지막 슬라이드 너비에 해당하는 위치의 변경이 필요할 때 사용
         freeMode: true, // freeMode를 사용시 스크롤하는 느낌으로 구현 가능
         centerInsufficientSlides: true, // 컨텐츠의 수량에 따라 중앙정렬 여부를 결정함
       }
     }
   },
   computed: {
-    ...mapGetters(['recommendMovies']),
+    ...mapGetters(['recommendMovies', 'currentUser']),
   },
   methods: {
     ...mapActions(['getRecommendMovies']),
@@ -131,7 +130,7 @@ export default {
   white-space:nowrap; 
   overflow-x: hidden; 
   text-align:center;
-  padding: 3vh;
+  padding: 3vh 0;
 }
 .swiper-container {
   .swiper-wrapper {
@@ -145,10 +144,16 @@ export default {
       color: #84868c;
       border: 0;
       border-radius: 18px;
-      background: #545775;
+      background: #dbcfb000;
       appearance: none;
       cursor: pointer;
     }
   }
+}
+.middle {
+  align-items: center;
+}
+h2 {
+  color: white;
 }
 </style>

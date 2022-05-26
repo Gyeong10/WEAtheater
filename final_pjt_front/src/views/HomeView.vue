@@ -1,9 +1,12 @@
 <template>
   <div>
-    <h1>Home(웹이름)</h1>
+    <h1>WEAtheater</h1>
+    <h3>날씨에 맞춰 영화 추천</h3>
+    <br>
     <br>
     <!-- <search-bar @input-change="onInputChange"></search-bar> -->
     <search-bar></search-bar>
+    <br>
     <recommendation-movies></recommendation-movies>
   </div>
 </template>
@@ -29,5 +32,8 @@ export default {
 </script>
 
 <style scoped>
-
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 70px;
+}
 </style>
