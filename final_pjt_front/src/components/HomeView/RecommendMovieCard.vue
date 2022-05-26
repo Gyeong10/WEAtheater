@@ -3,6 +3,7 @@
     <v-card
       class="mx-auto rounded-xl sub"
       max-width="220"
+      height="100%"
     >
       <router-link :to="{ name: 'movieDetail', params: {moviePk: allMovie.id } }" class="link">
         <v-img
@@ -39,6 +40,8 @@ export default {
 }
 .link {
   color : #545775;
-  font-size: 17px;
+  font-size: 3vh;
+  height: 6vh;
+  text-align: q;
 }
 </style>

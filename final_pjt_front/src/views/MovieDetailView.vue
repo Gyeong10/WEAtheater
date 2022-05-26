@@ -5,7 +5,7 @@
         <img class="img" :src="`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_url}`" alt="poster">
       </div>
       <div>
-        <div>
+        <div class="title">
           <h1 class="d-inline">{{ movie.title }}</h1>
           <h2 class="d-inline"> ( {{ movie.release_date.slice(0, 4) }} )</h2>
         </div>
@@ -23,7 +23,8 @@
         </div>
         <div class="mt-5">
           <h3 class="d-inline me-2">평점</h3>
-          <h3 class="d-inline me-5">{{ avgScore }}</h3>
+          <h3 v-if="avgScore" class="d-inline me-5">{{ avgScore }}</h3>
+          <h3 v-else class="d-inline me-5">-</h3>
           <button @click="likeMovie(payload)" class="d-inline ms-5"><i class="fa fa-heart fa-2x"></i></button>
           <h3 class="d-inline ms-2">{{ likeCount }}</h3>
         </div>
@@ -98,8 +99,8 @@ export default {
 }
 .box {
   border: 1px solid #dbcfb0;
-  width: 26rem;
-  margin: 1rem 5rem 3rem 5rem;
+  width: 44vw;
+  margin: 1rem auto 3rem;
   padding: 1rem;
   border-radius: 10px;
   color: #dbcfb0;
@@ -107,5 +108,10 @@ export default {
 }
 .img {
   height: 33rem;
+}
+.title {
+  width: 50vw;
+  margin: 1vh 3vw;
+  line-height: 150%;
 }
 </style>

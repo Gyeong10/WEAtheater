@@ -1,6 +1,10 @@
 <template>
   <div>
-    <router-link class="link smallButton" id="router" :to="{ name: 'community', params: { category: 'all' } }">목록</router-link>
+    <div class="back">
+      <router-link v-if="action=='CREATE'" class="link smallButton" id="router" :to="{ name: 'community', params: { category: 'all' } }">목록</router-link>
+      <router-link v-else class="link smallButton" id="router" :to="{ name: 'article', params: { articlePk: articlePk } }">BACK</router-link>
+    </div>
+    
     <div class="articleform">
       <form @submit.prevent="onSubmit">
         <div class="d-flex mx-auto">
@@ -55,6 +59,7 @@ export default {
         { name: "자유게시판", id: 2 },
         { name: "영화게시판", id: 3 },
       ],
+      articlePk: this.article.pk
       // selected: { name: null, id: null },
 
     }
@@ -105,6 +110,10 @@ export default {
 }
 .link {
   color: #545775
+}
+.back {
+  text-align: left;
+  margin-left: 5vh;
 }
 
 </style>

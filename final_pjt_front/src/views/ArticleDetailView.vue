@@ -1,7 +1,7 @@
 <template>
-  <div class="article-detail-view">
-    <p>| {{ article.category.name }} |</p>
-    <h2>{{ article.title }}</h2>
+  <div>
+    <p class="title left p">| {{ article.category.name }} |</p>
+    <h2 class="title left">{{ article.title }}</h2>
     <div class="buttons" v-if="isAuthor">
       <div class="editButton">
         <router-link class="link" :to="{ name: 'articleEdit', params: {articlePk} }">
@@ -12,7 +12,7 @@
       <button class="editButton" @click="deleteArticle(articlePk)">DELETE</button>
     </div>
 
-    <pre class="content">{{ article.content }}</pre>
+    <pre class="content left">{{ article.content }}</pre>
 
     <div>
       <button @click="likeArticle(articlePk)"><i class="fa fa-heart fa-2x"></i></button>
@@ -60,33 +60,43 @@ export default {
 </script>
 
 <style scoped>
+.p {
+  font-size: 3px;
+}
+.title {
+  margin-left: 10vw;
+}
 .content {
   border: 1px solid #dbcfb0;
   margin: 1vh 10vw 4vh;
-  padding: 3px 8px;
+  padding: 4px 20px;
   border-radius: 10px;
   color: #dbcfb0;
+  font-size: 15px;
+}
+.left {
+    text-align: left;
 }
 .link {
   color: #545775;
+}
+.buttons {
+  display: flex-end;
+  justify-content: right;
+  margin: 0 10vw;
 }
 .editButton {
   border: 1px solid #dbcfb0;
   width: 80px;
   height: 35px;
   padding: 6px 8px;
-  margin: 1vw;
+  margin: 0 1vw;
   border-radius: 10px;
   background-color: #dbcfb0;
   color: #545775;
-  font-size: 2.5vh;
+  font-size: 15px;
   vertical-align: middle;
   text-align: center;
-}
-
-.buttons {
-  display: flex;
-  justify-content: end;
-  margin: 0 10vw;
+  align-content: center;
 }
 </style>
