@@ -20,8 +20,8 @@
       </template> -->
         <div class="d-flex justify-space-between">
             <div class="d-flex">
-              <li>
-                <router-link class="link appTitle" id="router" :to="{ name: 'home' }">WEAtheater</router-link>
+              <li class="appTitle">
+                <router-link class="link" id="router" :to="{ name: 'home' }">WEAtheater</router-link>
               </li>
               <li>
                 <router-link class="link" id="router" :to="{ name: 'community', params: { category: 'all' } }">COMMUNITY</router-link>
@@ -83,6 +83,7 @@ li {
 }
 .appTitle {
   font-family: 'Oswald', sans-serif;
-  font-size: 25px;
+  font-size: 27px;
+  /* align-items: center; */
 }
 </style>
