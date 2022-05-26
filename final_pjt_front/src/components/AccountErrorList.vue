@@ -1,7 +1,6 @@
 <template>
   <div>
     <p v-for="(errors, field) in authError" :key="field">
-      {{ field }}
       <ul>
         <li v-for="(error, idx) in errors" :key="idx">
           {{ error }}
@@ -22,6 +21,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+li {
+  list-style: none;
+}
 </style>

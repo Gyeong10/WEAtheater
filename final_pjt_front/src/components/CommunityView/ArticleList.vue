@@ -3,7 +3,11 @@
     <ul>
       <li class="article" v-for="article in articles" :key="article.pk">
         <div class="col-2">
-        {{article.pk}} |  {{ article.user.username }}
+          {{article.pk}} |  
+          <router-link class="link" :to="{ name: 'profile', params: { username: article.user.username} }">
+            {{ article.user.username }}
+          </router-link>
+
         </div>
         <div class="col-7">
           <router-link class="link" :to="{ name: 'article', params: { articlePk: article.pk } }">

@@ -2,6 +2,22 @@
   <div>
     <v-container>
     <v-row dense>
+      <v-col cols="12" class="my-3">
+      <v-card
+        color="#6e74b9"
+        class="rounded-pill"
+      >
+      <div id="recommend">
+        <h2> WEATHER </h2>
+          <div v-if="recommendMovies[2]" id="card">
+            <recommend-movie-card
+              v-for="(movie, idx) in recommendMovies[2]['weather']" :key="idx" :allMovie="movie"
+            >
+            </recommend-movie-card>
+          </div>
+      </div>
+      </v-card>
+    </v-col>
     <v-col cols="12" class="my-3">
     <v-card
       color="#7b7fa8"
@@ -37,22 +53,7 @@
     </div>
     </v-card>
     </v-col>
-    <v-col cols="12" class="my-3">
-    <v-card
-      color="#6e74b9"
-      class="rounded-pill"
-    >
-    <div id="recommend">
-      <h2> WEATHER </h2>
-        <div v-if="recommendMovies[2]" id="card">
-          <recommend-movie-card
-            v-for="(movie, idx) in recommendMovies[2]['weather']" :key="idx" :allMovie="movie"
-          >
-          </recommend-movie-card>
-        </div>
-    </div>
-    </v-card>
-    </v-col>
+    
     <v-col cols="12" class="my-3">
     <v-card
       color="#284685"
