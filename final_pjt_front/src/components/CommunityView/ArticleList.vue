@@ -20,6 +20,22 @@
         </div>
       </li>
     </ul>
+    <div class="text-center">
+    <v-container>
+      <v-row justify="center">
+        <v-col cols="8">
+          <v-container class="max-width">
+            <v-pagination
+              v-model="page"
+              class="my-4"
+              @input="handlePage"
+              :length="categoryCount[this.payload.category]"
+            ></v-pagination>
+          </v-container>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
   </div>
 </template>
 
@@ -28,32 +44,51 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'ArticleList',
+  data() {
+    return {
+      page: 1,
+      payload : {category: this.category, page: this.page}
+    }
+  },
   props: {
     category: String,
   },
   computed: {
-    ...mapGetters(['articles'])
+    ...mapGetters(['articles', 'categoryCount'])
   },
   methods: {
-    ...mapActions(['fetchArticles', 'fetchCategoryArticles'])
+    ...mapActions(['fetchArticles', 'fetchCategoryArticles', 'getCategoryCount']),
+    handlePage() {
+      this.payload.page = this.page
+      if (this.category === 'free' || this.category === 'movie') {
+        this.fetchCategoryArticles(this.payload)
+      } else {
+        this.fetchArticles(this.page)
+      }
+    }
   },
   // category 바뀔 때마다 list 갱신시켜주기
   watch: {
     'category'() {
+      this.page = 1
+      this.payload.category = this.$route.params.category
+      this.payload.page = 1
+      this.getCategoryCount()
       if (this.category === 'free' || this.category === 'movie') {
-      this.fetchCategoryArticles(this.category)
+      this.fetchCategoryArticles(this.payload)
       } else {
-          this.fetchArticles()
+          this.fetchArticles(this.page)
       }
     }
   },
   // 처음 들어왔을 때, 새로고침 했을 때 category별로 list 출력
   created() {
     if (this.category === 'free' || this.category === 'movie') {
-      this.fetchCategoryArticles(this.category)
+      this.fetchCategoryArticles(this.payload)
     } else {
-        this.fetchArticles()
+        this.fetchArticles(this.page)
     }
+    this.getCategoryCount()
   }
 }
 </script>

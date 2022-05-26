@@ -11,6 +11,8 @@ from .serializers.article import ArticleListSerializer, ArticleSerializer
 from .serializers.comment import CommentSerializer
 from django.forms.models import model_to_dict
 
+from django.core.paginator import Paginator
+
 # article 목록 조회, 생성
 @api_view(['GET', 'POST'])
 def article_list_or_create(request):
@@ -18,10 +20,16 @@ def article_list_or_create(request):
     def article_list():
         # commet 개수와 like 개수를 annotate로 추가하고 -pk로 정렬
         articles = Article.objects.annotate(
-              comment_count=Count('comments', distinct=True),
-              like_count=Count('like_users', distinct=True)
-          ).order_by('-pk')
-        serializer = ArticleListSerializer(articles, many=True)
+            comment_count=Count('comments', distinct=True),
+            like_count=Count('like_users', distinct=True)
+        ).order_by('-pk')
+
+        paginator = Paginator(articles, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+
+        serializer = ArticleListSerializer(page_obj, many=True)
         return Response(serializer.data)
 
     def article_create():
@@ -51,11 +59,42 @@ def article_list_or_create(request):
 def category_article_list(request, category):
     category = get_object_or_404(Category, pk=category)
     articles = category.articles.annotate(
-              comment_count=Count('comments', distinct=True),
-              like_count=Count('like_users', distinct=True)
-          ).order_by('-pk')
-    serializer = ArticleListSerializer(articles, many=True)
+            comment_count=Count('comments', distinct=True),
+            like_count=Count('like_users', distinct=True)
+        ).order_by('-pk')
+
+    paginator = Paginator(articles, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    serializer = ArticleListSerializer(page_obj, many=True)
     return Response(serializer.data)
+
+# category length
+@api_view(['GET'])
+def category_length(request):
+    articles = Article.objects.all()
+
+    temp = [0, 0]
+    for article in articles:
+        if article.category_id == 2:
+            temp[0] += 1
+    
+        if article.category_id == 3:
+            temp[1] += 1
+
+    articlesCount = articles.count()
+    categoryLength = {'all': checkPages(articlesCount), 'free': checkPages(temp[0]), 'movie': checkPages(temp[1])}
+    
+    return Response(categoryLength)
+
+def checkPages(Num):
+
+    if Num <= 10:
+        return 1
+    else:
+        return (Num // 10) + 1
+
 
 # article 상세조회, 수정, 삭제
 @api_view(['GET', 'PUT', 'DELETE'])

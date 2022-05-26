@@ -64,9 +64,9 @@ export default {
     ...mapActions(['createArticle', 'updateArticle']),
     onSubmit() {
       // console.log(this.newArticle)
-      if (this.action === 'create') {
+      if (this.action === 'CREATE') {
         this.createArticle(this.newArticle)
-      } else if (this.action === 'update') {
+      } else if (this.action === 'UPDATE') {
         const payload = {
           pk: this.article.pk,
           ...this.newArticle,

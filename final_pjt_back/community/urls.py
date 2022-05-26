@@ -27,6 +27,6 @@ urlpatterns = [
     path('<int:article_pk>/like/', views.article_like),
     path('<int:article_pk>/comments/', views.comment_create),
     path('<int:article_pk>/comments/<int:comment_pk>/', views.comment_update_or_delete),
-
+    path('categoryCount/', views.category_length),
     path('swagger/', schema_view.with_ui('swagger')),
 ]

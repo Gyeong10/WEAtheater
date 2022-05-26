@@ -9,6 +9,7 @@ export default {
     articles: [],
     article: {},
     category: {'free': 2, 'movie': 3},
+    categoryCount : [],
   },
 
   getters: {
@@ -19,20 +20,22 @@ export default {
     },
     isArticle: state => !_.isEmpty(state.article),
     category: state => state.category,
+    categoryCount: state => state.categoryCount,
   },
 
   mutations: {
     SET_ARTICLES: (state, articles) => state.articles = articles,
     SET_ARTICLE: (state, article) => state.article = article,
     SET_ARTICLE_COMMENTS: (state, comments) => state.article.comments = comments,
+    SET_CATEGORY_COUNT: (state, categoryCount) => state.categoryCount = categoryCount,
   },
 
   actions: {
     // 전체 게시글 목록 받아오기
-    fetchArticles({ commit, getters }) {
+    fetchArticles({ commit, getters }, page) {
     
       axios({
-        url: drf.community.community(),
+        url: drf.community.community() + '?page=' + page,
         method: 'get',
         headers: getters.authHeader,
       })
@@ -42,10 +45,10 @@ export default {
     },
 
     // category별 게시글 받아오기
-    fetchCategoryArticles({ commit, getters }, category) {
-      const cat = getters.category[category]
+    fetchCategoryArticles({ commit, getters }, payload) {
+      const cat = getters.category[payload.category]
       axios({
-        url: drf.community.category_community(cat),
+        url: drf.community.category_community(cat) + '?page=' + payload.page,
         method: 'get',
         headers: getters.authHeader
       })
@@ -188,6 +191,19 @@ export default {
       })
         .then(res => {
           commit('SET_ARTICLE_COMMENTS', res.data)
+        })
+        .catch(err => console.error(err.response))
+    },
+
+    getCategoryCount({commit, getters}) {
+
+      axios({
+        url: drf.community.category_count(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_CATEGORY_COUNT', res.data)
         })
         .catch(err => console.error(err.response))
     },

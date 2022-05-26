@@ -31,6 +31,7 @@ export default {
     article: articlePk => HOST + COMMUNITY + `${articlePk}/`, // 상세 게시글 보기
     like_article: articlePk => HOST + COMMUNITY + `${articlePk}/` + 'like/',
     comments : articlePk => HOST + COMMUNITY + `${articlePk}/` + COMMENTS,
-    comment: (articlePk, commentPk) => HOST + COMMUNITY + `${articlePk}/` + COMMENTS + `${commentPk}/`
+    comment: (articlePk, commentPk) => HOST + COMMUNITY + `${articlePk}/` + COMMENTS + `${commentPk}/`,
+    category_count: () => HOST + COMMUNITY + 'categoryCount/',
   }
 }
