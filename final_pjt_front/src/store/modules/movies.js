@@ -83,7 +83,7 @@ export default {
         })
         .catch(err => {
           console.error(err.response)
-          alert('평점은 숫자만 입력해주세요!')
+          alert('평점은 0 ~ 5, 숫자만 입력해주세요!')
         })
     },
     deleteReview({ getters, commit }, { moviePk, reviewPk }) {

@@ -102,6 +102,6 @@ nav a.router-link-exact-active {
   border-radius: 10px;
 }
 h1 {
-  font-size: 9vh;
+  font-size: 50px;
 }
 </style>

@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.conf import settings
 
@@ -22,6 +23,6 @@ class Movie(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     context = models.TextField(max_length=100)
-    score = models.FloatField()
+    score = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
