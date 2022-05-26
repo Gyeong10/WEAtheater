@@ -35,5 +35,11 @@ urlpatterns = [
     path('searchdata/movie/<int:movie_pk>/', views.searchDataMovie),
     path('searchdata/person/<int:person_pk>/', views.searchDataPerson),
 
+    path('genre/', views.genre_list),
+    path('weather/', views.weather_list),
+    path('actor/', views.actor_list),
+
+    path('icon/', views.weather_icon),
+
     path('swagger/', schema_view.with_ui('swagger')),
 ]

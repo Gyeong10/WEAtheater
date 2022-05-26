@@ -140,5 +140,6 @@ li {
   border-radius: 10px;
   color: #dbcfb0;
   line-height: 200%;
+  min-height: 45px;
 }
 </style>

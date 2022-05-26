@@ -27,6 +27,12 @@ export default {
 
     searchDataMovie: moviePk => HOST + MOVIES + 'searchdata/' + 'movie/' + `${moviePk}/`,
     searchDataPerson: personPk => HOST + MOVIES + 'searchdata/' + 'person/' + `${personPk}/`,
+
+    genre_list: () => HOST + MOVIES + 'genre/',
+    weather_list: () => HOST + MOVIES + 'weather/',
+    actor_list: () => HOST + MOVIES + 'actor/',
+
+    weather_icon: () => HOST + MOVIES + 'icon/',
   },
   community: {
     community: () => HOST + COMMUNITY, // 목록 불러오기, create

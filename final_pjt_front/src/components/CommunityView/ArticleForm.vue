@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-btn depressed
-        color="orange darken-2"
-        dark
+        color="white"
+        outlined
         id="v-btn"
       >
       <v-icon
@@ -11,8 +11,8 @@
       >
         mdi-arrow-left
       </v-icon>
-      <router-link v-if="action=='CREATE'" id="router" :to="{ name: 'community', params: { category: 'all' } }">목록</router-link>
-      <router-link v-else id="router" :to="{ name: 'article', params: { articlePk: articlePk } }">BACK</router-link>
+      <router-link class="white--text" v-if="action=='CREATE'" id="router" :to="{ name: 'community', params: { category: 'all' } }">목록</router-link>
+      <router-link class="white--text" v-else id="router" :to="{ name: 'article', params: { articlePk: articlePk } }">BACK</router-link>
     </v-btn>
     
     <div class="articleform">

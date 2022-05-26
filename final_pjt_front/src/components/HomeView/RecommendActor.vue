@@ -5,16 +5,16 @@
     <v-row dense>
     <v-col cols="12" class="my-3">
     <v-card
-      color="#54577575"
+      color="#dbcfb071"
       class="rounded-pill"
     >
     <div id="recommend">
-      <h2><i class="fa fa-duotone fa-compact-disc"></i> 현재 가장 인기있는 영화</h2>
-        <div v-if="recommendMovies" id="card">
+      <h2><i class=" fa fa-duotone fa-user-astronaut"></i> {{ currentUser.username }}님이 좋아하는 배우 출연 영화 </h2>
+        <div v-if="actorRecom" id="card">
           <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
           <swiper-slide role="tab">
           <recommend-movie-card
-            v-for="(movie, idx) in recommendMovies" :key="idx" :allMovie="movie"
+            v-for="(movie, idx) in actorRecom" :key="idx" :allMovie="movie"
           >
           </recommend-movie-card>
           </swiper-slide>
@@ -37,7 +37,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'RecommendationMovies',
+  name: 'RecommendActor',
   components: { swiper,
     swiperSlide, RecommendMovieCard },
   data () {
@@ -53,13 +53,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['recommendMovies', 'currentUser']),
+    ...mapGetters(['actorRecom', 'currentUser']),
   },
   methods: {
-    ...mapActions(['getRecommendMovies']),
+    ...mapActions(['getActorRecom']),
   },
   created() {
-    this.getRecommendMovies()
+    this.getActorRecom()
   }
 }
 

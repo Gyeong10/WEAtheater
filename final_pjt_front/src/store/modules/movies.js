@@ -19,6 +19,12 @@ export default {
     // allReviewList: [],
     searchMovieData: [],
     searchPersonData: [],
+
+    genreRecom: [],
+    weatherRecom: [],
+    actorRecom: [],
+
+    weatherIcon: [],
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -35,6 +41,12 @@ export default {
     // allReviewList: state => state.allReviewList,
     searchMovieData: state => state.searchMovieData,
     searchPersonData: state => state.searchPersonData,
+
+    genreRecom: state => state.genreRecom,
+    weatherRecom: state => state.weatherRecom,
+    actorRecom: state => state.actorRecom,
+
+    weatherIcon: state => state.weatherIcon,
   },
   mutations: {
     // SET_TOKEN: (state, token) => state.token = token,
@@ -50,6 +62,12 @@ export default {
     // SET_ALL_REVIEW_LIST: (state, allReviewList) => state.allReviewList = allReviewList,
     SET_SEARCH_MOVIE_DATA: (state, searchMovieData) => state.searchMovieData = searchMovieData,
     SET_SEARCH_PERSON_DATA: (state, searchPersonData) => state.searchPersonData = searchPersonData,
+
+    SET_GENRE_RECOM: (state, genreRecom) => state.genreRecom = genreRecom,
+    SET_WEATHER_RECOM: (state, weatherRecom) => state.weatherRecom = weatherRecom,
+    SET_ACTOR_RECOM: (state, actorRecom) => state.actorRecom = actorRecom,
+
+    SET_WEATHER_ICON: (state, weatherIcon) => state.weatherIcon = weatherIcon,
   },
   actions: {
     movieDetail({ getters, commit }, { moviePk }) {
@@ -202,7 +220,7 @@ export default {
     },
 
     getSearchDataPerson({commit, getters}, {personPk}) {
-      console.log(personPk)
+  
       axios({
         url: drf.movies.searchDataPerson(personPk),
         method: 'get',
@@ -216,6 +234,54 @@ export default {
         })
     },
 
+    getGenreRecom({commit, getters}) {
 
+      axios({
+        url : drf.movies.genre_list(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('SET_GENRE_RECOM', res.data))
+        .catch(err => {
+          console.error(err.response)
+        })
+    },
+
+    getWeatherRecom({commit, getters}) {
+
+      axios({
+        url : drf.movies.weather_list(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('SET_WEATHER_RECOM', res.data))
+        .catch(err => {
+          console.error(err.response)
+        })
+    },
+
+    getActorRecom({commit, getters}) {
+
+      axios({
+        url : drf.movies.actor_list(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('SET_ACTOR_RECOM', res.data))
+        .catch(err => {
+          console.error(err.response)
+        })
+    },
+
+    getWeatherIcon({commit, getters}) {
+
+      axios({
+        url: drf.movies.weather_icon(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('SET_WEATHER_ICON', res.data))
+        .catch(err => {console.error(err.response)})
+    }
   }
 }

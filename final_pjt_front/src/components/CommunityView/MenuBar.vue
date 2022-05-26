@@ -6,7 +6,7 @@
     <div>
       <br>
       <v-btn large rounded id="vtn"
-      color="success" @click="goNew"><v-icon left>
+      color="grey lighten-1" @click="goNew"><v-icon left>
         mdi-pencil
       </v-icon>게시글 작성</v-btn>
     </div>

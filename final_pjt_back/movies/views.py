@@ -128,32 +128,50 @@ def set_data(lists):
         temp = random.sample(temp, 10)
     return temp
 
+# 탑텐
 @api_view(['GET'])
 def movie_list(request):
     top10_list = Movie.objects.order_by('pk')[:10]
     top10 = []
     for top10_movie in top10_list:
         top10.append(convert(top10_movie))
+    return Response(top10)
 
-    genre = set_data(genre_recommend(request))  
+# 장르
+@api_view(['GET'])
+def genre_list(request):
+    genre = set_data(genre_recommend(request))
+    return Response(genre)
+
+# 날씨
+@api_view(['GET'])
+def weather_list(request):
     weather = set_data(weather_recommend())
-    actor = set_data(actor_recommend(request))
+    return Response(weather)
 
-    serializer = [
-        {
-        'top10': top10
-        },
-        {
-        'actor': actor
-        },
-        {
-        'weather': weather
-        },
-        {
-        'genre': genre
-        }
-    ]
-    return Response(serializer)
+# 배우
+@api_view(['GET'])
+def actor_list(request):
+    actor = set_data(actor_recommend(request))
+    return Response(actor)
+
+
+# 날씨 아이콘
+@api_view(['GET'])
+def weather_icon(request):
+    here_req = requests.get("http://www.geoplugin.net/json.gp")
+
+    weather_req = []
+    if (here_req.status_code != 200):
+        # print("현재좌표를 불러올 수 없음")
+        pass
+    else:
+        location = json.loads(here_req.text)
+        crd = {"lat": str(location["geoplugin_latitude"]), "lng": str(location["geoplugin_longitude"])}
+        apiKey = '4152eb8dd166c278267accb9d4314069'
+        weather_req = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={crd['lat']}&lon={crd['lng']}&appid={apiKey}").json()
+    
+    return Response(weather_req['weather'])
 
 
 @api_view(['GET'])
