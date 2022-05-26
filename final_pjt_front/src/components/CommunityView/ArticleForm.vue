@@ -1,9 +1,19 @@
 <template>
   <div>
-    <div class="back">
-      <router-link v-if="action=='CREATE'" class="link smallButton" id="router" :to="{ name: 'community', params: { category: 'all' } }">목록</router-link>
-      <router-link v-else class="link smallButton" id="router" :to="{ name: 'article', params: { articlePk: articlePk } }">BACK</router-link>
-    </div>
+    <v-btn depressed
+        color="orange darken-2"
+        dark
+        id="v-btn"
+      >
+      <v-icon
+        dark
+        left
+      >
+        mdi-arrow-left
+      </v-icon>
+      <router-link v-if="action=='CREATE'" id="router" :to="{ name: 'community', params: { category: 'all' } }">목록</router-link>
+      <router-link v-else id="router" :to="{ name: 'article', params: { articlePk: articlePk } }">BACK</router-link>
+    </v-btn>
     
     <div class="articleform">
       <form @submit.prevent="onSubmit">
@@ -16,7 +26,7 @@
               :disabled="false"
               name="category"
               :maxItem="10"
-              placeholder="Please select an option"
+              placeholder="게시판을 선택해주세요!"
               class="d-inline mx-2"
               >
           </Dropdown>
@@ -30,7 +40,7 @@
           <textarea class="inputbox" v-model="newArticle.content" type="text" id="content" required></textarea>
         </div>
         <div>
-          <button class="button">{{ action }}</button>
+          <v-btn><button><v-icon>mdi-wrench</v-icon>{{ action }}</button></v-btn>
         </div>
       </form>
     </div>
@@ -115,5 +125,13 @@ export default {
   text-align: left;
   margin-left: 5vh;
 }
-
+#router {
+  text-decoration: none;
+  color: black;
+}
+#v-btn {
+  display: flex;
+  margin-left: 40px;
+  justify-content: flex-start;
+}
 </style>
