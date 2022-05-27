@@ -30,7 +30,7 @@
 
 ---
 
-<img src="C:\Users\이주영\Desktop\ssafy7\img\lang.PNG" alt="lang" style="zoom: 33%;" />
+<img src="README.assets/lang.PNG" alt="lang" style="zoom: 33%;" />
 
 **A. 언어**
 
